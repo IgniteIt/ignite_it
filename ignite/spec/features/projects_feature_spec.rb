@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'helpers/projects_helper_spec'
 
 feature 'projects' do
-
   include ProjectsHelper
 
   context 'no projects have been added' do
@@ -21,38 +20,55 @@ feature 'projects' do
   context 'creating projects' do
     scenario 'prompts user to fill out a form, then displays a new project' do
       visit '/'
-      create_project('Campaign', regular_description, '100')
+      create_project('Campaign', regular_description, '100', '30 days from now')
       expect(page).to have_content 'Campaign'
-      expect(page).to have_content '£ 100' 
+      expect(page).to have_content '£ 100'
+      expect(page).to have_content '30 days left'
       expect(current_path).to eq "/projects/#{Project.last.id}"
+    end
+
+    scenario 'after creating a project the list in the home page self update' do
+      visit '/'
+      create_project('Campaign', regular_description, '100', '30 days from now')
+      visit '/'
+      expect(page).to have_content 'Campaign'
+      expect(page).to have_content '£ 100'
+      expect(page).to have_content '30 days left'
     end
 
     context 'creating an invalid project' do
       it 'does not let you submit a name that is too short' do
         visit '/'
-        create_project('Ca', regular_description, '100')
+        create_project('Ca', regular_description, '100', '30 days from now')
         expect(page).not_to have_content 'Ca'
         expect(page).to have_content 'error'
       end
 
       it 'does not let you submit a description that is too short' do
         visit '/'
-        create_project('Campaign', 'Short description', '100')
+        create_project('Campaign', 'Short description', '100', '30 days from now')
         expect(page).to have_content 'error'
       end
 
       it 'does not let you submit a project without a unique name' do
         visit '/'
-        create_project('Campaign', regular_description, '100')
+        create_project('Campaign', regular_description, '100', '30 days from now')
         visit '/'
-        create_project('Campaign', regular_description, '100')
+        create_project('Campaign', regular_description, '100', '30 days from now')
         expect(page).not_to have_content 'Campaign'
         expect(page).to have_content 'error'
       end
 
       it 'does not let you submit a project without a goal' do
         visit '/'
-        create_project('Campaign', regular_description, '')
+        create_project('Campaign', regular_description, '', '30 days from now')
+        expect(page).not_to have_content 'Campaign'
+        expect(page).to have_content 'error'
+      end
+
+      it 'does not let you submit a project without expiration date' do
+        visit '/'
+        create_project('Campaign', regular_description, '100', 'Select an expiration date')
         expect(page).not_to have_content 'Campaign'
         expect(page).to have_content 'error'
       end
@@ -62,7 +78,7 @@ feature 'projects' do
   context 'project have been added' do
     before do
       visit '/'
-      create_project('Campaign', regular_description, '100')
+      create_project('Campaign', regular_description, '100', '30 days from now')
       visit '/'
     end
 

@@ -3,6 +3,7 @@
 <% if @projects.any? %>
   <% @projects.each do |project| %>
     <h2><%= link_to project.name, project_path(project) %></h2>
+    <h4>£ <%= project.goal %></h4>
   <% end %>
 <% else %>
   <h3>No projects yet!</h3>

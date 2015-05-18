@@ -5,6 +5,15 @@
   <%= f.text_field :name %>
   <%= f.label :goal %>
   <%= f.number_field :goal %>
+  <%= f.label :expiration_date %>
+  <%= f.select :expiration_date, options_for_select(["Select an expiration date",
+                                                    ["30 days from now", @project.exp_date_calculator(30)],
+                                                    ["45 days from now", @project.exp_date_calculator(45)],
+                                                    ["60 days from now", @project.exp_date_calculator(60)],
+                                                    ["75 days from now", @project.exp_date_calculator(75)],
+                                                    ["90 days from now", @project.exp_date_calculator(90)]],
+                                                    selected: "Select an expiration date",
+                                                    disabled: "Select an expiration date") %>
   <%= f.label :description %>
   <%= f.text_area :description %>
   <%= f.submit %>
