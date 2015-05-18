@@ -49,10 +49,19 @@ feature 'projects' do
     scenario 'lets a user edit a project' do
       click_link 'Project'
       click_link 'Edit'
-      fill_in 'Description', with: 'Project has been updated'
+      fill_in 'Description', with: 'Edited description'
+      click_button 'Update Project'
+      expect(page).to have_content 'Edited description'
       expect(page).to have_content 'Project has been updated'
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
-  end
 
+    scenario 'lets a user delete a project' do
+      click_link 'Project'
+      click_link 'Delete'
+      expect(page).not_to have_content('Project')
+      expect(page).to have_content 'Project has been deleted'
+      expect(current_path).to eq '/'
+    end
+  end
 end
