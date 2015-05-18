@@ -22,12 +22,20 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    flash[:notice] = 'Project has been updated'
     @project.update(project_params)
+    flash[:notice] = 'Project has been updated'
     redirect_to project_path(@project)
+  end
+
+  def destroy
+    @project = Project.find(params[:id])
+    @project.destroy
+    flash[:notice] = 'Project has been deleted'
+    redirect_to '/'
   end
 
   def project_params
     params.require(:project).permit(:name, :description)
   end
+
 end
