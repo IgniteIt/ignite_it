@@ -1,6 +1,10 @@
 require 'rails_helper'
+require 'helpers/projects_helper_spec'
 
 feature 'projects' do
+
+  include ProjectsHelper
+
   context 'no projects have been added' do
     scenario 'page should have a title' do
       visit '/'
@@ -16,11 +20,11 @@ feature 'projects' do
 
   context 'project have been added' do
     before do
-      Project.create(name: 'Project', description: 'This is the first project')
+      visit '/'
+      create_project('Project', 'This is the first project')
     end
 
     scenario 'display projects' do
-      visit '/'
       expect(page).to have_content('Project')
       expect(page).not_to have_content('No projects yet')
     end
@@ -29,11 +33,20 @@ feature 'projects' do
   context 'creating projects' do
     scenario 'prompts user to fill out a form, then displays a new project' do
       visit '/'
-      click_link "Add a project"
-      fill_in 'Name', with: 'Project'
-      click_button 'Create Project'
+      create_project('Project', 'This is the first project')
       expect(page).to have_content 'Project'
       expect(current_path).to eq '/'
+    end
+  end
+
+  context 'viewing projects' do
+    scenario 'lets a user view a project' do
+      visit '/'
+      create_project('Project', 'This is the first project')
+      click_link 'Project'
+      expect(page).to have_content('Project')
+      expect(page).to have_content('This is the first project')
+      expect(current_path).to eq "/projects/#{Project.last.id}"
     end
   end
 end
