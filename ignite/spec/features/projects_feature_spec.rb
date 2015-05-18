@@ -23,6 +23,7 @@ feature 'projects' do
       visit '/'
       create_project('Campaign', regular_description, '100')
       expect(page).to have_content 'Campaign'
+      expect(page).to have_content '£ 100' 
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
@@ -37,7 +38,6 @@ feature 'projects' do
       it 'does not let you submit a description that is too short' do
         visit '/'
         create_project('Campaign', 'Short description', '100')
-        expect(page).not_to have_content 'Short description'
         expect(page).to have_content 'error'
       end
 
