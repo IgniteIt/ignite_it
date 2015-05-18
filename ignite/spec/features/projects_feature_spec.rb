@@ -25,4 +25,15 @@ feature 'projects' do
       expect(page).not_to have_content('No projects yet')
     end
   end
+
+  context 'creating projects' do
+    scenario 'prompts user to fill out a form, then displays a new project' do
+      visit '/'
+      click_link "Add a project"
+      fill_in 'Name', with: 'Project'
+      click_button 'Create Project'
+      expect(page).to have_content 'Project'
+      expect(current_path).to eq '/'
+    end
+  end
 end
