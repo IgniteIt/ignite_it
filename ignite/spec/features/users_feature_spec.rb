@@ -35,3 +35,20 @@ context "user signed in on the homepage" do
     expect(page).not_to have_link('Sign up')
   end
 end
+
+context "user can upload an avatar" do
+  before do 
+    visit('/')
+    click_link('Sign up')
+    fill_in('Email', with: 'test@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    attach_file 'user_avatar', './spec/fixtures/me.jpg'
+    click_button('Sign up')
+  end
+
+  it 'should be able to upload an avatar' do
+    visit('/')
+    expect(page.find('#avatar_image')['src']).to have_content 'me.jpg'
+  end
+end
