@@ -21,7 +21,7 @@ feature 'projects' do
   context 'creating projects' do
     scenario 'prompts user to fill out a form, then displays a new project' do
       visit '/'
-      create_project('Campaign', 'This is the first project')
+      create_project('Campaign', regular_description)
       expect(page).to have_content 'Campaign'
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
@@ -29,8 +29,15 @@ feature 'projects' do
     context 'creating an invalid project' do
       it 'does not let you submit a name that is too short' do
         visit '/'
-        create_project('Ca', 'This is the first project')
+        create_project('Ca', regular_description)
         expect(page).not_to have_content 'Ca'
+        expect(page).to have_content 'error'
+      end
+
+      it 'does not let you submit a description that is too short' do
+        visit '/'
+        create_project('Campaign', 'Short description')
+        expect(page).not_to have_content 'Short description'
         expect(page).to have_content 'error'
       end
     end
@@ -39,7 +46,7 @@ feature 'projects' do
   context 'project have been added' do
     before do
       visit '/'
-      create_project('Campaign', 'This is the first project')
+      create_project('Campaign', regular_description)
       visit '/'
     end
 
@@ -51,16 +58,14 @@ feature 'projects' do
     scenario 'lets a user view a project' do
       click_link 'Campaign'
       expect(page).to have_content('Campaign')
-      expect(page).to have_content('This is the first project')
+      expect(page).to have_content(regular_description)
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
     scenario 'lets a user edit a project' do
       click_link 'Campaign'
-      click_link 'Edit'
-      fill_in 'Description', with: 'Edited description'
-      click_button 'Update Project'
-      expect(page).to have_content 'Edited description'
+      edit_project(edited_description)
+      expect(page).to have_content 'And it has been edited!'
       expect(page).to have_content 'Project has been updated'
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
