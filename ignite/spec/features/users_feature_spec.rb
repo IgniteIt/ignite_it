@@ -37,7 +37,7 @@ context "user signed in on the homepage" do
 end
 
 context "user can upload an avatar" do
-  before do 
+  before do
     visit('/')
     click_link('Sign up')
     fill_in('Email', with: 'test@example.com')
@@ -50,5 +50,34 @@ context "user can upload an avatar" do
   it 'should be able to upload an avatar' do
     visit('/')
     expect(page.find('#avatar_image')['src']).to have_content 'me.jpg'
+  end
+end
+
+context "user can edit their profile" do
+  before do
+    visit('/')
+    click_link('Sign up')
+    fill_in('Email', with: 'test@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    click_button('Sign up')
+  end
+
+  it "user can edit their profile" do
+    visit('/')
+    expect(page).to have_link('Edit profile')
+  end
+end
+
+context "user can add a username" do
+  it "can add a username" do
+    visit('/')
+    click_link('Sign up')
+    fill_in('Email', with: 'test@example.com')
+    fill_in('Password', with: 'testtest')
+    fill_in('Password confirmation', with: 'testtest')
+    fill_in('Username', with: 'Paul')
+    click_button('Sign up')
+    expect(page).to have_content('Paul')
   end
 end
