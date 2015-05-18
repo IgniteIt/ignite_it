@@ -21,6 +21,7 @@ context "user signed in on the homepage" do
     fill_in('Email', with: 'test@example.com')
     fill_in('Password', with: 'testtest')
     fill_in('Password confirmation', with: 'testtest')
+    fill_in('Username', with: 'Paul')
     click_button('Sign up')
   end
 
@@ -34,6 +35,16 @@ context "user signed in on the homepage" do
     expect(page).not_to have_link('Sign in')
     expect(page).not_to have_link('Sign up')
   end
+
+  it "can log in with a username instead of an email" do
+    visit('/')
+    click_link('Sign out')
+    click_link('Sign in')
+    fill_in('user_login', with: 'Paul')
+    fill_in('user_password', with: 'testtest')
+    click_button('Log in')
+    expect(page).to have_content('Signed in successfully')
+  end
 end
 
 context "user can upload an avatar" do
@@ -43,6 +54,7 @@ context "user can upload an avatar" do
     fill_in('Email', with: 'test@example.com')
     fill_in('Password', with: 'testtest')
     fill_in('Password confirmation', with: 'testtest')
+    fill_in('Username', with: 'Paul')
     attach_file 'user_avatar', './spec/fixtures/me.jpg'
     click_button('Sign up')
   end
@@ -60,6 +72,7 @@ context "user can edit their profile" do
     fill_in('Email', with: 'test@example.com')
     fill_in('Password', with: 'testtest')
     fill_in('Password confirmation', with: 'testtest')
+    fill_in('Username', with: 'Paul')
     click_button('Sign up')
   end
 
