@@ -66,7 +66,7 @@ feature 'projects' do
         expect(page).to have_content 'error'
       end
 
-      it 'does not let you submit a project without expiration date' do
+      it 'does not let you submit a project without an expiration date' do
         visit '/'
         create_project('Campaign', regular_description, '100', 'Select an expiration date')
         expect(page).not_to have_content 'Campaign'

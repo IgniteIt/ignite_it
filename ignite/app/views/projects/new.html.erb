@@ -3,18 +3,22 @@
 <%= form_for @project do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %>
+  <p>
   <%= f.label :goal %>
   <%= f.number_field :goal %>
+  <p>
   <%= f.label :expiration_date %>
   <%= f.select :expiration_date, options_for_select(["Select an expiration date",
-                                                    ["30 days from now", @project.exp_date_calculator(30)],
-                                                    ["45 days from now", @project.exp_date_calculator(45)],
-                                                    ["60 days from now", @project.exp_date_calculator(60)],
-                                                    ["75 days from now", @project.exp_date_calculator(75)],
-                                                    ["90 days from now", @project.exp_date_calculator(90)]],
+                                                    ["30 days from now", Time.now + 30.days],
+                                                    ["45 days from now", Time.now + 45.days],
+                                                    ["60 days from now", Time.now + 60.days],
+                                                    ["75 days from now", Time.now + 75.days],
+                                                    ["90 days from now", Time.now + 90.days]],
                                                     selected: "Select an expiration date",
                                                     disabled: "Select an expiration date") %>
+  <p>
   <%= f.label :description %>
   <%= f.text_area :description %>
+  <p>
   <%= f.submit %>
 <% end %>
