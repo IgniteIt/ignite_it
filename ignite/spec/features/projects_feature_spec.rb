@@ -21,7 +21,7 @@ feature 'projects' do
   context 'creating projects' do
     scenario 'prompts user to fill out a form, then displays a new project' do
       visit '/'
-      create_project('Campaign', regular_description)
+      create_project('Campaign', regular_description, '100')
       expect(page).to have_content 'Campaign'
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
@@ -29,23 +29,30 @@ feature 'projects' do
     context 'creating an invalid project' do
       it 'does not let you submit a name that is too short' do
         visit '/'
-        create_project('Ca', regular_description)
+        create_project('Ca', regular_description, '100')
         expect(page).not_to have_content 'Ca'
         expect(page).to have_content 'error'
       end
 
       it 'does not let you submit a description that is too short' do
         visit '/'
-        create_project('Campaign', 'Short description')
+        create_project('Campaign', 'Short description', '100')
         expect(page).not_to have_content 'Short description'
         expect(page).to have_content 'error'
       end
 
       it 'does not let you submit a project without a unique name' do
         visit '/'
-        create_project('Campaign', regular_description)
+        create_project('Campaign', regular_description, '100')
         visit '/'
-        create_project('Campaign', regular_description)
+        create_project('Campaign', regular_description, '100')
+        expect(page).not_to have_content 'Campaign'
+        expect(page).to have_content 'error'
+      end
+
+      it 'does not let you submit a project without a goal' do
+        visit '/'
+        create_project('Campaign', regular_description, '')
         expect(page).not_to have_content 'Campaign'
         expect(page).to have_content 'error'
       end
@@ -55,7 +62,7 @@ feature 'projects' do
   context 'project have been added' do
     before do
       visit '/'
-      create_project('Campaign', regular_description)
+      create_project('Campaign', regular_description, '100')
       visit '/'
     end
 

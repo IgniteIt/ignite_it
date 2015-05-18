@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 module ProjectsHelper
-  def create_project(name, description)
+  def create_project(name, description, goal)
     click_link 'Add a project'
     fill_in 'Name', with: name
     fill_in 'Description', with: description
+    fill_in 'Goal', with: goal
     click_button 'Create Project'
   end
 

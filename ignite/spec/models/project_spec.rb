@@ -16,9 +16,16 @@ describe Project, :type => :model do
     expect(project).not_to be_valid
   end
 
-  it "is not valid unless it has an unique name" do
+  it 'is not valid unless it has an unique name' do
     Project.create(name: 'Campaign', description: regular_description)
     project = Project.new(name: 'Campaign', description: regular_description)
     expect(project).to have(1).error_on(:name)
   end
+
+  it 'is not valid without a goal' do
+    project = Project.new(name: 'Campaign', description: regular_description)
+    expect(project).to have(1).error_on(:goal)
+    expect(project).not_to be_valid
+  end
+
 end
