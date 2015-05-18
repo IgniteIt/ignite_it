@@ -40,6 +40,15 @@ feature 'projects' do
         expect(page).not_to have_content 'Short description'
         expect(page).to have_content 'error'
       end
+
+      it 'does not let you submit a project without a unique name' do
+        visit '/'
+        create_project('Campaign', regular_description)
+        visit '/'
+        create_project('Campaign', regular_description)
+        expect(page).not_to have_content 'Campaign'
+        expect(page).to have_content 'error'
+      end
     end
   end
 
