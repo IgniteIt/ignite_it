@@ -5,6 +5,10 @@
 
 <div id="due_date_timer"></div>
 
+<div style='width: 800px;'>
+  <div id="map" style='width: 800px; height: 400px;'></div>
+</div>
+
 <!-- TO BE REFACTORED -->
 <script>
   var year = <%= @project.expiration_date.year %>;
@@ -22,6 +26,21 @@
   // var central_offset = 6*60*60;
   // $('#due_date_timer').countdown({until: date});
   // JSON - Time?
+</script>
+
+<script>
+  handler = Gmaps.build('Google');
+  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+  markers = handler.addMarkers([
+    {
+      "lat": <%= @project.latitude %>,
+      "lng": <%= @project.longitude %>
+    }
+  ]);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+  handler.getMap().setZoom(14);
+});
 </script>
 <!-- END -->
 

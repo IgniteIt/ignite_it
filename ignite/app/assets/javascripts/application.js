@@ -15,6 +15,8 @@
 //= require jquery-ui
 //= require gmaps-auto-complete 
 //= require jquery.countdown
+//= require underscore
+//= require gmaps/google
 //= require turbolinks
 //= require_tree .
 
