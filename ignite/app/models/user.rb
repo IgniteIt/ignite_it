@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     :case_sensitive => false
   }
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.png"
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.gif"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   def self.find_for_database_authentication(warden_conditions)
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.username = auth.info.name
-      # user.avatar = auth.info.image # assuming the user model has an image
+      user.avatar = auth.info.image # assuming the user model has an image
     end
   end
 
