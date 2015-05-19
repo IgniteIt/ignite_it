@@ -24,8 +24,6 @@
 </script>
 <!-- END -->
 
-
-<!-- To clean up or refactor with testing later? -->
 <br>
 <% if current_user %>
   <% if @user.id == current_user.id %>
@@ -39,4 +37,3 @@
   <p>This project was created by <%= @user.username %></p>
   <%= image_tag @user.avatar.url(:thumb), :id => "creator_avatar"%>
 <% end %>
-<!-- END -->
