@@ -12,3 +12,6 @@
 !/log/.keep
 /tmp
 .DS_Store
+/public/system
+.env
+/coverage

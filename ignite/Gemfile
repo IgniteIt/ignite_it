@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+# environment variables for secruity
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
@@ -24,6 +26,15 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'jquery-countdown-rails'
+# user authentication
+gem 'devise'
+gem 'omniauth-facebook'
+
+# user avatars
+gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
+gem 'simplecov', :require => false, :group => :test
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -49,5 +60,6 @@ group :development, :test do
   gem 'capybara'
 
   gem 'rspec-collection_matchers'
-end
 
+  gem 'shoulda'
+end
