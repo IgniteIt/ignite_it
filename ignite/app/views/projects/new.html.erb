@@ -7,6 +7,9 @@
   <%= f.label :goal %>
   <%= f.number_field :goal %>
   <p>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <p>
   <%= f.label :expiration_date %>
   <%= f.select :expiration_date, options_for_select(["Select an expiration date",
                                                     ["30 days from now", 30.days],

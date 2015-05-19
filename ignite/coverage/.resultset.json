@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/models/user.rb": [
+      "/Users/Armi/Projects/ignite_it/ignite/app/models/user.rb": [
         1,
         1,
         null,
@@ -46,15 +46,19 @@
         null,
         null
       ],
-      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/helpers/application_helper.rb": [
+      "/Users/Armi/Projects/ignite_it/ignite/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/helpers/projects_helper.rb": [
+      "/Users/Armi/Projects/ignite_it/ignite/app/helpers/projects_helper.rb": [
         1,
         null
       ],
-      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/models/project.rb": [
+      "/Users/Armi/Projects/ignite_it/ignite/app/models/project.rb": [
+        1,
+        1,
+        1,
+        null,
         1,
         1,
         1,
@@ -63,29 +67,29 @@
         1,
         null,
         1,
+        14,
         13,
-        12,
         null,
         null,
         null
       ],
-      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/controllers/projects_controller.rb": [
+      "/Users/Armi/Projects/ignite_it/ignite/app/controllers/projects_controller.rb": [
         1,
         1,
-        42,
+        43,
         null,
         null,
         1,
-        13,
+        14,
         null,
         null,
         1,
-        13,
-        13,
-        13,
+        14,
+        14,
+        14,
         7,
         null,
-        6,
+        7,
         null,
         null,
         null,
@@ -112,11 +116,11 @@
         null,
         null,
         1,
-        27,
+        29,
         null,
         null
       ],
-      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/controllers/application_controller.rb": [
+      "/Users/Armi/Projects/ignite_it/ignite/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -134,6 +138,6 @@
         null
       ]
     },
-    "timestamp": 1432046082
+    "timestamp": 1432048033
   }
 }

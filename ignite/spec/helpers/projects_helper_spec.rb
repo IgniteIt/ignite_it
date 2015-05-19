@@ -1,11 +1,12 @@
 require 'rails_helper'
 
 module ProjectsHelper
-  def create_project(name, description, goal, exp_date, sector)
+  def create_project(name, description, goal, exp_date, sector, address)
     click_link 'Add a project'
     fill_in 'Name', with: name
     fill_in 'Description', with: description
     fill_in 'Goal', with: goal
+    fill_in 'Address', with: address
     select exp_date, from: 'Expiration date'
     select sector, from: 'Sector'
     click_button 'Create Project'
