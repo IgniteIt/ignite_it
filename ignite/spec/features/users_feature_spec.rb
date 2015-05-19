@@ -103,6 +103,8 @@ context "user is associated with a project they made" do
   it "can create a project and see their username" do
     sign_up
     create_project('Campaign', regular_description, '100', '30 days from now')
+    click_link 'Sign out'
+    click_link 'Campaign'
     expect(page).to have_content('This project was created by Paul')
   end
 end

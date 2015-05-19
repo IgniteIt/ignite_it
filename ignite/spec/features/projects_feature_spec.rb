@@ -121,7 +121,7 @@ feature 'projects' do
       sign_up('g@g.com','George')
       visit('/')
       click_link 'Campaign'
-      click_link 'Delete'
+      page.driver.submit :delete, "/projects/#{Project.last.id}", {}
       expect(page).to have_content 'Error'
     end
 
@@ -130,7 +130,7 @@ feature 'projects' do
       sign_up('g@g.com', 'George')
       visit('/')
       click_link 'Campaign'
-      click_link 'Edit'
+      visit("/projects/#{Project.last.id}/edit")
       expect(page).to have_content 'Error'
     end
   end

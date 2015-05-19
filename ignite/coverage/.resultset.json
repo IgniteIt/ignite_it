@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/models/user.rb": [
+      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/models/user.rb": [
         1,
         1,
         null,
@@ -48,15 +48,15 @@
         null,
         null
       ],
-      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/helpers/application_helper.rb": [
+      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/helpers/projects_helper.rb": [
+      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/helpers/projects_helper.rb": [
         1,
         null
       ],
-      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/models/project.rb": [
+      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/models/project.rb": [
         1,
         1,
         1,
@@ -72,12 +72,12 @@
         null,
         null
       ],
-      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/controllers/projects_controller.rb": [
+      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/controllers/projects_controller.rb": [
         1,
         1,
         null,
         1,
-        92,
+        93,
         null,
         null,
         1,
@@ -96,8 +96,8 @@
         null,
         null,
         1,
-        18,
-        18,
+        19,
+        19,
         null,
         null,
         1,
@@ -132,7 +132,7 @@
         null,
         null
       ],
-      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/controllers/application_controller.rb": [
+      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -143,13 +143,13 @@
         1,
         null,
         1,
-        80,
+        81,
+        57,
         56,
-        55,
         null,
         null
       ]
     },
-    "timestamp": 1432050701
+    "timestamp": 1432052650
   }
 }
