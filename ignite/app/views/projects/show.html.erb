@@ -4,11 +4,10 @@
 
 <div id="due_date_timer"></div>
 
-
 <!-- TO BE REFACTORED -->
 <script>
   var year = <%= @project.expiration_date.year %>
-  var month = <%= @project.expiration_date.month %>
+  var month = <%= @project.expiration_date.month - 1 %>
   var day = <%= @project.expiration_date.day %>
   var hours = <%= @project.expiration_date.hour + 1 %>
   var minutes = <%= @project.expiration_date.min %>

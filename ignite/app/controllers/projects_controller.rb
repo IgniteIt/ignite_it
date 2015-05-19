@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.expiration_date = Time.now.utc + (params[:expiration_date]).to_i
+    @project.set_expiration_date(project_params[:expiration_date])
     if @project.save
       redirect_to project_path(@project)
     else
@@ -42,5 +42,4 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name, :description, :goal, :expiration_date)
   end
-
 end
