@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'helpers/projects_helper_spec'
+require 'helpers/users_helper_spec'
 
 context "user not signed in and on the homepage" do
   it "should see a 'sign in' link and a 'sign up' link" do
@@ -10,6 +12,11 @@ context "user not signed in and on the homepage" do
   it "should not see 'sign out' link" do
     visit('/')
     expect(page).not_to have_link('Sign out')
+  end
+
+  xit "should be able to sign in with facebook" do
+    visit('/')
+    click_link 'Sign in with Facebook'
   end
 end
 
@@ -92,5 +99,17 @@ context "user can add a username" do
     fill_in('Username', with: 'Paul')
     click_button('Sign up')
     expect(page).to have_content('Paul')
+  end
+end
+
+context "user is associated with a project they made" do
+  include UserHelper
+  include ProjectsHelper
+  it "can create a project and see their username" do
+    sign_up
+    create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
+    click_link 'Sign out'
+    click_link 'Campaign'
+    expect(page).to have_content('This project was created by Paul')
   end
 end

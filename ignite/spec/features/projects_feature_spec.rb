@@ -1,8 +1,14 @@
 require 'rails_helper'
 require 'helpers/projects_helper_spec'
+require 'helpers/users_helper_spec'
 
 feature 'projects' do
   include ProjectsHelper
+  include UserHelper
+
+  before do
+    sign_up
+  end
 
   context 'no projects have been added' do
     scenario 'page should have a title' do
@@ -87,7 +93,7 @@ feature 'projects' do
     end
   end
 
-  context 'project have been added' do
+  context 'projects have been added' do
     before do
       visit '/'
       create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
@@ -143,6 +149,39 @@ feature 'projects' do
       expect(page).to have_content 'Project has been deleted'
       expect(current_path).to eq '/'
     end
+
+    scenario 'only users who made a project can delete them' do
+      click_link 'Sign out'
+      sign_up('g@g.com','George')
+      visit('/')
+      click_link 'Campaign'
+      page.driver.submit :delete, "/projects/#{Project.last.id}", {}
+      expect(page).to have_content 'Error'
+    end
+
+    scenario 'only users who made a project can edit them' do
+      click_link 'Sign out'
+      sign_up('g@g.com', 'George')
+      visit('/')
+      click_link 'Campaign'
+      visit("/projects/#{Project.last.id}/edit")
+      expect(page).to have_content 'Error'
+    end
   end
+
+  context 'User can navigate the app' do
+    before do
+      visit '/'
+      create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
+      visit '/'
+    end
+
+    scenario 'project view page has a return to homepage link' do
+      click_link 'Campaign'
+      click_link 'Return to Homepage'
+      expect(current_path).to eq '/projects'
+    end
+  end
+
 end
 

@@ -27,7 +27,10 @@ ActiveRecord::Schema.define(version: 20150519145151) do
     t.float    "latitude"
     t.float    "longitude"
     t.text     "address"
+    t.integer  "user_id"
   end
+
+  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -55,4 +58,5 @@ ActiveRecord::Schema.define(version: 20150519145151) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "projects", "users"
 end
