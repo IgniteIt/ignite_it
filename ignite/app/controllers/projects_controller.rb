@@ -27,6 +27,10 @@ class ProjectsController < ApplicationController
 
   def edit
     @project = Project.find(params[:id])
+    if @project.user_id != current_user.id
+      flash[:notice] = 'Error, you did not create this project'
+      redirect_to '/'
+    end
   end
 
   def update
@@ -43,7 +47,7 @@ class ProjectsController < ApplicationController
       flash[:notice] = 'Project has been deleted'
       redirect_to '/'
     else
-      flash[:notice] = 'Error, you did not make this project'
+      flash[:notice] = 'Error, you did not create this project'
       redirect_to '/'
     end
   end

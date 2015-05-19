@@ -124,6 +124,15 @@ feature 'projects' do
       click_link 'Delete'
       expect(page).to have_content 'Error'
     end
+
+    scenario 'only users who made a project can edit them' do
+      click_link 'Sign out'
+      sign_up('g@g.com', 'George')
+      visit('/')
+      click_link 'Campaign'
+      click_link 'Edit'
+      expect(page).to have_content 'Error'
+    end
   end
 
   context 'User can navigate the app' do
