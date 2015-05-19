@@ -40,4 +40,18 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+#   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
+#     user = User.create( image:process_uri(auth.info.image))
+#   end
+
+# private
+
+#   def self.process_uri(uri)
+#     require 'open-uri'
+#     require 'open_uri_redirections'
+#     open(uri, :allow_redirections => :safe) do |r|
+#       r.base_uri.to_s
+#     end
+#   end
 end
