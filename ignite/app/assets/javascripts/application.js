@@ -17,7 +17,6 @@
 //= require jquery.countdown
 //= require underscore
 //= require gmaps/google
-//= require turbolinks
 //= require_tree .
 
 jQuery(function() {
@@ -29,6 +28,9 @@ jQuery(function() {
   });
 
   completer.autoCompleteInit({
-    country: "uk"
+    region: "UK"
+    autocomplete: {
+      minLength: 3
+    }
   });
 });

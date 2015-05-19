@@ -22,8 +22,6 @@ feature 'projects' do
       visit '/'
       create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
       expect(page).to have_content 'Campaign'
-      expect(page).to have_content '£ 100'
-      expect(page).to have_css('#due_date_timer')
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
@@ -108,6 +106,28 @@ feature 'projects' do
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
+    context 'on the view page' do
+      before do
+        click_link 'Campaign'
+      end
+
+      scenario 'there is a project with a name' do
+        expect(page).to have_content 'Campaign'
+      end
+
+      scenario 'there is a project with a goal' do
+        expect(page).to have_content '£ 100'
+      end
+
+      scenario 'there is a project with a expiration date' do
+        expect(page).to have_css('#due_date_timer')
+      end
+
+      scenario 'there is a project with a expiration date' do
+        expect(page).to have_css('#map')
+      end
+    end
+
     scenario 'lets a user edit a project' do
       click_link 'Campaign'
       edit_project(edited_description)
@@ -125,3 +145,4 @@ feature 'projects' do
     end
   end
 end
+
