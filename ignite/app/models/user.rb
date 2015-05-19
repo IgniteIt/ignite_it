@@ -7,9 +7,9 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   validates :username,
-  :presence => true,
-  :uniqueness => {
-    :case_sensitive => false
+    :presence => true,
+    :uniqueness => {
+      :case_sensitive => false
   }
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.gif"
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
       user.username = auth.info.name
-      user.avatar = auth.info.image # assuming the user model has an image
+      user.avatar = auth.info.image
     end
   end
 
@@ -40,18 +40,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-#   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
-#     user = User.create( image:process_uri(auth.info.image))
-#   end
-
-# private
-
-#   def self.process_uri(uri)
-#     require 'open-uri'
-#     require 'open_uri_redirections'
-#     open(uri, :allow_redirections => :safe) do |r|
-#       r.base_uri.to_s
-#     end
-#   end
 end
