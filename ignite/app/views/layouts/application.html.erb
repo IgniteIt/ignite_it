@@ -8,6 +8,10 @@
 </head>
 <body>
 
+<%= link_to "Return to Homepage", projects_path %>
+
+<br>
+
 <% if current_user %>
   <%= image_tag current_user.avatar.url(:thumb), :id => "avatar_image"%>
 <% end %>

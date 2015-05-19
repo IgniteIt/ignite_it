@@ -116,4 +116,19 @@ feature 'projects' do
       expect(current_path).to eq '/'
     end
   end
+
+  context 'User can navigate the app' do
+    before do
+      visit '/'
+      create_project('Campaign', regular_description, '100', '30 days from now')
+      visit '/'
+    end
+
+    scenario 'project view page has a return to homepage link' do
+      click_link 'Campaign'
+      click_link 'Return to Homepage'
+      expect(current_path).to eq '/projects'
+    end
+  end
+
 end

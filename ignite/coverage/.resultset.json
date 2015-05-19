@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/models/user.rb": [
+      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/models/user.rb": [
         1,
         1,
         null,
@@ -40,23 +40,23 @@
         null,
         null,
         1,
-        40,
-        40,
+        42,
+        42,
         0,
         null,
         null,
         null,
         null
       ],
-      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/helpers/application_helper.rb": [
+      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/helpers/projects_helper.rb": [
+      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/helpers/projects_helper.rb": [
         1,
         null
       ],
-      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/models/project.rb": [
+      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/models/project.rb": [
         1,
         1,
         1,
@@ -66,36 +66,36 @@
         1,
         null,
         1,
+        14,
         13,
-        12,
         null,
         null,
         null
       ],
-      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/controllers/projects_controller.rb": [
+      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/controllers/projects_controller.rb": [
         1,
         1,
-        69,
+        74,
         null,
         null,
         1,
-        13,
+        14,
         null,
         null,
         1,
-        13,
-        13,
-        13,
-        13,
-        8,
+        14,
+        14,
+        14,
+        14,
+        9,
         null,
         5,
         null,
         null,
         null,
         1,
-        12,
-        12,
+        14,
+        14,
         null,
         null,
         1,
@@ -117,11 +117,11 @@
         null,
         null,
         1,
-        27,
+        29,
         null,
         null
       ],
-      "/Users/george/Dropbox/Projects/Final Project/ignite_it/ignite/app/controllers/application_controller.rb": [
+      "/Users/paulwallis/Projects/final_project/ignite_it/ignite/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -132,13 +132,13 @@
         1,
         null,
         1,
-        63,
-        44,
-        43,
+        66,
+        46,
+        45,
         null,
         null
       ]
     },
-    "timestamp": 1432047012
+    "timestamp": 1432047946
   }
 }
