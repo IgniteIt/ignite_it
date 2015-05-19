@@ -28,7 +28,7 @@ jQuery(function() {
   });
 
   completer.autoCompleteInit({
-    region: "UK"
+    region: "UK",
     autocomplete: {
       minLength: 3
     }
