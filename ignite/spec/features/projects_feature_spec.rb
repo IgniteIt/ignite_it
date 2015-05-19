@@ -81,7 +81,7 @@ feature 'projects' do
     end
   end
 
-  context 'project have been added' do
+  context 'projects have been added' do
     before do
       visit '/'
       create_project('Campaign', regular_description, '100', '30 days from now')
@@ -114,6 +114,15 @@ feature 'projects' do
       expect(page).not_to have_content('Campaign')
       expect(page).to have_content 'Project has been deleted'
       expect(current_path).to eq '/'
+    end
+
+    scenario 'only users who made a project can delete them' do
+      click_link 'Sign out'
+      sign_up('g@g.com','George')
+      visit('/')
+      click_link 'Campaign'
+      click_link 'Delete'
+      expect(page).to have_content 'Error'
     end
   end
 

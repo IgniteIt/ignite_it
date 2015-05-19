@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :authenticate_user!, :except => [:index, :show]
+
   def index
     @projects = Project.all
   end
@@ -36,9 +38,14 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    @project.destroy
-    flash[:notice] = 'Project has been deleted'
-    redirect_to '/'
+    if @project.user_id == current_user.id
+      @project.destroy
+      flash[:notice] = 'Project has been deleted'
+      redirect_to '/'
+    else
+      flash[:notice] = 'Error, you did not make this project'
+      redirect_to '/'
+    end
   end
 
   def project_params
