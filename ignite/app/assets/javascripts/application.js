@@ -12,6 +12,21 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
+//= require gmaps-auto-complete 
 //= require jquery.countdown
 //= require turbolinks
 //= require_tree .
+
+jQuery(function() {
+  var completer;
+
+  completer = new GmapsCompleter({
+    inputField: '#gmaps-input-address',
+    errorField: '#gmaps-error'
+  });
+
+  completer.autoCompleteInit({
+    country: "uk"
+  });
+});

@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/Armi/Projects/ignite_it/ignite/app/models/user.rb": [
+      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/models/user.rb": [
         1,
         1,
         null,
@@ -46,15 +46,15 @@
         null,
         null
       ],
-      "/Users/Armi/Projects/ignite_it/ignite/app/helpers/application_helper.rb": [
+      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/helpers/application_helper.rb": [
         1,
         null
       ],
-      "/Users/Armi/Projects/ignite_it/ignite/app/helpers/projects_helper.rb": [
+      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/helpers/projects_helper.rb": [
         1,
         null
       ],
-      "/Users/Armi/Projects/ignite_it/ignite/app/models/project.rb": [
+      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/models/project.rb": [
         1,
         1,
         1,
@@ -73,7 +73,7 @@
         null,
         null
       ],
-      "/Users/Armi/Projects/ignite_it/ignite/app/controllers/projects_controller.rb": [
+      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/controllers/projects_controller.rb": [
         1,
         1,
         43,
@@ -120,7 +120,7 @@
         null,
         null
       ],
-      "/Users/Armi/Projects/ignite_it/ignite/app/controllers/application_controller.rb": [
+      "/Users/kanishkwalia/Desktop/Projects_MA/Final_Project/ignite_it/ignite/app/controllers/application_controller.rb": [
         1,
         null,
         null,
@@ -138,6 +138,6 @@
         null
       ]
     },
-    "timestamp": 1432048033
+    "timestamp": 1432052728
   }
 }

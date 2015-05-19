@@ -1,24 +1,21 @@
 <%= render partial: 'layouts/errors', locals: { element: @project } %>
 
-<%= form_for @project do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+<%= simple_form_for @project do |f| %>
+  <%= f.input :name %>
   <p>
-  <%= f.label :goal %>
-  <%= f.number_field :goal %>
+  <%= f.input :goal %>
   <p>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
+  <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'} %>
   <p>
   <%= f.label :expiration_date %>
-  <%= f.select :expiration_date, options_for_select(["Select an expiration date",
+  <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
                                                     ["30 days from now", 30.days],
                                                     ["45 days from now", 45.days],
                                                     ["60 days from now", 60.days],
                                                     ["75 days from now", 75.days],
-                                                    ["90 days from now", 90.days]],
-                                                    selected: "Select an expiration date",
-                                                    disabled: "Select an expiration date") %>
+                                                    ["90 days from now", 90.days]]),
+                                                     selected: "Select an expiration date",
+                                                     disabled: "Select an expiration date" %>
   <p>
   <%= f.label :sector %>
   <%= f.select :sector, options_for_select([["Select a sector", nil],
@@ -31,12 +28,11 @@
                                             "Environment",
                                             "Healthcare",
                                             "Transportation",
-                                            "Other"],
-                                            selected: "Select a sector",
-                                            disabled: "Select a sector") %>
+                                            "Other"]),
+                                            selected: "Select a sector", 
+                                            disabled: "Select a sector"%>
   <p>
-  <%= f.label :description %>
-  <%= f.text_area :description %>
+  <%= f.input :description %>
   <p>
   <%= f.submit %>
 <% end %>
