@@ -1,8 +1,14 @@
 require 'rails_helper'
 require 'helpers/projects_helper_spec'
+require 'helpers/users_helper_spec'
 
 feature 'projects' do
   include ProjectsHelper
+  include UserHelper
+
+  before do
+    sign_up
+  end
 
   context 'no projects have been added' do
     scenario 'page should have a title' do

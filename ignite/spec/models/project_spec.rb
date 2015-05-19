@@ -4,6 +4,8 @@ require 'helpers/projects_helper_spec'
 describe Project, :type => :model do
   include ProjectsHelper
 
+  it { is_expected.to belong_to :user }
+
   it 'is not valid with a name of less than five characters' do
     project = Project.new(name: 'Ca', description: regular_description, goal: '100', expiration_date: '30 days from now' )
     expect(project).to have(1).error_on(:name)

@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
   validates :goal, presence: true
   validates :expiration_date, presence: true
 
+  belongs_to :user
+
   def set_expiration_date(days)
     if (days).to_i > 0
       self.expiration_date = (Time.now + (days).to_i)

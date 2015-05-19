@@ -24,6 +24,8 @@
 </script>
 <!-- END -->
 
+<br>
 <%= link_to 'Edit', edit_project_path(@project) %>
 <%= link_to 'Delete', project_path(@project), method: :delete %>
-
+<br>
+<p>This project was created by <%= @user.username %></p>
