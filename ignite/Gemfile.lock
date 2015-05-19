@@ -66,6 +66,7 @@ GEM
     jbuilder (2.2.16)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
+    jquery-countdown-rails (2.0.2)
     jquery-rails (4.0.3)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -173,6 +174,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
+  jquery-countdown-rails
   jquery-rails
   pg
   rails (= 4.2.1)

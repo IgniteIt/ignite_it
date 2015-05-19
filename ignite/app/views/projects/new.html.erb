@@ -9,11 +9,11 @@
   <p>
   <%= f.label :expiration_date %>
   <%= f.select :expiration_date, options_for_select(["Select an expiration date",
-                                                    ["30 days from now", Time.now + 30.days],
-                                                    ["45 days from now", Time.now + 45.days],
-                                                    ["60 days from now", Time.now + 60.days],
-                                                    ["75 days from now", Time.now + 75.days],
-                                                    ["90 days from now", Time.now + 90.days]],
+                                                    ["30 days from now", 30.days],
+                                                    ["45 days from now", 45.days],
+                                                    ["60 days from now", 60.days],
+                                                    ["75 days from now", 75.days],
+                                                    ["90 days from now", 90.days]],
                                                     selected: "Select an expiration date",
                                                     disabled: "Select an expiration date") %>
   <p>

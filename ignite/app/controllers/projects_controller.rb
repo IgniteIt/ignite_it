@@ -8,7 +8,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.create(project_params)
+    @project = Project.new(project_params)
+    @project.expiration_date = Time.now.utc + (params[:expiration_date]).to_i
     if @project.save
       redirect_to project_path(@project)
     else

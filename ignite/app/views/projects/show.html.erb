@@ -2,5 +2,29 @@
 <p>£ <%= @project.goal %></p>
 <p><%= @project.description %></p>
 
+<div id="due_date_timer"></div>
+
+
+<!-- TO BE REFACTORED -->
+<script>
+  var year = <%= @project.expiration_date.year %>
+  var month = <%= @project.expiration_date.month %>
+  var day = <%= @project.expiration_date.day %>
+  var hours = <%= @project.expiration_date.hour + 1 %>
+  var minutes = <%= @project.expiration_date.min %>
+  var seconds = <%= @project.expiration_date.sec %>
+  var date = new Date(year, month, day, hours, minutes, seconds);  
+  console.log(date)
+  $('#due_date_timer').countdown({until: date});
+
+
+  // var user_offset = new Date().getTimezoneOffset()*60*60;
+  // var central_offset = 6*60*60;
+  // $('#due_date_timer').countdown({until: date});
+  // JSON - Time?
+</script>
+<!-- END -->
+
 <%= link_to 'Edit', edit_project_path(@project) %>
 <%= link_to 'Delete', project_path(@project), method: :delete %>
+

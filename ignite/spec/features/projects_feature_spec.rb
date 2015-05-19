@@ -23,7 +23,7 @@ feature 'projects' do
       create_project('Campaign', regular_description, '100', '30 days from now')
       expect(page).to have_content 'Campaign'
       expect(page).to have_content '£ 100'
-      expect(page).to have_content '30 days left'
+      expect(page).to have_content '30 days'
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
