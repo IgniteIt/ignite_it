@@ -17,6 +17,21 @@
                                                     selected: "Select an expiration date",
                                                     disabled: "Select an expiration date") %>
   <p>
+  <%= f.label :sector %>
+  <%= f.select :sector, options_for_select([["Select a sector", nil],
+                                            "Community",
+                                            "Children",
+                                            "Education",
+                                            "Elderly",
+                                            "Energy",
+                                            "Entertainment",
+                                            "Environment",
+                                            "Healthcare",
+                                            "Transportation",
+                                            "Other"],
+                                            selected: "Select a sector",
+                                            disabled: "Select a sector") %>
+  <p>
   <%= f.label :description %>
   <%= f.text_area :description %>
   <p>
