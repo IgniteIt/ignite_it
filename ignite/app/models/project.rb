@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
 
   def set_expiration_date(days)
     if (days).to_i > 0
-      expiration_date = (Time.now + (days).to_i)
+      self.expiration_date = (Time.now + (days).to_i)
     end
   end
 end
