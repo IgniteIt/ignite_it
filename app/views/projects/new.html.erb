@@ -10,6 +10,8 @@
   <%= f.label :image %>
   <%= f.file_field :image %>
   <p>
+  <%= f.input :video_url %>
+  <p>
   <%= f.label :expiration_date %>
   <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
                                                     ["30 days from now", 30.days],
