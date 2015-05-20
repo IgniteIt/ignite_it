@@ -1,0 +1,5 @@
+<%= form_for [@project, @donation] do |f| %>
+<%= f.label :amount %>
+<%= f.text_area :amount %>
+<%= f.submit 'Submit' %>
+<% end %>

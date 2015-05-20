@@ -1,7 +1,8 @@
 <p><%= @project.name %></p>
-<p>£ <%= @project.goal %></p>
+<p>£<%= @project.goal %></p>
 <p><%= @project.sector %></p>
 <p><%= @project.description %></p>
+<p>£<%= @project.goal - @donation_sum %></p>
 
 <%= image_tag @project.image.url(:medium) %>
 
@@ -21,7 +22,7 @@
   var hours = <%= @project.expiration_date.hour + 1 %>;
   var minutes = <%= @project.expiration_date.min %>;
   var seconds = <%= @project.expiration_date.sec %>;
-  var date = new Date(year, month, day, hours, minutes, seconds);  
+  var date = new Date(year, month, day, hours, minutes, seconds);
   console.log(date)
   $('#due_date_timer').countdown({until: date});
 
@@ -60,4 +61,21 @@
 <% else %>
   <p>This project was created by <%= @user.username %></p>
   <%= image_tag @user.avatar.url(:thumb), :id => "creator_avatar"%>
+<% end %>
+<br>
+
+<%= link_to 'Donate', new_project_donation_path(@project) %>
+<%= link_to 'Create Blog', new_project_blog_path(@project) %>
+
+<% if @project.donations.any? %>
+  <% @project.donations.reverse_each do |donation| %>
+    <p><%= User.find(donation.user_id).username %> donated £<%= donation.amount %></p>
+  <% end %>
+<% end %>
+
+<% if @project.blogs.any? %>
+  <% @project.blogs.reverse_each do |blog| %>
+    <p><%= blog.title %></p>
+    <p><%= blog.content %></p>
+  <% end %>
 <% end %>

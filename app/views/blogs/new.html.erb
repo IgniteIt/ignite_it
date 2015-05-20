@@ -1,0 +1,7 @@
+<%= form_for [@project, @blog] do |f| %>
+<%= f.label :title %>
+<%= f.text_area :title %>
+<%= f.label :content %>
+<%= f.text_area :content %>
+<%= f.submit 'Submit' %>
+<% end %>

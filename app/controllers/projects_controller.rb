@@ -29,6 +29,7 @@ class ProjectsController < ApplicationController
       height: 185,
       error_message: "Video url is invalid"
     )
+    @donation_sum = @project.donations.sum(:amount)
   end
 
   def edit
@@ -48,7 +49,7 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    if @project.user_id == current_user.id
+    if @project.user == current_user
       @project.destroy
       flash[:notice] = 'Project has been deleted'
       redirect_to '/'

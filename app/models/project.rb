@@ -11,10 +11,13 @@ class Project < ActiveRecord::Base
 
   validates_format_of :video_url, with: /(?:https?:\/\/)?(?:www\.)?((?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11,}))|(?:https?:\/\/)(?:vimeo.com\/([0-9\-_]+))(?:\S+)?/, allow_blank: true
 
-  belongs_to :user
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
+
+  belongs_to :user
+  has_many :donations
+  has_many :blogs
 
   def set_expiration_date(days)
     if (days).to_i > 0
