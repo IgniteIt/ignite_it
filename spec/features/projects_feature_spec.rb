@@ -133,8 +133,12 @@ feature 'projects' do
         expect(page).to have_css('#map')
       end
 
-      scenario 'there is a project with a image' do
+      scenario 'there is a project with an image' do
         expect(page).to have_xpath("//img[@alt='Rubber duck']")
+      end
+
+      scenario 'there is a project with a video' do
+        expect(page).to have_xpath("//iframe[@src='//www.youtube.com/embed/FOjdXSrtUxA?wmode=transparent']")
       end
     end
 
