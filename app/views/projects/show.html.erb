@@ -2,6 +2,7 @@
 <p>£ <%= @project.goal %></p>
 <p><%= @project.sector %></p>
 <p><%= @project.description %></p>
+<p><%= @project.goal - @donations %></p>
 
 <div id="due_date_timer"></div>
 
@@ -17,7 +18,7 @@
   var hours = <%= @project.expiration_date.hour + 1 %>;
   var minutes = <%= @project.expiration_date.min %>;
   var seconds = <%= @project.expiration_date.sec %>;
-  var date = new Date(year, month, day, hours, minutes, seconds);  
+  var date = new Date(year, month, day, hours, minutes, seconds);
   console.log(date)
   $('#due_date_timer').countdown({until: date});
 
@@ -57,3 +58,6 @@
   <p>This project was created by <%= @user.username %></p>
   <%= image_tag @user.avatar.url(:thumb), :id => "creator_avatar"%>
 <% end %>
+<br>
+
+<%= link_to 'Donate', new_project_donation_path(@project) %>
