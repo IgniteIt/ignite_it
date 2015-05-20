@@ -2,6 +2,11 @@ require 'rails_helper'
 require 'helpers/projects_helper_spec'
 
 describe Project, :type => :model do
+
+  before(:each) do
+    Project.any_instance.stub(:geocode).and_return([1,1])
+  end
+  
   include ProjectsHelper
 
   it { is_expected.to belong_to :user }

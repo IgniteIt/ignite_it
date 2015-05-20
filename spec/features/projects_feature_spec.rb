@@ -10,6 +10,10 @@ feature 'projects' do
     sign_up
   end
 
+  before(:each) do
+    Project.any_instance.stub(:geocode).and_return([1,1])
+  end
+
   context 'no projects have been added' do
     scenario 'page should have a title' do
       visit '/'
