@@ -1,4 +1,6 @@
 class DonationsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @project = Project.find(params[:project_id])
     @donation = Donation.new

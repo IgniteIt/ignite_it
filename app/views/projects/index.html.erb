@@ -5,6 +5,7 @@
     <div id="due_date_timer_<%= project.id %>"></div>
     <h2><%= link_to project.name, project_path(project) %></h2>
     <h4>£ <%= project.goal %></h4>
+    <h5>£<%= project.goal - Donation.sum(:amount, :conditions => {:id => project.id}) %> Remaining</h5>
 
     <!-- TO BE REFACTORED -->
     <script>

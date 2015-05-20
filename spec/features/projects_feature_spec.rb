@@ -122,7 +122,7 @@ feature 'projects' do
       end
 
       scenario 'there is a project with a goal' do
-        expect(page).to have_content '£ 100'
+        expect(page).to have_content '£100'
       end
 
       scenario 'there is a project with a expiration date' do
