@@ -2,10 +2,11 @@
 
 <% if @projects.any? %>
   <% @projects.each do |project| %>
-    <div id="due_date_timer_<%= project.id %>"></div>
     <h2><%= link_to project.name, project_path(project) %></h2>
-    <h4>£ <%= project.goal %></h4>
-    <h5>£<%= project.goal - project.donations.sum(:amount) %> Remaining</h5>
+    <h4>Project Goal: £ <%= project.goal %></h4>
+    <div id="due_date_timer_<%= project.id %>"></div>
+    <br>
+    <h4>£ <%= project.goal - project.donations.sum(:amount) %> Remaining</h4>
 
     <!-- TO BE REFACTORED -->
     <script>
@@ -15,7 +16,7 @@
       var hours = <%= project.expiration_date.hour + 1 %>;
       var minutes = <%= project.expiration_date.min %>;
       var seconds = <%= project.expiration_date.sec %>;
-      var date = new Date(year, month, day, hours, minutes, seconds);  
+      var date = new Date(year, month, day, hours, minutes, seconds);
       console.log(date)
       $('#due_date_timer_<%= project.id %>').countdown({until: date});
 
