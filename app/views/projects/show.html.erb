@@ -2,7 +2,7 @@
 <p>£<%= @project.goal %></p>
 <p><%= @project.sector %></p>
 <p><%= @project.description %></p>
-<p>£<%= @project.goal - @donations %></p>
+<p>£<%= @project.goal - @donation_sum %></p>
 
 <div id="due_date_timer"></div>
 
@@ -61,3 +61,9 @@
 <br>
 
 <%= link_to 'Donate', new_project_donation_path(@project) %>
+
+<% if @donations.any? %>
+  <% @donations.each do |donation| %>
+    <p><%= User.find(donation[0]).username %> donated £<%= donation[1] %></p>
+  <% end %>
+<% end %>

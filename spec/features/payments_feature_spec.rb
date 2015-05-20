@@ -35,5 +35,11 @@ feature 'payments' do
       click_link 'Donate'
       expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
+
+    scenario 'Can list users who donated' do
+      click_link 'Campaign'
+      make_payment
+      expect(page).to have_content('Paul donated £75')
+    end
   end
 end

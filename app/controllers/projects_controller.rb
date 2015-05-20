@@ -23,7 +23,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
     @user = User.find(@project.user_id)
-    @donations = Donation.sum(:amount, :conditions => {:id => @project.id})
+    @donations = Donation.where(:project_id => @project.id).pluck(:user_id, :amount)
+    # Line below shouldn't work
+    @donation_sum = Donation.sum(:amount, :conditions => {:id => @project.id})
   end
 
   def edit

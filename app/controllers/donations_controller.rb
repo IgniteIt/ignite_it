@@ -9,6 +9,8 @@ class DonationsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @project.donations.create(donation_params)
+    # 'last' might throw errors?
+    @project.donations.last.update(user_id: current_user.id)
     redirect_to project_path(@project)
   end
 
