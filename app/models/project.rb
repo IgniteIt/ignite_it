@@ -12,6 +12,8 @@ class Project < ActiveRecord::Base
   belongs_to :user
 
   has_many :donations
+  has_many :blogs
+
 
   def set_expiration_date(days)
     if (days).to_i > 0

@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150520124021) do
+ActiveRecord::Schema.define(version: 20150520161520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: :cascade do |t|
+    t.string   "title"
+    t.string   "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "project_id"
+  end
+
+  add_index "blogs", ["project_id"], name: "index_blogs_on_project_id", using: :btree
 
   create_table "donations", force: :cascade do |t|
     t.integer  "amount"
@@ -69,6 +79,7 @@ ActiveRecord::Schema.define(version: 20150520124021) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "blogs", "projects"
   add_foreign_key "donations", "projects"
   add_foreign_key "donations", "users"
   add_foreign_key "projects", "users"

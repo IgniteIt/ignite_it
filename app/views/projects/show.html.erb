@@ -61,9 +61,17 @@
 <br>
 
 <%= link_to 'Donate', new_project_donation_path(@project) %>
+<%= link_to 'Create Blog', new_project_blog_path(@project) %>
 
 <% if @project.donations.any? %>
   <% @project.donations.reverse_each do |donation| %>
     <p><%= User.find(donation.user_id).username %> donated £<%= donation.amount %></p>
+  <% end %>
+<% end %>
+
+<% if @project.blogs.any? %>
+  <% @project.blogs.reverse_each do |blog| %>
+    <p><%= blog.title %></p>
+    <p><%= blog.content %></p>
   <% end %>
 <% end %>
