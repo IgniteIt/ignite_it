@@ -63,7 +63,7 @@
 <%= link_to 'Donate', new_project_donation_path(@project) %>
 
 <% if @project.donations.any? %>
-  <% @project.donations.each do |donation| %>
+  <% @project.donations.reverse_each do |donation| %>
     <p><%= User.find(donation.user_id).username %> donated £<%= donation.amount %></p>
   <% end %>
 <% end %>

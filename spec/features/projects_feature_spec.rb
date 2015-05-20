@@ -36,7 +36,7 @@ feature 'projects' do
       create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
       visit '/'
       expect(page).to have_content 'Campaign'
-      expect(page).to have_content '£ 100'
+      expect(page).to have_content '£100'
       expect(page).to have_css("#due_date_timer_#{Project.last.id}")
     end
 
@@ -184,4 +184,3 @@ feature 'projects' do
   end
 
 end
-
