@@ -132,6 +132,10 @@ feature 'projects' do
       scenario 'there is a project with a expiration date' do
         expect(page).to have_css('#map')
       end
+
+      scenario 'there is a project with a image' do
+        expect(page).to have_xpath("//img[@alt='Rubber duck']")
+      end
     end
 
     scenario 'lets a user edit a project' do

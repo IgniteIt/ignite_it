@@ -1,11 +1,14 @@
 <%= render partial: 'layouts/errors', locals: { element: @project } %>
 
-<%= simple_form_for @project do |f| %>
+<%= simple_form_for @project, html: {multipart: true} do |f| %>
   <%= f.input :name %>
   <p>
   <%= f.input :goal %>
   <p>
   <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'} %>
+  <p>
+  <%= f.label :image %>
+  <%= f.file_field :image %>
   <p>
   <%= f.label :expiration_date %>
   <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],

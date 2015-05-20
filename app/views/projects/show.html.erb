@@ -3,6 +3,8 @@
 <p><%= @project.sector %></p>
 <p><%= @project.description %></p>
 
+<%= image_tag @project.image.url(:medium) %>
+
 <div id="due_date_timer"></div>
 
 <div style='width: 800px;'>

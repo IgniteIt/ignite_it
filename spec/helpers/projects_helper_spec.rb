@@ -7,6 +7,7 @@ module ProjectsHelper
     fill_in 'Description', with: description
     fill_in 'Goal', with: goal
     fill_in 'Address', with: address
+    attach_file "Image",  Rails.root + "spec/asset_specs/rubber_duck.jpg"
     select exp_date, from: 'Expiration date'
     select sector, from: 'Sector'
     click_button 'Create Project'

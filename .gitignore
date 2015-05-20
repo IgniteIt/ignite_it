@@ -16,3 +16,4 @@
 .env
 /coverage
 /coverage/index.html
+/public/system
