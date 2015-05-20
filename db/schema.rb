@@ -23,10 +23,10 @@ ActiveRecord::Schema.define(version: 20150519145151) do
     t.datetime "updated_at",      null: false
     t.integer  "goal"
     t.datetime "expiration_date"
-    t.string   "sector"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "address"
+    t.string   "sector"
     t.integer  "user_id"
   end
 

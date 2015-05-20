@@ -1,0 +1,41 @@
+I"G(function() {
+  var extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    hasProp = {}.hasOwnProperty;
+
+  this.Gmaps.Google.Builders.Polyline = (function(superClass) {
+    extend(Polyline, superClass);
+
+    function Polyline(args, provider_options) {
+      this.args = args;
+      this.provider_options = provider_options != null ? provider_options : {};
+      this.before_init();
+      this.serviceObject = this.create_polyline();
+      this.after_init();
+    }
+
+    Polyline.prototype.create_polyline = function() {
+      return new (this.primitives().polyline)(this.polyline_options());
+    };
+
+    Polyline.prototype.polyline_options = function() {
+      var base_options;
+      base_options = {
+        path: this._build_path()
+      };
+      return _.defaults(base_options, this.provider_options);
+    };
+
+    Polyline.prototype._build_path = function() {
+      return _.map(this.args, (function(_this) {
+        return function(arg) {
+          return new (_this.primitives().latLng)(arg.lat, arg.lng);
+        };
+      })(this));
+    };
+
+    return Polyline;
+
+  })(Gmaps.Objects.BaseBuilder);
+
+}).call(this);
+:ET
