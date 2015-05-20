@@ -48,4 +48,10 @@ describe Project, :type => :model do
     expect(project).not_to be_valid
   end
 
+  it 'is not valid with an invalid video url' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', video_url: 'www.iminvalid.com/invalid')
+    expect(project).to have(1).error_on(:video_url)
+    expect(project).not_to be_valid
+  end
+
 end
