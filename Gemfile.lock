@@ -120,6 +120,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailgun-ruby (1.0.3)
+      json (~> 1.8)
+      rest-client (~> 1.6)
     mime-types (2.5)
     mini_portile (0.6.2)
     minitest (5.6.1)
@@ -277,6 +280,7 @@ DEPENDENCIES
   jquery-countdown-rails
   jquery-rails
   jquery-ui-rails
+  mailgun-ruby (~> 1.0.2)
   omniauth-facebook
   paperclip
   pg
