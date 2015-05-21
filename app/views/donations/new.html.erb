@@ -1,5 +1,4 @@
-<%= form_for [@project, @donation] do |f| %>
-<%= f.label :amount %>
-<%= f.text_area :amount %>
+<%= simple_form_for [@project, @donation] do |f| %>
+<%= f.input :amount %>
 <%= f.submit 'Submit' %>
 <% end %>

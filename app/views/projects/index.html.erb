@@ -6,7 +6,7 @@
     <h4>Project Goal: £<%= project.goal %></h4>
     <div id="due_date_timer_<%= project.id %>"></div>
     <br>
-    <h4>£<%= project.goal - project.donations.sum(:amount) %> Remaining</h4>
+    <h4>£<%= project.goal - (project.donations.sum(:amount) / 100) %> Remaining</h4>
 
     <!-- TO BE REFACTORED -->
     <script>
