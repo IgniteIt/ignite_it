@@ -15,6 +15,9 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     if @project.save
       redirect_to project_path(@project)
+      job_id = Rufus::Scheduler.singleton.every "1h" do #{}"#{project.expiration_date - Time.now}s" do
+        # Rails.logger.info "time flies, it's now #{Time.now}"
+      end
     else
       render 'new'
     end
