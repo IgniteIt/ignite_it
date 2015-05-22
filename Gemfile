@@ -55,6 +55,8 @@ gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 gem 'rufus-scheduler', :groups => [:development, :production]
 
+gem 'email_spec', group: :test
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
