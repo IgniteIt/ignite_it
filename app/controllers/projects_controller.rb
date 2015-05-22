@@ -24,8 +24,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @user = User.find(@project.user_id)
     @video = Conred::Video.new(
-      video_url: @project.video_url, 
-      width: 285, 
+      video_url: @project.video_url,
+      width: 285,
       height: 185,
       error_message: "Video url is invalid"
     )
@@ -43,6 +43,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update(project_params)
+    ProjectMailer.updated(@project).deliver_now
     flash[:notice] = 'Project has been updated'
     redirect_to project_path(@project)
   end

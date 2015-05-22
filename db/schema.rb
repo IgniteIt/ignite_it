@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20150522090822) do
 
   # These are extensions that must be enabled in order to support this database
@@ -55,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150522090822) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.text     "video_url"
+    t.string   "emailed"
   end
 
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
