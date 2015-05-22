@@ -43,8 +43,17 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @project.update(project_params)
-    flash[:notice] = 'Project has been updated'
-    ProjectMailer.updated(@project)
+    @project.donations.each do |donation|
+      person = User.find(donation.user_id)
+        flash[:notice] = 'Project has been updated'
+        RestClient.post "https://api:#{ENV['MAILGUN_KEY']}"\
+             "@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages",
+             :from => "#{@project.name} <mailgun@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org>",
+             :to => "#{person.email}",
+             :subject => "#{@project.name} was edited",
+             :text => "Dear #{person.username}, \n A project you supported has been edited, click here to see the edit: http://localhost:3000/projects/#{@project.id}\n."
+    end
+    # ProjectMailer.updated(@project)
     redirect_to project_path(@project)
   end
 
