@@ -15,7 +15,7 @@ feature 'stripe' do
 
  before do
    sign_up
-   Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: Time.now + (5), sector: 'Environment', address: 'London', user: User.last)
+   Project.create(name: 'Campaign', description: regular_description, goal: '75', expiration_date: Time.now + (5), sector: 'Environment', address: 'London', user: User.last)
    visit '/'
    click_link 'Campaign'
    make_payment

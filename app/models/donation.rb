@@ -11,4 +11,8 @@ class Donation < ActiveRecord::Base
     amount / 100
   end
 
+  def change_paid_status
+    self.paid = true
+  end
+
 end
