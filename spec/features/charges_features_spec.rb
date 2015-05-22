@@ -6,7 +6,7 @@ require 'helpers/donations_helper_spec'
 feature 'stripe' do
 
  include UserHelper
- include PaymentsHelper
+ include DonationsHelper
  include ProjectsHelper
 
   before do
@@ -14,7 +14,7 @@ feature 'stripe' do
     Project.create(name: 'Campaign', description: regular_description, goal: '75', expiration_date: Time.now + (5), sector: 'Environment', address: 'London', user: User.last)
     visit '/'
     click_link 'Campaign'
-    make_payment
+    make_payment(75)
     sleep(2)
     visit "/projects/#{Project.last.id}/charges/new"
     find('.stripe-button-el').click

@@ -1,0 +1,8 @@
+<%= link_to 'Create Blog', new_project_blog_path(@project) %>
+
+<% if project.blogs.any? %>
+  <% project.blogs.reverse_each do |blog| %>
+    <p><%= blog.title %></p>
+    <p><%= blog.content %></p>
+  <% end %>
+<% end %>

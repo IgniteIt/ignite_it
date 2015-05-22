@@ -22,19 +22,17 @@ class ProjectsController < ApplicationController
 
   def show
     @project = Project.find(params[:id])
-    @user = User.find(@project.user_id)
     @video = Conred::Video.new(
       video_url: @project.video_url,
       width: 285,
       height: 185,
       error_message: "Video url is invalid"
     )
-    @donation_sum = @project.donations.sum(:amount)
   end
 
   def edit
     @project = Project.find(params[:id])
-    if @project.user_id != current_user.id
+    if @project.is_not_owner?(current_user)
       flash[:notice] = 'Error, you did not create this project'
       redirect_to '/'
     end

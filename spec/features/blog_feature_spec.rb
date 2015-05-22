@@ -1,12 +1,10 @@
 require 'rails_helper'
 require 'helpers/projects_helper_spec'
 require 'helpers/users_helper_spec'
-require 'helpers/donations_helper_spec'
 
 feature 'blogs' do
   include ProjectsHelper
   include UserHelper
-  include PaymentsHelper
 
   before do
     sign_up

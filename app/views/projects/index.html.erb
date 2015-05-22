@@ -1,33 +1,16 @@
 <%= link_to 'Add a project', new_project_path %>
 
 <% if @projects.any? %>
+
   <% @projects.each do |project| %>
-    <h2><%= link_to project.name, project_path(project) %></h2>
-    <h4>Project Goal: £<%= project.goal %></h4>
-    <div id="due_date_timer_<%= project.id %>"></div>
-    <br>
-    <h4>£<%= project.goal - (project.donations.sum(:amount) / 100) %> Remaining</h4>
-
-    <!-- TO BE REFACTORED -->
+    <%= render partial: 'projects/partials/basic_info', locals: {project: project} %>
     <script>
-      var year = <%= project.expiration_date.year %>;
-      var month = <%= project.expiration_date.month - 1 %>;
-      var day = <%= project.expiration_date.day %>;
-      var hours = <%= project.expiration_date.hour + 1 %>;
-      var minutes = <%= project.expiration_date.min %>;
-      var seconds = <%= project.expiration_date.sec %>;
-      var date = new Date(year, month, day, hours, minutes, seconds);
-      console.log(date)
-      $('#due_date_timer_<%= project.id %>').countdown({until: date});
-
-
-      // var user_offset = new Date().getTimezoneOffset()*60*60;
-      // var central_offset = 6*60*60;
-      // $('#due_date_timer').countdown({until: date});
-      // JSON - Time?
+      <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
     </script>
-    <!-- END -->
   <% end %>
+
 <% else %>
+
   <h3>No projects yet!</h3>
+
 <% end %>

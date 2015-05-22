@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-module PaymentsHelper
-  def make_payment
+module DonationsHelper
+  def make_payment(amount)
     click_link 'Donate'
-    fill_in('Amount', with: 75)
+    fill_in('Amount', with: amount)
     click_button 'Submit'
   end
 end

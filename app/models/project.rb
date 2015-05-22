@@ -24,4 +24,33 @@ class Project < ActiveRecord::Base
       self.expiration_date = (Time.now + (days).to_i)
     end
   end
+
+  def has_pic?
+    self.image_file_size
+  end
+
+  def has_video?
+    !(self.video_url.nil?)
+  end
+
+  def is_owner?(user)
+    self.user == user
+  end
+
+  def is_not_owner?(user)
+    self.user != user
+  end
+
+  def donation_sum
+    self.donations.sum(:amount) / 100
+  end
+
+  def remaining
+    remaining = self.goal - self.donation_sum
+    if remaining <= 0
+      "Goal reached! The crowd has pledged a total of £#{self.donation_sum}."
+    else 
+      "£#{remaining} remaining!"
+    end
+  end
 end
