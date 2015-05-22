@@ -1,85 +1,14 @@
-<p><%= @project.name %></p>
-<p>£<%= @project.goal %></p>
-<p><%= @project.sector %></p>
-<p><%= @project.description %></p>
-<p>£<%= @project.goal - (@donation_sum / 100) %></p>
+<%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
 
-<% if @project.image_file_size %>
-  <%= image_tag @project.image.url(:medium) %>
-<% end %>
+<%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
 
-<% if @project.video_url %>
-  <%= @video.code.html_safe %>
-<% end %>
+<%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
 
-<div id="due_date_timer"></div>
+<%= render partial: 'projects/partials/donations', locals: {project: @project} %>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
-</div>
-
-<!-- TO BE REFACTORED -->
-<script>
-  var year = <%= @project.expiration_date.year %>;
-  var month = <%= @project.expiration_date.month - 1 %>;
-  var day = <%= @project.expiration_date.day %>;
-  var hours = <%= @project.expiration_date.hour + 1 %>;
-  var minutes = <%= @project.expiration_date.min %>;
-  var seconds = <%= @project.expiration_date.sec %>;
-  var date = new Date(year, month, day, hours, minutes, seconds);
-  console.log(date)
-  $('#due_date_timer').countdown({until: date});
-
-
-  // var user_offset = new Date().getTimezoneOffset()*60*60;
-  // var central_offset = 6*60*60;
-  // $('#due_date_timer').countdown({until: date});
-  // JSON - Time?
-</script>
+<%= render partial: 'projects/partials/blog', locals: {project: @project} %>
 
 <script>
-  handler = Gmaps.build('Google');
-  handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-  markers = handler.addMarkers([
-    {
-      "lat": <%= @project.latitude %>,
-      "lng": <%= @project.longitude %>
-    }
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-  handler.getMap().setZoom(14);
-});
+  <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: @project} %>
+  <%= render partial: 'projects/js/gmaps', formats: [:js] %>
 </script>
-<!-- END -->
-
-<br>
-<% if current_user %>
-  <% if @user.id == current_user.id %>
-    <%= link_to 'Edit', edit_project_path(@project) %>
-    <%= link_to 'Delete', project_path(@project), method: :delete %>
-  <% else %>
-    <p>This project was created by <%= @user.username %></p>
-    <%= image_tag @user.avatar.url(:thumb), :id => "creator_avatar"%>
-  <% end %>
-<% else %>
-  <p>This project was created by <%= @user.username %></p>
-  <%= image_tag @user.avatar.url(:thumb), :id => "creator_avatar"%>
-<% end %>
-<br>
-
-<%= link_to 'Donate', new_project_donation_path(@project) %>
-<%= link_to 'Create Blog', new_project_blog_path(@project) %>
-
-<% if @project.donations.any? %>
-  <% @project.donations.reverse_each do |donation| %>
-    <p><%= donation.user.username %> donated £<%= donation.without_pence(donation.amount) %></p>
-  <% end %>
-<% end %>
-
-<% if @project.blogs.any? %>
-  <% @project.blogs.reverse_each do |blog| %>
-    <p><%= blog.title %></p>
-    <p><%= blog.content %></p>
-  <% end %>
-<% end %>

@@ -26,7 +26,7 @@ feature 'payments' do
       click_link 'Campaign'
       make_payment
       visit '/'
-      expect(page).to have_content('£25 Remaining')
+      expect(page).to have_content('£25 remaining')
     end
 
     scenario 'Must be logged in to donate' do

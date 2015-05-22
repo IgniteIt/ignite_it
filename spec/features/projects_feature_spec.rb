@@ -130,7 +130,7 @@ feature 'projects' do
       end
 
       scenario 'there is a project with a expiration date' do
-        expect(page).to have_css('#due_date_timer')
+        expect(page).to have_css("#due_date_timer_#{Project.last.id}")
       end
 
       scenario 'there is a project with a expiration date' do

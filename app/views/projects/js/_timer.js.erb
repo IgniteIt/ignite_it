@@ -1,0 +1,9 @@
+var year = <%= project.expiration_date.year %>,
+    month = <%= project.expiration_date.month - 1 %>,
+    day = <%= project.expiration_date.day %>,
+    hours = <%= project.expiration_date.hour + 1 %>,
+    minutes = <%= project.expiration_date.min %>,
+    seconds = <%= project.expiration_date.sec %>,
+    date = new Date(year, month, day, hours, minutes, seconds);
+
+$('#due_date_timer_<%= project.id %>').countdown({until: date});

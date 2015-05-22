@@ -24,4 +24,28 @@ class Project < ActiveRecord::Base
       self.expiration_date = (Time.now + (days).to_i)
     end
   end
+
+  def has_pic?
+    self.image_file_size
+  end
+
+  def has_video?
+    !(self.video_url.nil?)
+  end
+
+  def is_owner?(user)
+    self.user == user
+  end
+
+  def is_not_owner?(user)
+    self.user != user
+  end
+
+  def donation_sum
+    self.donations.sum(:amount)
+  end
+
+  def remaining
+    self.goal - (self.donation_sum / 100)
+  end
 end
