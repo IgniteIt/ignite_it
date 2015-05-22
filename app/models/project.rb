@@ -42,10 +42,15 @@ class Project < ActiveRecord::Base
   end
 
   def donation_sum
-    self.donations.sum(:amount)
+    self.donations.sum(:amount) / 100
   end
 
   def remaining
-    self.goal - (self.donation_sum / 100)
+    remaining = self.goal - self.donation_sum
+    if remaining <= 0
+      "Goal reached! The crowd has pledged a total of £#{self.donation_sum}."
+    else 
+      "£#{remaining} remaining!"
+    end
   end
 end
