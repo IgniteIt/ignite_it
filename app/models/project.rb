@@ -16,8 +16,8 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
   belongs_to :user
-  has_many :donations
-  has_many :blogs
+  has_many :donations, dependent: :destroy
+  has_many :blogs, dependent: :destroy
 
   def set_expiration_date(days)
     if (days).to_i > 0

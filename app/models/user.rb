@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
   }
 
   has_many :projects
-  has_many :donations
+  has_many :donations, dependent: :destroy
   # Needed?
   has_many :donated_projects, through: :donations, source: :project
 
