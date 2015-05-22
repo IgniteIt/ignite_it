@@ -28,7 +28,7 @@ def complete_emailer(project)
   donations = Donation.where(project_id: project.id)
   donations.each do |donation|
     person = User.find(donation.user_id)
-    RestClient.post "https://api:key-5367fa0dd4de3f39b6ed08eeb818e4b7"\
+    RestClient.post "https://api:#{ENV['MAILGUN_KEY']}"\
        "@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages",
        :from => "#{project.name} <mailgun@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org>",
        :to => "#{person.email}",
@@ -43,7 +43,7 @@ def goal_not_met(project)
   donations = Donation.where(project_id: project.id)
   donations.each do |donation|
     person = User.find(donation.user_id)
-    RestClient.post "https://api:key-5367fa0dd4de3f39b6ed08eeb818e4b7"\
+    RestClient.post "https://api:#{ENV['MAILGUN_KEY']}"\
        "@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages",
        :from => "#{project.name} <mailgun@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org>",
        :to => "#{person.email}",
