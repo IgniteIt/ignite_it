@@ -5,7 +5,7 @@ s = Rufus::Scheduler.singleton
 # Checks to see if a project has been fully funded, past it's expiration date
 # and emails users to tell them to pay up.
 
-s.every '10s' do
+s.every '1h' do
   Rails.logger.info "Checking for completed projects #{Time.now}"
   project_expire_check
 end
