@@ -44,6 +44,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.update(project_params)
     ProjectMailer.updated(@project).deliver_now
+    flash[:notice] = 'Project has been updated'
     redirect_to project_path(@project)
   end
 
