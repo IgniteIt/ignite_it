@@ -15,9 +15,6 @@ class ProjectsController < ApplicationController
     @project.user = current_user
     if @project.save
       redirect_to project_path(@project)
-      job_id = Rufus::Scheduler.singleton.every "1h" do #{}"#{project.expiration_date - Time.now}s" do
-        # Rails.logger.info "time flies, it's now #{Time.now}"
-      end
     else
       render 'new'
     end
@@ -27,8 +24,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @user = User.find(@project.user_id)
     @video = Conred::Video.new(
-      video_url: @project.video_url, 
-      width: 285, 
+      video_url: @project.video_url,
+      width: 285,
       height: 185,
       error_message: "Video url is invalid"
     )
@@ -47,6 +44,15 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.update(project_params)
     flash[:notice] = 'Project has been updated'
+    @project.donations.each do |donation|
+      person = User.find(donation.user_id)
+      RestClient.post "https://api:key-5367fa0dd4de3f39b6ed08eeb818e4b7"\
+         "@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages",
+         :from => "#{project.name} <mailgun@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org>",
+         :to => "#{person.email}",
+         :subject => "#{project.name} was a unsuccessful",
+         :text => "Dear #{person.username}, \n As the project failed to reach its funds goal your pledge is no longer required."
+     end
     redirect_to project_path(@project)
   end
 
