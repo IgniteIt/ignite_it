@@ -3,10 +3,15 @@ require 'helpers/projects_helper_spec'
 
 describe Project, :type => :model do
 
+  FactoryGirl.define do
+    factory :user, class: User
+    factory :another_user, class: User
+  end
+
   before(:each) do
     Project.any_instance.stub(:geocode).and_return([1,1])
   end
-  
+
   include ProjectsHelper
 
   it { is_expected.to belong_to :user }
@@ -57,6 +62,56 @@ describe Project, :type => :model do
     project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', video_url: 'www.iminvalid.com/invalid')
     expect(project).to have(1).error_on(:video_url)
     expect(project).not_to be_valid
+  end
+
+  it 'can calculate the expiration date' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.set_expiration_date(30.days)
+    days_from_now = (((project.expiration_date - Time.now).to_i / 60) / 60) / 24
+    expect(days_from_now).to eq(29)
+  end
+
+  it 'knows if he has a pic' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    expect(project.has_pic?).to eq false
+  end
+
+  it 'knows if he has a video' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    expect(project.has_video?).to eq false
+  end
+
+  it 'knows if a user is the owner' do
+    user = build(:user)
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: user)
+    expect(project.is_owner?(user)).to eq true
+  end
+
+  it 'knows if a user is not the owner' do
+    user = build(:user)
+    another_user = build(:another_user)
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: user)
+    expect(project.is_owner?(another_user)).to eq false
+  end
+
+  it 'knows the total of the donations' do
+    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 1000)
+    project.donations.create(amount: 3000)
+    expect(project.donation_sum).to eq 40
+  end
+
+  it 'knows how much left to reach the goal' do
+    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 1000)
+    project.donations.create(amount: 3000)
+    expect(project.remaining).to eq '£60 remaining!'
+  end
+
+  it 'knows when the goal is reached' do
+    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 10000)
+    expect(project.remaining).to eq 'Goal reached! The crowd has pledged a total of £100.'
   end
 
 end

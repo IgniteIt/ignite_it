@@ -26,7 +26,7 @@ class Project < ActiveRecord::Base
   end
 
   def has_pic?
-    self.image_file_size
+    !(self.image_file_size.nil?)
   end
 
   def has_video?
