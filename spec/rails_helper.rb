@@ -55,6 +55,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
+  config.before(:each) do
+    OmniAuth.config.mock_auth[:facebook] = nil
+  end
+
 
   config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
 

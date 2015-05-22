@@ -15,9 +15,26 @@ context "user not signed in and on the homepage" do
     expect(page).not_to have_link('Sign out')
   end
 
-  xit "should be able to sign in with facebook" do
+  it "when facebook credentials are invalid, will show an error" do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
     visit('/')
     click_link 'Sign in with Facebook'
+    expect(page).to have_content ('Invalid credentials')
+  end
+
+  it "when facebook credentials are valid, it will make a user" do
+    OmniAuth.config.test_mode = true
+    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
+      :provider => 'facebook',
+      :uid => '123545',
+      :info => {:email => 'testing@facebook.com',
+                :name => 'George McGowan'
+              }
+    })
+    visit('/')
+    click_link 'Sign in with Facebook'
+    expect(User.last.email).to eq "testing@facebook.com"
   end
 end
 
