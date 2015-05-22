@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 20150521165841) do
     t.datetime "updated_at",         null: false
     t.integer  "goal"
     t.datetime "expiration_date"
+    t.integer  "user_id"
     t.string   "sector"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "address"
-    t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
