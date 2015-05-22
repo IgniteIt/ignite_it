@@ -15,10 +15,4 @@ describe Donation, :type => :model do
     donation = Donation.create(amount: 75, paid: false)
     expect(donation.paid).to equal(false)
   end
-
-  it 'can change paid status to true when donation is paid' do
-    donation = Donation.create(amount: 75, paid: false)
-    donation.change_paid_status
-    expect(donation.paid).to equal(true)
-  end
 end

@@ -10,9 +10,4 @@ class Donation < ActiveRecord::Base
   def without_pence(amount)
     amount / 100
   end
-
-  def change_paid_status
-    self.paid = true
-  end
-
 end
