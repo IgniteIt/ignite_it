@@ -15,7 +15,7 @@ class BlogsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @project.blogs.create(blog_params)
-    email_re_blog(@project)
+    BlogsMailer.email_re_blog(@project).deliver_now
     redirect_to project_path(@project)
   end
 

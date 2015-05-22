@@ -1,6 +1,6 @@
 class Donation < ActiveRecord::Base
   belongs_to :project
-  belongs_to :user
+  belongs_to :user 
   validates :amount, presence: true
 
   def with_pence(amount)

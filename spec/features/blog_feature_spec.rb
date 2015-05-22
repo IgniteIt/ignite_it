@@ -32,5 +32,18 @@ feature 'blogs' do
       expect(page).to have_content('You are not the project owner')
     end
 
+    scenario 'When owner makes blog, all donors are notified' do
+      
+      # stub_request(:post, "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net").
+      #   with(:body => "abc", :headers => { 'Content-Length' => 3 })
+
+      # uri = URI.parse("https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net")
+      # req = Net::HTTP::Post.new(uri.path)
+      # req['Content-Length'] = 3
+
+      # res = Net::HTTP.start(uri.host, uri.port) do |http|
+      #   http.request(req, "abc")
+      # end    # ===> Success
+    end
   end
 end
