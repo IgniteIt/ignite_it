@@ -77,4 +77,10 @@ group :development, :test do
   gem 'rspec-collection_matchers'
 
   gem 'shoulda'
+
+  gem 'capybara-webkit'
+
+  gem 'database_cleaner'
+
+  gem 'selenium-webdriver'
 end
