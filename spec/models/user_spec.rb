@@ -9,4 +9,8 @@ RSpec.describe User, type: :model do
     expect(user).to have(1).error_on(:username)
     expect(user).not_to be_valid
   end
+
+  it { is_expected.to have_many :donations }
+
+  it { should have_many(:donations).dependent(:destroy) }
 end

@@ -1,6 +1,7 @@
 require 'rails_helper'
 require 'helpers/projects_helper_spec'
 require 'helpers/users_helper_spec'
+include UserHelper
 
 context "user not signed in and on the homepage" do
   it "should see a 'sign in' link and a 'sign up' link" do
@@ -23,13 +24,7 @@ end
 context "user signed in on the homepage" do
 
   before do
-    visit('/')
-    click_link('Sign up')
-    fill_in('Email', with: 'test@example.com')
-    fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
-    fill_in('Username', with: 'Paul')
-    click_button('Sign up')
+    sign_up
   end
 
   it "should see 'sign out' link" do
@@ -44,12 +39,8 @@ context "user signed in on the homepage" do
   end
 
   it "can log in with a username instead of an email" do
-    visit('/')
     click_link('Sign out')
-    click_link('Sign in')
-    fill_in('user_login', with: 'Paul')
-    fill_in('user_password', with: 'testtest')
-    click_button('Log in')
+    log_in
     expect(page).to have_content('Signed in successfully')
   end
 end
@@ -74,13 +65,7 @@ end
 
 context "user can edit their profile" do
   before do
-    visit('/')
-    click_link('Sign up')
-    fill_in('Email', with: 'test@example.com')
-    fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
-    fill_in('Username', with: 'Paul')
-    click_button('Sign up')
+    sign_up
   end
 
   it "user can edit their profile" do
@@ -91,19 +76,12 @@ end
 
 context "user can add a username" do
   it "can add a username" do
-    visit('/')
-    click_link('Sign up')
-    fill_in('Email', with: 'test@example.com')
-    fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
-    fill_in('Username', with: 'Paul')
-    click_button('Sign up')
+    sign_up
     expect(page).to have_content('Paul')
   end
 end
 
 context "user is associated with a project they made" do
-  include UserHelper
   include ProjectsHelper
   it "can create a project and see their username" do
     sign_up

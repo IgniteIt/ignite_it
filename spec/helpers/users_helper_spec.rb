@@ -10,4 +10,12 @@ module UserHelper
     fill_in('Username', with: username)
     click_button('Sign up')
   end
+
+  def log_in
+    visit('/')
+    click_link('Sign in')
+    fill_in('user_login', with: 'Paul')
+    fill_in('user_password', with: 'testtest')
+    click_button('Log in')
+  end
 end
