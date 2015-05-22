@@ -44,6 +44,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.update(project_params)
     flash[:notice] = 'Project has been updated'
+    # Refactor me
     @project.donations.each do |donation|
       person = User.find(donation.user_id)
       RestClient.post "https://api:key-5367fa0dd4de3f39b6ed08eeb818e4b7"\
