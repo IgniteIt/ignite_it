@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
 
   def index
     @search = Project.search do
-      fulltext (params[:search] || request.location)
+      fulltext (params[:search])
       with(:expiration_date).greater_than Time.now
       order_by :expiration_date
       paginate :page => 1, :per_page => 15

@@ -1,5 +1,5 @@
 <%= link_to 'Add a project', new_project_path %>
-<%= request.location.inspect %>
+
 <% if @projects.any? %>
 
   <%= form_tag projects_path, :method => :get do %>
