@@ -128,7 +128,7 @@ feature 'projects crud' do
     end
 
     scenario 'when a project you donated to is edited, you are sent an email' do
-      make_payment(25)
+      make_payment
       edit_project(regular_description)
       expect(WebMock).to have_requested(:post, 
         "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages"

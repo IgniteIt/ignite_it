@@ -63,7 +63,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     WebMock.disable_net_connect!(:allow => [/api.stripe.com/, /maps.googleapis.com/], allow_localhost: true)
-    # Stubbing out emails
+    # Stubbing out most common emails
     WebMock.stub_request(:post, "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages").
          with(:body => {"from"=>"postmaster@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org", "subject"=>"Thanks!", "text"=>"Thank you for signing up to IgniteIt!", "to"=>"test@example.com"},
               :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'162', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).

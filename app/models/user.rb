@@ -18,8 +18,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.gif"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
-  # Hack around Mailgun API for easy 'stubbing'
-  after_create { send_sign_up_email } # if Rails.env != 'test' 
+  after_create { send_sign_up_email }
 
   def send_sign_up_email
     SignUpConfirmation.sign_up_confirm(self).deliver_now

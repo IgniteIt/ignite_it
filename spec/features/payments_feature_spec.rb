@@ -38,8 +38,8 @@ feature 'payments' do
 
     scenario 'Can list users who donated' do
       click_link 'Campaign'
-      make_payment(75)
-      expect(page).to have_content('Paul donated £75')
+      make_payment
+      expect(page).to have_content('Paul donated £25')
     end
   end
 end

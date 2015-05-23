@@ -34,7 +34,7 @@ feature 'blogs' do
     end
 
     scenario 'When owner makes a blog, all donors are notified' do
-      make_payment(25)
+      make_payment
       make_blog
       expect(WebMock).to have_requested(:post, 
         "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages"
