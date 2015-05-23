@@ -12,13 +12,3 @@ class ProjectMailer < ApplicationMailer
     end
   end
 end
-
-
-
-      #     mg_client = Mailgun::Client.new(ENV['MAILGUN_KEY'])
-      # message_params = {:from    => "postmaster@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org",
-      #                   :to      => person.email,
-      #                   :subject => "#{project.name} was edited",
-      #                   :text    => "Dear #{person.username}, \n A project you supported has been edited, click here to see the edit: http://localhost:3000/projects/#{project.id}\n."
-      #                   }
-      # mg_client.send_message "sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org", message_params

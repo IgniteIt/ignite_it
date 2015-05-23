@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   # Hack around Mailgun API for easy 'stubbing'
-  after_create { send_sign_up_email } if Rails.env != 'test' 
+  after_create { send_sign_up_email } # if Rails.env != 'test' 
 
   def send_sign_up_email
     SignUpConfirmation.sign_up_confirm(self).deliver_now

@@ -9,7 +9,7 @@ feature 'blogs' do
   before do
     sign_up
     create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
-    visit '/'
+    configure_project_stubs
   end
 
   context 'Projects and their blogs' do
@@ -26,24 +26,13 @@ feature 'blogs' do
 
     scenario 'Owner has to be signed in to create blog' do
       click_link 'Sign out'
-      sign_up('paul@paul.com', 'Shaggy')
+      sign_up('g@g.com', 'Shaggy')
       click_link 'Campaign'
       click_link 'Create Blog'
       expect(page).to have_content('You are not the project owner')
     end
 
     xscenario 'When owner makes blog, all donors are notified' do
-      
-      # stub_request(:post, "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net").
-      #   with(:body => "abc", :headers => { 'Content-Length' => 3 })
-
-      # uri = URI.parse("https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net")
-      # req = Net::HTTP::Post.new(uri.path)
-      # req['Content-Length'] = 3
-
-      # res = Net::HTTP.start(uri.host, uri.port) do |http|
-      #   http.request(req, "abc")
-      # end    # ===> Success
     end
   end
 end

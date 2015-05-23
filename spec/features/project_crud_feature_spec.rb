@@ -1,10 +1,12 @@
 require 'rails_helper'
 require 'helpers/projects_helper_spec'
 require 'helpers/users_helper_spec'
+require 'helpers/donations_helper_spec'
 
 feature 'projects crud' do
   include ProjectsHelper
   include UserHelper
+  include DonationsHelper
 
   before do
     sign_up
@@ -12,6 +14,7 @@ feature 'projects crud' do
 
   before(:each) do
     allow_any_instance_of(Project).to receive(:geocode).and_return([1,1])
+    configure_project_stubs
   end
 
   context 'creating projects' do
@@ -122,6 +125,14 @@ feature 'projects crud' do
       click_link 'Campaign'
       visit("/projects/#{Project.last.id}/edit")
       expect(page).to have_content 'Error'
+    end
+
+    scenario 'when a project you donated to is edited, you are sent an email' do
+      make_payment(25)
+      edit_project(regular_description)
+      expect(WebMock).to have_requested(:post, 
+        "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v3/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages"
+        ).with(:body => hash_including({"from"=>"Campaign <mailgun@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org>", "subject"=>"Campaign was edited"}))
     end
   end
 end
