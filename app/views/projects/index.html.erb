@@ -1,6 +1,15 @@
 <%= link_to 'Add a project', new_project_path %>
-
+<%= request.location.inspect %>
 <% if @projects.any? %>
+
+  <%= form_tag projects_path, :method => :get do %>
+    <p>
+      <%= text_field_tag :search, params[:search] %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
+
+  <h4> Displaying posts <%= "#{(@search.hits.current_page - 1) * @search.hits.per_page + 1} - #{[@search.hits.current_page * @search.hits.per_page, @search.total].min} of #{@search.total}" %>
+  </h4>
 
   <% @projects.each do |project| %>
     <%= render partial: 'projects/partials/basic_info', locals: {project: project} %>

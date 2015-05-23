@@ -2,7 +2,14 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
 
   def index
-    @projects = Project.all
+    @search = Project.search do
+      fulltext (params[:search] || request.location)
+      with(:expiration_date).greater_than Time.now
+      order_by :expiration_date
+      paginate :page => 1, :per_page => 15
+      # facet :category_ids, :author_id
+    end
+    @projects = @search.results
   end
 
   def new
