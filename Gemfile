@@ -64,6 +64,8 @@ gem 'sunspot_rails'
 
 gem 'sunspot_solr'
 
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

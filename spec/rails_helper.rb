@@ -5,6 +5,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/webkit/matchers'
+require 'sunspot/rails/spec_helper'
 Capybara.javascript_driver = :webkit
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -59,6 +60,14 @@ RSpec.configure do |config|
 
   config.before(:each) do
     OmniAuth.config.mock_auth[:facebook] = nil
+  end
+
+  config.before(:each) do
+    ::Sunspot.session = ::Sunspot::Rails::StubSessionProxy.new(::Sunspot.session)
+  end
+
+  config.after(:each) do
+    ::Sunspot.session = ::Sunspot.session.original_session
   end
 
   # To stub out emails

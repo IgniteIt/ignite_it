@@ -19,11 +19,12 @@ class Project < ActiveRecord::Base
   has_many :donations, dependent: :destroy
   has_many :blogs, dependent: :destroy
 
-  # searchable do
-  #   string :name
-  #   text :address
-  #   time :expiration_date
-  # end
+  searchable do
+    string :name
+    string :sector
+    text :address
+    time :expiration_date
+  end
 
   def set_expiration_date(days)
     if (days).to_i > 0
