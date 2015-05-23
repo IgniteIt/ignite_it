@@ -1,17 +1,8 @@
 <%= link_to 'Add a project', new_project_path %>
-<%= request.class %>
 
-<%= form_tag projects_path, :method => :get do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
+<%= render partial: 'projects/partials/search' %>
 
-<%= form_tag projects_path, :method => :get do %>
-  <p>
-    <%= select_tag(:sector_search, options_for_select(options_for_sector_search)) %>
-    <%= submit_tag "Sector search", :name => nil %>
-<% end %>
+<%= render partial: 'projects/partials/search_sector' %>
 
 <% if @projects.any? %>
 
@@ -21,9 +12,9 @@
       <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
     </script>
   <% end %>
-
+<%= paginate @projects %>
 <% else %>
 
-  <h3>No projects yet!</h3>
+  <h3>No projects found!</h3>
 
 <% end %>

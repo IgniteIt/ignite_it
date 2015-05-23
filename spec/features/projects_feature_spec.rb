@@ -24,7 +24,7 @@ feature 'projects' do
 
     scenario 'should display a prompt to add a project' do
       visit '/'
-      expect(page).to have_content 'No projects yet'
+      expect(page).to have_content 'No projects found'
       expect(page).to have_link 'Add a project'
     end
   end
@@ -38,7 +38,7 @@ feature 'projects' do
 
     scenario 'display projects' do
       expect(page).to have_content('Campaign')
-      expect(page).not_to have_content('No projects yet')
+      expect(page).not_to have_content('No projects found')
     end
 
     scenario 'lets a user view a project' do

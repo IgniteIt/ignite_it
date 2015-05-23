@@ -19,6 +19,8 @@ class Project < ActiveRecord::Base
   has_many :donations, dependent: :destroy
   has_many :blogs, dependent: :destroy
 
+  paginates_per 5
+
   def set_expiration_date(days)
     if (days).to_i > 0
       self.expiration_date = (Time.now + (days).to_i)

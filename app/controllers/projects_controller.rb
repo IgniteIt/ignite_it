@@ -5,9 +5,9 @@ class ProjectsController < ApplicationController
   def index
     set_search_variable(params[:search], params[:sector_search])
     if @sector.nil?
-      @projects = Project.where(normal_query, { search: "%#{@search}%" })
+      @projects = Project.where(normal_query, { search: "%#{@search}%" }).page params[:page]
     else
-      @projects = Project.where(sector_query, { search: "%#{@sector}%" })
+      @projects = Project.where(sector_query, { search: "%#{@sector}%" }).page params[:page]
     end
   end
 

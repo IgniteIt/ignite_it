@@ -33,7 +33,19 @@ feature 'Project search' do
     end
 
     scenario 'it populates the sector search trough database values' do
-      expect(page).to have_select(:sector_search, options: ['Environment', 'Energy'])
+      expect(page).to have_select(:sector_search, options: ['Search by sector', 'Environment', 'Energy'])
+    end
+
+    scenario 'it paginate the query' do
+      num = 0
+      5.times do
+        create_project("Another #{num}", regular_description, '100', '30 days from now', 'Energy', 'London')
+        visit '/'
+        num += 1
+      end
+      click_link 'Next ›'
+      expect(page).to have_content "Another 4"
+      expect(page).not_to have_content "Another 3"
     end
   end
 

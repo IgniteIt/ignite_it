@@ -1,21 +1,21 @@
 module ProjectsHelper
   def set_search_variable(params, sector_params)
     if params.nil? && sector_params.nil? && cant_get_location?
-      @search = 'London'
+      @search = 'london'
     elsif params.nil?
-      @search = request.location.city
-      @sector = sector_params
+      @search = request.location.city.downcase
+      @sector = sector_params.downcase
     else
-      @search = params
+      @search = params.downcase
     end
   end
 
   def normal_query
-    "name LIKE :search OR address LIKE :search"
+    "lower(name) LIKE :search OR lower(address) LIKE :search"
   end
 
   def sector_query
-    "sector LIKE :search"
+    "lower(sector) LIKE :search"
   end
 
   def cant_get_location?
@@ -23,6 +23,6 @@ module ProjectsHelper
   end
 
   def options_for_sector_search
-    Project.uniq.pluck(:sector)
+    Project.uniq.pluck(:sector).unshift(['Search by sector', nil])
   end
 end

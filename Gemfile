@@ -59,6 +59,8 @@ gem 'rufus-scheduler', :groups => [:development, :production]
 # Can set unblocked test https in rails_helper
 gem 'webmock', group: :test
 
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
