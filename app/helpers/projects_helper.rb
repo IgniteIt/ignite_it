@@ -4,7 +4,7 @@ module ProjectsHelper
       @search = 'london'
     elsif params.nil?
       @search = request.location.city.downcase
-      @sector = sector_params.downcase
+      @sector = sector_params.downcase if sector_params
     else
       @search = params.downcase
     end
