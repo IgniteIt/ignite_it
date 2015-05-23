@@ -1,4 +1,17 @@
 <%= link_to 'Add a project', new_project_path %>
+<%= request.class %>
+
+<%= form_tag projects_path, :method => :get do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search", :name => nil %>
+<% end %>
+
+<%= form_tag projects_path, :method => :get do %>
+  <p>
+    <%= select_tag(:sector_search, options_for_select(options_for_sector_search)) %>
+    <%= submit_tag "Sector search", :name => nil %>
+<% end %>
 
 <% if @projects.any? %>
 

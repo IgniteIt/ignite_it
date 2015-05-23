@@ -109,7 +109,7 @@ describe Project, :type => :model do
   end
 
   it 'knows when the goal is reached' do
-    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project.donations.create(amount: 10000)
     expect(project.remaining).to eq 'Goal reached! The crowd has pledged a total of £100.'
   end
@@ -125,5 +125,15 @@ describe Project, :type => :model do
     project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project.set_expiration_date(30.days)
     expect(project.has_expired?).to be false
+  end
+
+  # it 'knows if he can get user location' do
+  #   expect(cant_get_location?).to be true
+  # end
+
+  it 'can get sector values' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project = Project.create(name: 'Another', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Energy', address: 'London')
+    expect(options_for_sector_search).to eq(['Environment', 'Energy'])
   end
 end
