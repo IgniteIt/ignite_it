@@ -48,14 +48,13 @@ class ProjectsController < ApplicationController
 
   def destroy
     @project = Project.find(params[:id])
-    if @project.user == current_user
+    if @project.is_owner?(current_user)
       @project.destroy
       flash[:notice] = 'Project has been deleted'
-      redirect_to '/'
     else
       flash[:notice] = 'Error, you did not create this project'
-      redirect_to '/'
     end
+    redirect_to '/'
   end
 
   def project_params

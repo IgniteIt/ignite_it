@@ -1,5 +1,6 @@
 class DonationsController < ApplicationController
   before_action :authenticate_user!
+  include DonationsHelper
 
   def new
     @project = Project.find(params[:project_id])
@@ -8,10 +9,8 @@ class DonationsController < ApplicationController
 
   def create
     @project = Project.find(params[:project_id])
-    @donation = @project.donations.new(user: current_user)
-    @donation.amount = @donation.with_pence(donation_params[:amount])
-    @donation.paid = false
-    @donation.save
+    @donation = @project.donations.create(user: current_user, paid: false,
+                                          amount: with_pence(donation_params[:amount]))
     redirect_to project_path(@project)
   end
 
