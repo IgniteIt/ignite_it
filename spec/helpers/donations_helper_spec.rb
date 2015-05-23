@@ -7,6 +7,3 @@ module DonationsHelper
     click_button 'Submit'
   end
 end
-
-# RSpec.describe DonationsHelper, type: :helper do
-# end

@@ -11,7 +11,7 @@ feature 'projects crud' do
   end
 
   before(:each) do
-    Project.any_instance.stub(:geocode).and_return([1,1])
+    allow_any_instance_of(Project).to receive(:geocode).and_return([1,1])
   end
 
   context 'creating projects' do

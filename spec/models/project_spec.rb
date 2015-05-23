@@ -9,7 +9,7 @@ describe Project, :type => :model do
   end
 
   before(:each) do
-    Project.any_instance.stub(:geocode).and_return([1,1])
+    allow_any_instance_of(Project).to receive(:geocode).and_return([1,1])
   end
 
   include ProjectsHelper
@@ -102,7 +102,7 @@ describe Project, :type => :model do
   end
 
   it 'knows how much left to reach the goal' do
-    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project.donations.create(amount: 1000)
     project.donations.create(amount: 3000)
     expect(project.remaining).to eq '£60 remaining!'
@@ -114,4 +114,16 @@ describe Project, :type => :model do
     expect(project.remaining).to eq 'Goal reached! The crowd has pledged a total of £100.'
   end
 
+  it 'knows if a project has expired' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.has_expired?).to be true
+  end
+
+  it 'knows if a project is not expired' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.set_expiration_date(30.days)
+    expect(project.has_expired?).to be false
+  end
 end

@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
   validates :sector, presence: true
   validates :address, presence: true
 
-  validates_format_of :video_url, with: /(?:https?:\/\/)?(?:www\.)?((?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11,}))|(?:https?:\/\/)(?:vimeo.com\/([0-9\-_]+))(?:\S+)?/, allow_blank: true
+  validates_format_of :video_url, with: /(?:https?:\/\/)?(?:www\.)?((?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11,}))|(?:https?:\/\/)(?:vimeo.com\/([0-9\-_]*))(?:\S)?/, allow_blank: true
 
 
   has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :default_url => "/images/:style/missing.png"
@@ -52,5 +52,9 @@ class Project < ActiveRecord::Base
     else 
       "£#{remaining} remaining!"
     end
+  end
+
+  def has_expired?
+    self.expiration_date <= Time.now
   end
 end

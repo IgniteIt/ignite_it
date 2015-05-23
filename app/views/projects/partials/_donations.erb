@@ -2,6 +2,6 @@
 
 <% if project.donations.any? %>
   <% project.donations.reverse_each do |donation| %>
-    <p><%= donation.user.username %> donated £<%= donation.without_pence(donation.amount) %></p>
+    <p><%= donation.user.username %> donated £<%= without_pence(donation.amount) %></p>
   <% end %>
 <% end %>

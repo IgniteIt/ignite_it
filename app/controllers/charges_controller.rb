@@ -1,21 +1,19 @@
 class ChargesController < ApplicationController
+
+  include DonationsHelper
+
   def new
     @project = Project.find(params[:project_id])
-    # Amount in cents
-    @donation = @project.donations.all.where(user: current_user)
-    @amount = @donation.sum(:amount)
-    @amount_view = @donation.first.without_pence(@amount)
+    @donations = @project.donations.all.where(user: current_user)
+    @amount = @donations.sum(:amount)
   end
 
   def create
     @project = Project.find(params[:project_id])
-    # Amount in cents
-    @donation = @project.donations.all.where(user: current_user)
+    @donations = @project.donations.all.where(user: current_user)
+    @amount = @donations.sum(:amount)
 
-    @amount = @donation.sum(:amount)
-    @amount_view = @donation.first.without_pence(@amount)
-
-    @donation.update_all(paid: true)
+    @donations.update_all(paid: true)
 
     customer = Stripe::Customer.create(
       :email => current_user.email,
@@ -25,7 +23,7 @@ class ChargesController < ApplicationController
     charge = Stripe::Charge.create(
       :customer    => customer.id,
       :amount      => @amount,
-      :description => 'Rails Stripe customer',
+      :description => "Payment for #{@project.name}",
       :currency    => 'GBP'
     )
 
