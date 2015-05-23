@@ -61,6 +61,14 @@ RSpec.configure do |config|
     OmniAuth.config.mock_auth[:facebook] = nil
   end
 
+  # To stub out emails
+  config.before(:each) do
+    WebMock.disable_net_connect!(:allow => [/api.stripe.com/, /maps.googleapis.com/], allow_localhost: true)
+    # In theory, can stub out google api to make tests faster, but lots of annoying error meessages
+    # WebMock.stub_request(:get, "http://maps.googleapis.com/maps/api/geocode/json?address=London&language=en&sensor=false").
+    #      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+    #      to_return(:status => 200, :body => "", :headers => {})
+  end
 
   config.include(Capybara::Webkit::RspecMatchers, :type => :feature)
 

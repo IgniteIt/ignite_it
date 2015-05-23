@@ -1,5 +1,4 @@
 class ChargesController < ApplicationController
-
   include DonationsHelper
 
   def new

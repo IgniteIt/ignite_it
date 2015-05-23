@@ -32,7 +32,7 @@ feature 'blogs' do
       expect(page).to have_content('You are not the project owner')
     end
 
-    scenario 'When owner makes blog, all donors are notified' do
+    xscenario 'When owner makes blog, all donors are notified' do
       
       # stub_request(:post, "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net").
       #   with(:body => "abc", :headers => { 'Content-Length' => 3 })
