@@ -10,10 +10,6 @@ feature 'blogs' do
     sign_up
     create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
     visit '/'
-    # WebMock.disable_net_connect!(allow_localhost: true)
-    # stub_request(:get, "http://maps.googleapis.com/maps/api/geocode/json?address=London&language=en&sensor=false").
-    #      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-    #      to_return(:status => 200, :body => "", :headers => {})
   end
 
   context 'Projects and their blogs' do

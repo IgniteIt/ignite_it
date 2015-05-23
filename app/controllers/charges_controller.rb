@@ -1,10 +1,11 @@
 class ChargesController < ApplicationController
+  include DonationsHelper
   def new
     @project = Project.find(params[:project_id])
     # Amount in cents
     @donation = @project.donations.all.where(user: current_user)
     @amount = @donation.sum(:amount)
-    @amount_view = @donation.first.without_pence(@amount)
+    @amount_view = without_pence(@amount)
   end
 
   def create
@@ -13,7 +14,7 @@ class ChargesController < ApplicationController
     @donation = @project.donations.all.where(user: current_user)
 
     @amount = @donation.sum(:amount)
-    @amount_view = @donation.first.without_pence(@amount)
+    @amount_view = without_pence(@amount)
 
     @donation.update_all(paid: true)
 

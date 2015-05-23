@@ -1,17 +1,14 @@
+<%= form_tag project_charges_path(@project) do %>
+  <article>
+    <label class="amount">
+      <span>Amount: £ <%= @amount_view %></span>
+    </label>
+  </article>
 
-
-  <%= form_tag project_charges_path(@project) do %>
-    <article>
-      <label class="amount">
-        <span>Amount: £ <%= @amount_view %></span>
-      </label>
-    </article>
-
-    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-            data-description="<%= @current_user.username %> donation payment"
-            data-amount="<%= @amount %>"
-            data-currency="GBP">
-
-    </script>
-  <% end %>
+  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="<%= @current_user.username %> donation payment"
+          data-amount="<%= @amount %>"
+          data-currency="GBP">
+  </script>
+<% end %>
