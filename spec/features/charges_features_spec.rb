@@ -26,12 +26,12 @@ feature 'stripe' do
     end
 
     scenario 'fills in and submits stripe form', js: true, driver: :selenium do
-      selenium_helper
+      charge_helper
       expect(page).to have_content('you paid £ 75 for Campaign!')
     end
 
     scenario 'it change donation status to true', js: true, driver: :selenium do
-      selenium_helper
+      charge_helper
       expect(Donation.first.paid).to eq true
     end
   end

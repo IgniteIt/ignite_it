@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 module ChargesHelper
-  def selenium_helper
+  def charge_helper
     find('.stripe-button-el').click
     sleep(2)
     stripe_iframe = all('iframe[name=stripe_checkout_app]').last
