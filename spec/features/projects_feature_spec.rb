@@ -78,16 +78,28 @@ feature 'projects' do
       scenario 'there is a project with a map' do
         expect(page).to have_css('#map')
       end
-
-      scenario 'there is a project with an image' do
-        expect(page).to have_xpath("//img[@alt='Rubber duck']")
-      end
-
-      scenario 'there is a project with a video' do
-        expect(page).to have_xpath("//iframe[@src='//www.youtube.com/embed/FOjdXSrtUxA?wmode=transparent']")
-      end
     end
   end
+
+  context 'project has been created with media' do
+      
+      before do
+        visit '/'
+        create_project_with_media('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
+      end
+
+      context'on the show page' do
+
+        scenario 'there is a project with an image' do
+          expect(page).to have_xpath("//img[@alt='Rubber duck']")
+        end
+
+        scenario 'there is a project with a video' do
+          expect(page).to have_xpath("//iframe[@src='//www.youtube.com/embed/FOjdXSrtUxA?wmode=transparent']")
+        end
+
+      end
+    end
 
   context 'User can navigate the app' do
     before do

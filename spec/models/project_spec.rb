@@ -4,7 +4,7 @@ require 'helpers/projects_helper_spec'
 describe Project, :type => :model do
 
   FactoryGirl.define do
-    factory :user, class: User
+    factory :a_user, class: User
     factory :another_user, class: User
   end
 
@@ -82,15 +82,15 @@ describe Project, :type => :model do
   end
 
   it 'knows if a user is the owner' do
-    user = build(:user)
-    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: user)
-    expect(project.is_owner?(user)).to eq true
+    a_user = build(:a_user)
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: a_user)
+    expect(project.is_owner?(a_user)).to eq true
   end
 
   it 'knows if a user is not the owner' do
-    user = build(:user)
+    a_user = build(:a_user)
     another_user = build(:another_user)
-    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: user)
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: a_user)
     expect(project.is_owner?(another_user)).to eq false
   end
 
