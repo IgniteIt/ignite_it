@@ -10,6 +10,10 @@ feature 'blogs' do
   include DonationsHelper
   include BlogsHelper
 
+  before(:each) do
+    allow_any_instance_of(Project).to receive(:geocode).and_return([1,1])
+  end
+  
   before do
     sign_up
     create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')

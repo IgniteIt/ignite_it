@@ -19,6 +19,10 @@ feature 'stripe' do
     end
   end
 
+  before(:each) do
+    allow_any_instance_of(Project).to receive(:geocode).and_return([1,1])
+  end
+  
   before do
     stub_request(:post, "https://api:key-d862abdfc169a5e8ba9b0a23ba5b9b78@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages")
     @user = FactoryGirl.create(:user)

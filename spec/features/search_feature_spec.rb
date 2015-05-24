@@ -38,7 +38,7 @@ feature 'Project search' do
 
     scenario 'it paginate the query' do
       num = 0
-      5.times do
+      until num >= 5 do
         create_project("Another #{num}", regular_description, '100', '30 days from now', 'Energy', 'London')
         visit '/'
         num += 1
