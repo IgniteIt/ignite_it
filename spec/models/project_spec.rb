@@ -134,6 +134,46 @@ describe Project, :type => :model do
   it 'can get sector values' do
     project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project = Project.create(name: 'Another', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Energy', address: 'London')
-    expect(options_for_sector_search).to eq([["Search by sector", nil],'Environment', 'Energy'])
+    expect(options_for_sector_search).to eq([["Search by sector", nil], 'Energy', 'Environment'])
+  end
+
+  it 'knows if a user has donated' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:user)
+    project.donations.create(amount: 1000, user: user)
+    expect(project.has_donated?(user)).to be true
+  end
+
+  it 'knows if a user has not donated' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:user)
+    another_user = build(:another_user)
+    project.donations.create(amount: 1000, user: another_user)
+    expect(project.has_donated?(user)).to be false
+  end
+
+  it 'knows if a project is payable by a user' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:user)
+    project.donations.create(amount: 1000, user: user)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.is_payable_by(user)).to be true
+  end
+
+  it 'knows if a project is not payable by a user because the time has not expired' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:user)
+    project.donations.create(amount: 1000, user: user)
+    project.set_expiration_date(30.days)
+    expect(project.is_payable_by(user)).to be false
+  end
+
+  it 'knows if a project is not payable by a user because he hasn\'t donated' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:user)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.is_payable_by(user)).to be false
   end
 end

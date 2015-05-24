@@ -1,4 +1,6 @@
-<%= link_to 'Donate', new_project_donation_path(@project) %>
+<% if !project.has_expired? %>
+  <%= link_to 'Donate', new_project_donation_path(project) %>
+<% end %>
 
 <% if project.donations.any? %>
   <% project.donations.reverse_each do |donation| %>

@@ -33,7 +33,7 @@ feature 'Project search' do
     end
 
     scenario 'it populates the sector search trough database values' do
-      expect(page).to have_select(:sector_search, options: ['Search by sector', 'Environment', 'Energy'])
+      expect(page).to have_select(:sector_search, options: ['Search by sector', 'Energy', 'Environment'])
     end
 
     scenario 'it paginate the query' do

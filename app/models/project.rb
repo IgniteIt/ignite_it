@@ -59,4 +59,12 @@ class Project < ActiveRecord::Base
   def has_expired?
     self.expiration_date <= Time.now
   end
+
+  def has_donated?(user)
+    self.donations.any? { |donation| donation.user == user }
+  end
+
+  def is_payable_by(user)
+    self.has_expired? && self.has_donated?(user)
+  end
 end

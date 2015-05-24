@@ -25,11 +25,18 @@ feature 'blogs' do
       expect(current_path).to eq ("/projects/#{Project.last.id}")
     end
 
+    scenario 'who is not the owner cannot create a blog' do
+      click_link 'Sign out'
+      sign_up('g@g.com', 'Shaggy')
+      click_link 'Campaign'
+      expect(page).not_to have_content 'Create Blog'
+    end
+
     scenario 'Owner has to be signed in to create blog' do
       click_link 'Sign out'
       sign_up('g@g.com', 'Shaggy')
       click_link 'Campaign'
-      click_link 'Create Blog'
+      visit "/projects/#{Project.last.id}/blogs/new"
       expect(page).to have_content('You are not the project owner')
     end
 

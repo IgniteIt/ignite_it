@@ -3,7 +3,7 @@ require 'helpers/projects_helper_spec'
 require 'helpers/users_helper_spec'
 require 'helpers/donations_helper_spec'
 
-feature 'payments' do
+feature 'Donations' do
   include ProjectsHelper
   include UserHelper
   include DonationsHelper
@@ -34,6 +34,15 @@ feature 'payments' do
       click_link 'Campaign'
       click_link 'Donate'
       expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    end
+
+    scenario 'can\'t donate if the time has expired' do
+      project = Project.last
+      project.set_expiration_date(1.second)
+      project.save
+      sleep(1)
+      click_link 'Campaign'
+      expect(page).not_to have_link 'Donate'
     end
 
     scenario 'Can list users who donated' do

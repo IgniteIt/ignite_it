@@ -23,6 +23,6 @@ module ProjectsHelper
   end
 
   def options_for_sector_search
-    Project.uniq.pluck(:sector).unshift(['Search by sector', nil])
+    Project.uniq.pluck(:sector).sort.unshift(['Search by sector', nil])
   end
 end

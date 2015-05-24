@@ -1,4 +1,6 @@
-<%= link_to 'Create Blog', new_project_blog_path(@project) %>
+<% if project.is_owner?(current_user) %>
+  <%= link_to 'Create Blog', new_project_blog_path(project) %>
+<% end %>
 
 <% if project.blogs.any? %>
   <% project.blogs.reverse_each do |blog| %>
