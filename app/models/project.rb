@@ -80,4 +80,9 @@ class Project < ActiveRecord::Base
   def is_payable_by(user)
     self.has_expired? && self.has_donated?(user)
   end
+
+  def was_paid?(user)
+    self.donations.all? { |donation| (donation.user == user && donation.paid) }
+    false if self.donations.length == 0
+  end
 end

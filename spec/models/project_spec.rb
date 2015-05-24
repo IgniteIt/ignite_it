@@ -157,6 +157,22 @@ describe Project, :type => :model do
     expect(project.success?).to be false
   end
 
+  it 'knows if a project was paid' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    expect(project.was_paid?(user)).to be true
+  end
+
+  it 'knows if a project was not paid' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    project.donations.create(amount: 1000, user: user, paid: false)
+    expect(project.was_paid?(user)).to be false
+  end
+
   # it 'knows if he can get user location' do
   #   expect(cant_get_location?).to be true
   # end

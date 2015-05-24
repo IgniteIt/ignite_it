@@ -43,32 +43,74 @@ feature 'Donations' do
     end
 
     context 'if the project has expired' do
-      before do
-        @project = Project.last
-        @project.set_expiration_date(1.second)
-        @project.save
-        sleep(1)
+
+      context 'and the user has not donated' do
+        before do
+          @project = Project.last
+          @project.set_expiration_date(1.second)
+          @project.save
+          sleep(1)
+        end
+
+        scenario 'can\'t donate' do
+          click_link 'Campaign'
+          expect(page).to have_content 'Project expired!'
+          expect(page).not_to have_link 'Donate'
+        end
+
+        scenario 'can\'t visit new donation page' do
+          visit "projects/#{@project.id}/donations/new"
+          expect(page).to have_content('Project has expired')
+        end
+
+        scenario 'can\'t donate in any case' do
+          @project.set_expiration_date(2.seconds)
+          @project.save
+          visit "projects/#{@project.id}/donations/new"
+          fill_in('Amount', with: 75)
+          sleep(2)
+          click_button 'Submit'
+          expect(page).to have_content('Project has expired')
+        end
       end
 
-      scenario 'can\'t donate if the time has expired' do
-        click_link 'Campaign'
-        expect(page).not_to have_link 'Donate'
+      context 'the user has donated and the goal was reached' do
+
+        before do
+          click_link 'Campaign'
+          make_payment('100')
+          @project = Project.last
+          @project.set_expiration_date(1.second)
+          @project.save
+          sleep(1)
+        end
+
+        scenario 'show a pay link if user has donated' do
+          click_link 'Campaign'
+          click_link 'Pay'
+          expect(page).to have_content 'Amount: £ 100'
+        end
+
       end
 
-      scenario 'can\'t visit new donation page if project has expired' do
-        visit "projects/#{@project.id}/donations/new"
-        expect(page).to have_content('Project has expired')
+      context 'the user has donated but the goal was not reached' do
+
+        before do
+          click_link 'Campaign'
+          make_payment('50')
+          @project = Project.last
+          @project.set_expiration_date(1.second)
+          @project.save
+          sleep(1)
+        end
+
+        scenario 'show a project expired message' do
+          click_link 'Campaign'
+          expect(page).to have_content 'Project expired!'
+        end
+
       end
 
-      scenario 'can\'t donate in any case if the project has expired' do
-        @project.set_expiration_date(2.seconds)
-        @project.save
-        visit "projects/#{@project.id}/donations/new"
-        fill_in('Amount', with: 75)
-        sleep(2)
-        click_button 'Submit'
-        expect(page).to have_content('Project has expired')
-      end
     end
   end
 end

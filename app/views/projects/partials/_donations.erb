@@ -1,4 +1,11 @@
-<% if !project.has_expired? %>
+<% if project.was_paid?(current_user) %>
+  <%= p project.was_paid?(current_user) %>
+  You have paid
+<% elsif project.success? %>
+  <%= link_to 'Pay', new_project_charge_path(project) %>
+<% elsif project.has_expired? %>
+  Project expired!
+<% else %>
   <%= link_to 'Donate', new_project_donation_path(project) %>
 <% end %>
 
