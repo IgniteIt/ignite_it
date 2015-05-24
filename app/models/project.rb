@@ -82,7 +82,7 @@ class Project < ActiveRecord::Base
   end
 
   def was_paid?(user)
+    return false if self.donations.length == 0
     self.donations.all? { |donation| (donation.user == user && donation.paid) }
-    false if self.donations.length == 0
   end
 end

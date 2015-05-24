@@ -1,5 +1,4 @@
 <% if project.was_paid?(current_user) %>
-  <%= p project.was_paid?(current_user) %>
   You have paid
 <% elsif project.success? %>
   <%= link_to 'Pay', new_project_charge_path(project) %>
