@@ -48,11 +48,20 @@ class Project < ActiveRecord::Base
   end
 
   def remaining
-    remaining = self.goal - self.donation_sum
-    if remaining <= 0
+    self.goal - self.donation_sum
+  end
+
+  def goal_reached?
+    self.remaining <= 0
+  end
+
+  def remaining_message
+    if self.goal_reached?
       "Goal reached! The crowd has pledged a total of £#{self.donation_sum}."
-    else 
-      "£#{remaining} remaining!"
+    elsif self.has_expired?
+      "Goal not reached."
+    else
+      "£#{self.remaining} remaining!"
     end
   end
 
@@ -62,6 +71,10 @@ class Project < ActiveRecord::Base
 
   def has_donated?(user)
     self.donations.any? { |donation| donation.user == user }
+  end
+
+  def success?
+    self.goal_reached? & self.has_expired?
   end
 
   def is_payable_by(user)
