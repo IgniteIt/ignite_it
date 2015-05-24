@@ -8,7 +8,7 @@ feature 'timer' do
  include ProjectsHelper
 
   before do
-    @project = Project.new(name: 'Campaign', description: regular_description, goal: '75', expiration_date: Time.now + (30.days), sector: 'Environment', address: 'London', user: User.last)
+    @project = Project.new(name: 'Campaign', description: regular_description, goal: '75', expiration_date: Time.now + (30.days), sector: 'Environment', address: 'London', video_url: "", user: User.last)
   end
 
   context 'when a project is running' do

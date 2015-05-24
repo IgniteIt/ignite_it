@@ -71,13 +71,13 @@ describe Project, :type => :model do
     expect(days_from_now).to eq(29)
   end
 
-  it 'knows if he has a pic' do
+  it 'knows if he has no pic' do
     project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     expect(project.has_pic?).to eq false
   end
 
-  it 'knows if he has a video' do
-    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+  it 'knows if he has no video' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', video_url: "")
     expect(project.has_video?).to eq false
   end
 
@@ -201,10 +201,19 @@ describe Project, :type => :model do
   it 'knows if a project is payable by a user' do
     project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     user = build(:a_user)
-    project.donations.create(amount: 1000, user: user)
+    project.donations.create(amount: 10000, user: user)
     project.set_expiration_date(1.second)
     sleep(1)
     expect(project.is_payable_by(user)).to be true
+  end
+
+  it 'knows if a project is not payable by a user because it is already paid' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.is_payable_by(user)).to be false
   end
 
   it 'knows if a project is not payable by a user because the time has not expired' do

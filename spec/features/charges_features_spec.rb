@@ -61,5 +61,19 @@ feature 'stripe' do
       visit "/projects/#{Project.last.id}/charges/new"
       expect(page).to have_content 'No no'
     end
+
+    scenario 'because he has already paid' do
+      @project.donations.create(amount: 7500, user: @user, paid: true)
+      sleep(1)
+      visit "/projects/#{Project.last.id}/charges/new"
+      expect(page).to have_content 'No no'
+    end
+
+    scenario 'because the goal was not reached' do
+      @project.donations.create(amount: 5000, user: @user)
+      sleep(1)
+      visit "/projects/#{Project.last.id}/charges/new"
+      expect(page).to have_content 'No no'
+    end
   end
 end

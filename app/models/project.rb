@@ -32,7 +32,7 @@ class Project < ActiveRecord::Base
   end
 
   def has_video?
-    !(self.video_url.nil?)
+    self.video_url.length != 0
   end
 
   def is_owner?(user)
@@ -78,7 +78,7 @@ class Project < ActiveRecord::Base
   end
 
   def is_payable_by(user)
-    self.has_expired? && self.has_donated?(user)
+    self.has_donated?(user) && self.success? && !self.was_paid?(user)
   end
 
   def was_paid?(user)
