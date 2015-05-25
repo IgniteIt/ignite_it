@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
 
   has_many :projects
   has_many :donations, dependent: :destroy
+  has_many :followers
+  has_many :followed_projects, through: :followers, source: :project
+
 
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" }, :default_url => "/images/:style/missing.gif"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
@@ -49,5 +52,9 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+
+  def has_followed(project)
+    followed_projects.include? project
   end
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :donations
     resources :blogs
     resources :charges
+    resources :followers
   end
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   #

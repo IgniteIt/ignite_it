@@ -18,6 +18,10 @@ class Project < ActiveRecord::Base
   belongs_to :user
   has_many :donations, dependent: :destroy
   has_many :blogs, dependent: :destroy
+  has_many :followers,
+    -> { extending WithUserAssociationExtension },
+      dependent: :restrict_with_exception,
+      dependent: :destroy
 
   def set_expiration_date(days)
     if (days).to_i > 0
@@ -56,5 +60,13 @@ class Project < ActiveRecord::Base
 
   def has_expired?
     self.expiration_date <= Time.now
+  end
+
+  def has_been_followed?(current_user)
+    followed_by(current_user).length > 0
+  end
+
+  def followed_by(current_user)
+    (followers&current_user.followers)
   end
 end
