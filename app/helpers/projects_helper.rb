@@ -26,3 +26,8 @@ module ProjectsHelper
     Project.uniq.pluck(:sector).sort.unshift(['Search by sector', nil])
   end
 end
+
+# distance = 20
+# center_point = [result.latitude, result.longitude]
+# box = Geocoder::Calculations.bounding_box(center_point, distance)
+# Venue.within_bounding_box(box)

@@ -1,6 +1,6 @@
 <% if project.was_paid?(current_user) %>
   You have paid
-<% elsif project.success? %>
+<% elsif project.is_payable_by(current_user) %>
   <%= link_to 'Pay', new_project_charge_path(project) %>
 <% elsif project.has_expired? %>
   Project expired!

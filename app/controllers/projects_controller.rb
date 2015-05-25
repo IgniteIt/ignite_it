@@ -9,6 +9,9 @@ class ProjectsController < ApplicationController
     else
       @projects = Project.where(sector_query, { search: "%#{@sector}%" }).page params[:page]
     end
+    # @near_me
+    # @closed_proj
+    # @follow_proj
   end
 
   def new
