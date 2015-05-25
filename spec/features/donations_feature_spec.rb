@@ -94,7 +94,6 @@ feature 'Donations' do
           click_link 'Pay'
           expect(page).to have_content 'Amount: £ 100'
         end
-
       end
 
       context 'the user has donated but the goal was not reached' do
@@ -112,9 +111,7 @@ feature 'Donations' do
           click_link 'Campaign'
           expect(page).to have_content 'Project expired!'
         end
-
       end
-
     end
   end
 end

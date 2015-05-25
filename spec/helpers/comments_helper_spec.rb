@@ -1,14 +1,9 @@
 require 'rails_helper'
 
-# Specs in this file have access to a helper object that includes
-# the CommentsHelper. For example:
-#
-# describe CommentsHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
-RSpec.describe CommentsHelper, type: :helper do
+module CommentsHelper
+  def make_comment
+    click_link 'Comment'
+    fill_in 'Comment', with: 'I disagree!'
+    click_button 'Submit'
+  end
 end
