@@ -52,10 +52,9 @@ feature 'Commenting' do
     make_comment
     click_link 'Sign out'
     sign_up('g@g.com', 'George')
-    click_link 'Campaign'
-    click_link 'Edit Comment'
+    visit("/projects/#{Project.last.id}/blogs/#{Blog.last.id}/comments/#{Comment.last.id}/edit")
     expect(page).to have_content('Error, you did not create this comment')
-    click_link 'Delete Comment'
+    page.driver.submit :delete, "/projects/#{Project.last.id}/blogs/#{Blog.last.id}/comments/#{Comment.last.id}", {}
     expect(page).to have_content('Error, you did not create this comment')
   end
 end

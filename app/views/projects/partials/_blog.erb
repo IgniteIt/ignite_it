@@ -14,8 +14,10 @@
     <% if blog.comments.any? %>
       <% blog.comments.each do |comment| %>
         <p><%= comment.comment %></p>
-        <%= link_to 'Edit Comment', edit_project_blog_comment_path(project, blog, comment) %>
-        <%= link_to 'Delete Comment', project_blog_comment_path(project, blog, comment), method: :delete %>
+        <% if comment.is_owner?(current_user) %>
+          <%= link_to 'Edit Comment', edit_project_blog_comment_path(project, blog, comment) %>
+          <%= link_to 'Delete Comment', project_blog_comment_path(project, blog, comment), method: :delete %>
+        <% end %>
       <% end %>
     <% end%>
     <p><%= link_to 'Comment', new_project_blog_comment_path(project, blog) %></p>
