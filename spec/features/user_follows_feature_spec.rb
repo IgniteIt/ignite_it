@@ -53,5 +53,13 @@ feature 'user follows a project' do
       expect(current_path).to eq '/projects'
       expect(page).to have_content ('You are already following the project')
     end
+
+    scenario 'only users who follow a project can unfollow it' do
+      click_link 'Follow'
+      click_link 'Sign out'
+      sign_up('g@g.com', 'George')
+      page.driver.submit :delete, "/projects/#{Project.last.id}/followers/#{Follower.last.id}", {}
+      expect(page).to have_content 'Cannot unfollow the project'
+    end
   end
 end
