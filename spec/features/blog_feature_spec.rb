@@ -72,9 +72,9 @@ feature 'blogs' do
       click_link 'Sign out'
       sign_up('g@g.com', 'Shaggy')
       click_link 'Campaign'
-      click_link 'Edit Blog'
+      visit("/projects/#{Project.last.id}/blogs/#{Blog.last.id}/edit")
       expect(page).to have_content('You are not the project owner')
-      click_link 'Delete Blog'
+      page.driver.submit :delete, "/projects/#{Project.last.id}/blogs/#{Blog.last.id}", {}
       expect(page).to have_content('You are not the project owner')
     end
   end
