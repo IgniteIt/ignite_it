@@ -24,7 +24,7 @@ feature 'projects' do
 
     scenario 'should display a prompt to add a project' do
       visit '/'
-      expect(page).to have_content 'No projects yet'
+      expect(page).to have_content 'No projects found'
       expect(page).to have_link 'Add a project'
     end
   end
@@ -38,7 +38,7 @@ feature 'projects' do
 
     scenario 'display projects' do
       expect(page).to have_content('Campaign')
-      expect(page).not_to have_content('No projects yet')
+      expect(page).not_to have_content('No projects found')
     end
 
     scenario 'lets a user view a project' do
@@ -75,19 +75,55 @@ feature 'projects' do
         expect(page).to have_content('Goal reached! The crowd has pledged a total of £100.')
       end
 
+      scenario 'there is a project with a non completed goal' do
+        project = Project.last
+        project.set_expiration_date(1.second)
+        project.save
+        sleep(1)
+        visit current_path
+        expect(page).to have_content('Goal not reached.')
+      end
+
       scenario 'there is a project with a map' do
         expect(page).to have_css('#map')
       end
 
-      scenario 'there is a project with an image' do
-        expect(page).to have_xpath("//img[@alt='Rubber duck']")
-      end
+      context 'Project is over and the goal was reached' do
+        before do
+          make_payment(100)
+          project = Project.last
+          project.set_expiration_date(1.second)
+          project.save
+          sleep(1)
+          visit current_path
+        end
 
-      scenario 'there is a project with a video' do
-        expect(page).to have_xpath("//iframe[@src='//www.youtube.com/embed/FOjdXSrtUxA?wmode=transparent']")
+        scenario 'it shows a goal reached message' do
+          expect(page).to have_content 'Goal reached'
+        end
       end
     end
   end
+
+  context 'project has been created with media' do
+      
+      before do
+        visit '/'
+        create_project_with_media('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
+      end
+
+      context'on the show page' do
+
+        scenario 'there is a project with an image' do
+          expect(page).to have_xpath("//img[@alt='Rubber duck']")
+        end
+
+        scenario 'there is a project with a video' do
+          expect(page).to have_xpath("//iframe[@src='//www.youtube.com/embed/FOjdXSrtUxA?wmode=transparent']")
+        end
+
+      end
+    end
 
   context 'User can navigate the app' do
     before do

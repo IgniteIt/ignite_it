@@ -6,9 +6,6 @@ class SignUpConfirmation < ApplicationMailer
   #   en.sign_up_confirmation.sign_up_confirm.subject
   #
   def sign_up_confirm(user)
-    # @greeting = "Hi"
-
-    # mail to: "gemcgow@gmail.com"
     mg_client = Mailgun::Client.new(ENV['MAILGUN_KEY'])
     message_params = {:from    => "postmaster@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org",
                       :to      => user.email,

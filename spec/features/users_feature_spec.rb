@@ -16,25 +16,23 @@ context "user not signed in and on the homepage" do
   end
 
   it "when facebook credentials are invalid, will show an error" do
-    OmniAuth.config.test_mode = true
+    configure_user_stubs
     OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
-    visit('/')
     click_link 'Sign in with Facebook'
     expect(page).to have_content ('Invalid credentials')
   end
 
   it "when facebook credentials are valid, it will make a user" do
-    OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:facebook] = OmniAuth::AuthHash.new({
-      :provider => 'facebook',
-      :uid => '123545',
-      :info => {:email => 'testing@facebook.com',
-                :name => 'George McGowan'
-              }
-    })
-    visit('/')
+    configure_user_stubs
     click_link 'Sign in with Facebook'
     expect(User.last.email).to eq "testing@facebook.com"
+  end
+
+  it "on sign up, the user is sent an email" do
+    sign_up
+    expect(WebMock).to have_requested(:post, 
+      "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages"
+      ).with(:body => "from=postmaster%40sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org&to=test%40example.com&subject=Thanks!&text=Thank%20you%20for%20signing%20up%20to%20IgniteIt!")
   end
 end
 

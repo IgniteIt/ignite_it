@@ -1,8 +1,17 @@
 class ProjectsController < ApplicationController
   before_action :authenticate_user!, :except => [:index, :show]
+  include ProjectsHelper
 
   def index
-    @projects = Project.all
+    set_search_variable(params[:search], params[:sector_search])
+    if @sector.nil?
+      @projects = Project.where(normal_query, { search: "%#{@search}%" }).page params[:page]
+    else
+      @projects = Project.where(sector_query, { search: "%#{@sector}%" }).page params[:page]
+    end
+    # @near_me
+    # @closed_proj
+    # @follow_proj
   end
 
   def new

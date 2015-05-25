@@ -4,7 +4,7 @@ require 'helpers/projects_helper_spec'
 describe Project, :type => :model do
 
   FactoryGirl.define do
-    factory :user, class: User
+    factory :a_user, class: User
     factory :another_user, class: User
   end
 
@@ -71,27 +71,14 @@ describe Project, :type => :model do
     expect(days_from_now).to eq(29)
   end
 
-  it 'knows if he has a pic' do
+  it 'knows if he has no pic' do
     project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     expect(project.has_pic?).to eq false
   end
 
-  it 'knows if he has a video' do
-    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+  it 'knows if he has no video' do
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', video_url: "")
     expect(project.has_video?).to eq false
-  end
-
-  it 'knows if a user is the owner' do
-    user = build(:user)
-    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: user)
-    expect(project.is_owner?(user)).to eq true
-  end
-
-  it 'knows if a user is not the owner' do
-    user = build(:user)
-    another_user = build(:another_user)
-    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: user)
-    expect(project.is_owner?(another_user)).to eq false
   end
 
   it 'knows the total of the donations' do
@@ -101,17 +88,44 @@ describe Project, :type => :model do
     expect(project.donation_sum).to eq 40
   end
 
-  it 'knows how much left to reach the goal' do
-    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+  it 'knows the remaining' do
+    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project.donations.create(amount: 1000)
     project.donations.create(amount: 3000)
-    expect(project.remaining).to eq '£60 remaining!'
+    expect(project.remaining).to eq 60
   end
 
-  it 'knows when the goal is reached' do
-    project = Project.create!(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+  it 'knows if the goal was reached' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project.donations.create(amount: 10000)
-    expect(project.remaining).to eq 'Goal reached! The crowd has pledged a total of £100.'
+    expect(project.goal_reached?).to be true
+  end
+
+  it 'knows if the goal was not reached' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 5000)
+    expect(project.goal_reached?).to be false
+  end
+
+  it 'prints a message with how much left to reach the goal' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.set_expiration_date(1.day)
+    project.donations.create(amount: 1000)
+    project.donations.create(amount: 3000)
+    expect(project.remaining_message).to eq '£60 remaining!'
+  end
+
+  it 'print a message when the goal is reached' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 10000)
+    expect(project.remaining_message).to eq 'Goal reached! The crowd has pledged a total of £100.'
+  end
+
+  it 'print a message when the goal is not reached' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.remaining_message).to eq 'Goal not reached.'
   end
 
   it 'knows if a project has expired' do
@@ -126,4 +140,109 @@ describe Project, :type => :model do
     project.set_expiration_date(30.days)
     expect(project.has_expired?).to be false
   end
+
+  it 'knows if a project has succeded' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 10000)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.success?).to be true
+  end
+
+  it 'knows if a project has not succeded' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 1000)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.success?).to be false
+  end
+
+  it 'knows if a project was paid' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    expect(project.was_paid?(user)).to be true
+  end
+
+  it 'knows if a project was not paid' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    project.donations.create(amount: 1000, user: user, paid: false)
+    expect(project.was_paid?(user)).to be false
+  end
+
+  # it 'knows if he can get user location' do
+  #   expect(cant_get_location?).to be true
+  # end
+
+  it 'can get sector values' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project = Project.create(name: 'Another', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Energy', address: 'London')
+    expect(options_for_sector_search).to eq([["Search by sector", nil], 'Energy', 'Environment'])
+  end
+
+  it 'knows if a user has donated' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user)
+    expect(project.has_donated?(user)).to be true
+  end
+
+  it 'knows if a user has not donated' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    another_user = build(:another_user)
+    project.donations.create(amount: 1000, user: another_user)
+    expect(project.has_donated?(user)).to be false
+  end
+
+  it 'knows if a project is payable by a user' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 10000, user: user)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.is_payable_by(user)).to be true
+  end
+
+  it 'knows if a project is not payable by a user because it is already paid' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user, paid: true)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.is_payable_by(user)).to be false
+  end
+
+  it 'knows if a project is not payable by a user because the time has not expired' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.donations.create(amount: 1000, user: user)
+    project.set_expiration_date(30.days)
+    expect(project.is_payable_by(user)).to be false
+  end
+
+  it 'knows if a project is not payable by a user because he hasn\'t donated' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    user = build(:a_user)
+    project.set_expiration_date(1.second)
+    sleep(1)
+    expect(project.is_payable_by(user)).to be false
+  end
+
+  it 'knows if a user is the owner' do
+    a_user = build(:a_user)
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: a_user)
+    expect(project.is_owner?(a_user)).to eq true
+  end
+
+  it 'knows if a user is not the owner' do
+    a_user = build(:a_user)
+    another_user = build(:another_user)
+    project = Project.new(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London', user: a_user)
+    expect(project.is_owner?(another_user)).to eq false
+  end
+
 end

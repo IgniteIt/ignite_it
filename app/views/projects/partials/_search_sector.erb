@@ -1,0 +1,7 @@
+<%= form_tag projects_path, :method => :get do %>
+  <p>
+    <%= select_tag(:sector_search, options_for_select(options_for_sector_search,  
+                                                     selected: "Search by sector",
+                                                     disabled: "Search by sector")) %>
+    <%= submit_tag "Sector search", :name => nil %>
+<% end %>

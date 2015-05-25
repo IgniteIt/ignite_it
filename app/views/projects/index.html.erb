@@ -1,5 +1,9 @@
 <%= link_to 'Add a project', new_project_path %>
 
+<%= render partial: 'projects/partials/search' %>
+
+<%= render partial: 'projects/partials/search_sector' %>
+
 <% if @projects.any? %>
 
   <% @projects.each do |project| %>
@@ -18,6 +22,8 @@
         <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
       </script>
   <% end %>
+<%= paginate @projects %>
 <% else %>
-  <h3>No projects yet!</h3>
+
+  <h3>No projects found!</h3>
 <% end %>

@@ -1,9 +1,17 @@
 var year = <%= project.expiration_date.year %>,
     month = <%= project.expiration_date.month - 1 %>,
     day = <%= project.expiration_date.day %>,
-    hours = <%= project.expiration_date.hour + 1 %>,
+    hours = <%= project.expiration_date.hour + 1%>,
     minutes = <%= project.expiration_date.min %>,
     seconds = <%= project.expiration_date.sec %>,
     date = new Date(year, month, day, hours, minutes, seconds);
 
-$('#due_date_timer_<%= project.id %>').countdown({until: date});
+var over = '<div class="over">Project Closed!</div>';
+
+if(date <= Date.now())
+  $('#due_date_timer_<%= project.id %>').html(over);
+else
+    $('#due_date_timer_<%= project.id %>').countdown({until: date, 
+                                                    format: 'YOWDHMS', 
+                                                    significant: 2, 
+                                                    expiryText: over});

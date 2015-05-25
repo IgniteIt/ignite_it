@@ -55,10 +55,11 @@ gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 gem 'rufus-scheduler', :groups => [:development, :production]
 
-# Perhaps unnecessary, never managed to get to work.
-# gem 'email_spec', group: :test
-
+# If this is turned on, all http requests are mocked out, beware!
+# Can set unblocked test https in rails_helper
 gem 'webmock', group: :test
+
+gem 'kaminari'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

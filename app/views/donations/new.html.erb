@@ -1,4 +1,8 @@
-<%= simple_form_for [@project, @donation] do |f| %>
-<%= f.input :amount %>
-<%= f.submit 'Submit' %>
+<% if @project.has_expired? %>
+  Project has expired
+<% else %>
+  <%= simple_form_for [@project, @donation] do |f| %>
+    <%= f.input :amount %>
+    <%= f.submit 'Submit' %>
+  <% end %>
 <% end %>
