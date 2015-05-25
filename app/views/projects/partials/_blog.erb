@@ -6,6 +6,8 @@
   <% project.blogs.reverse_each do |blog| %>
     <p><%= blog.title %></p>
     <p><%= blog.content %></p>
+    <p><%= link_to 'Edit Blog', edit_project_blog_path(project, blog) %></p>
+    <p><%= link_to 'Delete Blog', project_blog_path(project, blog), method: :delete %></p>    
     <h4>Comments</h4>
     <% if blog.comments.any? %>
       <% blog.comments.each do |comment| %>

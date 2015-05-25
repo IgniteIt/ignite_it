@@ -19,6 +19,34 @@ class BlogsController < ApplicationController
     redirect_to project_path(@project)
   end
 
+  def edit
+    @project = Project.find(params[:project_id])
+    @blog = Blog.find(params[:id])
+    if @project.is_not_owner?(current_user)
+      flash[:notice] = 'You are not the project owner'
+      redirect_to project_path(@project)
+    end
+  end
+
+  def update
+    @blog = Blog.find(params[:id])
+    @blog.update(blog_params)
+    flash[:notice] = 'Blog has been updated'
+    redirect_to project_path(@blog.project_id)    
+  end
+
+  def destroy
+    @blog = Blog.find(params[:id])
+    @project = Project.find(@blog.project_id)
+    if @project.user == (current_user)
+      @blog.destroy
+      flash[:notice] = 'Blog deleted'
+    else
+      flash[:notice] = 'You are not the project owner'
+    end
+    redirect_to project_path(@blog.project_id)  
+  end
+
   def blog_params
     params.require(:blog).permit(:title, :content)
   end
