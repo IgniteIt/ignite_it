@@ -6,5 +6,12 @@
   <% project.blogs.reverse_each do |blog| %>
     <p><%= blog.title %></p>
     <p><%= blog.content %></p>
+    <h4>Comments</h4>
+    <p><%= link_to 'Comment', new_project_blog_comment_path(project, blog) %></p>
+    <% if blog.comments.any? %>
+      <% blog.comments.each do |comment| %>
+        <p><%= comment.comment %></p>
+      <% end %>
+    <% end%>
   <% end %>
 <% end %>
