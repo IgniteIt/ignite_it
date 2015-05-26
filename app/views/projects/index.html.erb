@@ -4,6 +4,8 @@
 
 <%= render partial: 'projects/partials/search_sector' %>
 
+<%=  link_to_modal "New Project", new_project_path, :class=>"button" %>
+
 <% if @projects.any? %>
 
   <% @projects.each do |project| %>

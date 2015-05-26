@@ -10,8 +10,10 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require jquery-ui
  *= require jquery.countdown
+
+ *= require jquery-ui
+ *= require jquery.modal
  *= require_tree .
  *= require_self
  */

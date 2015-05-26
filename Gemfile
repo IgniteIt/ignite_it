@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 # environment variables for secruity
 gem 'dotenv-rails', :groups => [:development, :test]
 
