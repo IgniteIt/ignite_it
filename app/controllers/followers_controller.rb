@@ -8,7 +8,7 @@ class FollowersController < ApplicationController
   def create
     @follower = @project.followers.build_with_user(current_user)
     if @follower.save
-      redirect_to projects_path
+      render json: {new_follower_count: @project.followers.count, new_follower_id: @follower.id, project_id: @project.id}
     else
       flash[:notice] = 'You are already following the project'
       redirect_to projects_path
@@ -16,13 +16,13 @@ class FollowersController < ApplicationController
   end
 
   def destroy
+    @project = Project.find(params[:project_id])
     @follower = Follower.find(params[:id])
     if current_user == @follower.user
       @follower.destroy
-      flash[:notice] = 'You are no longer following the project'
+      render json: {new_follower_count: @project.followers.count, project_id: @project.id}
     else
       flash[:notice] = 'Cannot unfollow the project'
     end
-    redirect_to '/projects'
   end
 end

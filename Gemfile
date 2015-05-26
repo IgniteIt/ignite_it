@@ -60,9 +60,6 @@ gem 'rufus-scheduler', :groups => [:development, :production]
 gem 'webmock', group: :test
 
 gem 'kaminari'
-
-gem 'bootstrap-sass'
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
