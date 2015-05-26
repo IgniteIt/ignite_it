@@ -20,8 +20,6 @@
 //= require jquery.modal
 //= require_tree .
 
-$.modal.resize();
-
 jQuery(function() {
   var completer;
 

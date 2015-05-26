@@ -41,3 +41,21 @@
   <p>
   <%= f.submit %>
 <% end %>
+
+<script>
+  jQuery(function() {
+    var completer;
+
+    completer = new GmapsCompleter({
+      inputField: '#gmaps-input-address',
+      errorField: '#gmaps-error'
+    });
+
+    completer.autoCompleteInit({
+      region: "UK",
+      autocomplete: {
+        minLength: 3
+      }
+    });
+  });
+</script>
