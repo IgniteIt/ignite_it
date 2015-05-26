@@ -6,6 +6,7 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/webkit/matchers'
 # Add additional requires below this line. Rails is not loaded until this point!
+
 Capybara.javascript_driver = :webkit
 include Warden::Test::Helpers
 Warden.test_mode!
@@ -68,6 +69,10 @@ RSpec.configure do |config|
     WebMock.stub_request(:post, "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages").
          with(:body => {"from"=>"postmaster@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org", "subject"=>"Thanks!", "text"=>"Thank you for signing up to IgniteIt!", "to"=>"test@example.com"},
               :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'162', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
+         to_return(:status => 200, :body => "", :headers => {})
+    WebMock.stub_request(:post, "https://api:key-d862abdfc169a5e8ba9b0a23ba5b9b78@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages").
+         with(:body => {"from"=>"postmaster@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org", "subject"=>"Thanks!", "text"=>"Thank you for signing up to IgniteIt!", "to"=>"g@g.com"},
+              :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'153', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
          to_return(:status => 200, :body => "", :headers => {})
   end
 

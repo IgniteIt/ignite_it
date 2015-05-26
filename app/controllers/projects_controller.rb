@@ -10,17 +10,11 @@ class ProjectsController < ApplicationController
     @not_closed_project = Project.all.where("expiration_date >= ?", Time.now)
     # Tabs
     @projects = @not_closed_project.where(main_query, { search: "%#{@location}%" }).page params[:p_page]
-    # need to put coords
     @near_me = @not_closed_project.near(@coord, 1).page params[:n_page]
     @donated = Project.joins(:donations).where(user: current_user).uniq.page params[:d_page]
-    # @follow = Project.joins(:follow).where(user: current_user
+    @following = Project.joins(:followers).where(user: current_user).page params[:f_page]
     # Search
     @search = Project.where(search_query, { search: "%#{@search}%", sector: "%#{@sector}%" }).page params[:s_page]
-
-    # respond_to do |format|
-    #   format.js
-    #   format.html
-    # end
   end
 
   def new

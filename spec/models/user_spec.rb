@@ -13,4 +13,8 @@ RSpec.describe User, type: :model do
   it { is_expected.to have_many :donations }
 
   it { should have_many(:donations).dependent(:destroy) }
+
+  it { is_expected.to have_many :comments }
+
+  it { should have_many(:comments).dependent(:destroy) }
 end

@@ -95,4 +95,6 @@ group :development, :test do
   gem 'selenium-webdriver'
 
   gem 'factory_girl_rails'
+
+  gem 'poltergeist'
 end

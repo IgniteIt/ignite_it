@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150522090822) do
+ActiveRecord::Schema.define(version: 20150525143519) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,17 @@ ActiveRecord::Schema.define(version: 20150522090822) do
 
   add_index "blogs", ["project_id"], name: "index_blogs_on_project_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "blog_id"
+    t.integer  "user_id"
+  end
+
+  add_index "comments", ["blog_id"], name: "index_comments_on_blog_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "donations", force: :cascade do |t|
     t.integer  "amount"
     t.datetime "created_at", null: false
@@ -38,6 +49,16 @@ ActiveRecord::Schema.define(version: 20150522090822) do
   add_index "donations", ["project_id"], name: "index_donations_on_project_id", using: :btree
   add_index "donations", ["user_id"], name: "index_donations_on_user_id", using: :btree
 
+  create_table "followers", force: :cascade do |t|
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  add_index "followers", ["project_id"], name: "index_followers_on_project_id", using: :btree
+  add_index "followers", ["user_id"], name: "index_followers_on_user_id", using: :btree
+
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
@@ -46,10 +67,10 @@ ActiveRecord::Schema.define(version: 20150522090822) do
     t.integer  "goal"
     t.datetime "expiration_date"
     t.string   "sector"
+    t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "address"
-    t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
@@ -87,7 +108,11 @@ ActiveRecord::Schema.define(version: 20150522090822) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "blogs", "projects"
+  add_foreign_key "comments", "blogs"
+  add_foreign_key "comments", "users"
   add_foreign_key "donations", "projects"
   add_foreign_key "donations", "users"
+  add_foreign_key "followers", "projects"
+  add_foreign_key "followers", "users"
   add_foreign_key "projects", "users"
 end

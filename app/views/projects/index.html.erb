@@ -3,7 +3,11 @@
 
 <a href="#" id="main_link"> Main </a>
 <a href="#" id="near_me_link"> Near Me </a>
-<a href="#" id="donated_link"> Donated </a>
+<% if user_signed_in? %>
+  <a href="#" id="donated_link"> Donated </a>
+  <a href="#" id="following_link"> Following </a>
+<% end %>
+
 <%= render partial: 'projects/partials/search' %>
 
   <div id="main">
@@ -17,5 +21,5 @@
 <input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">
 
 <script>
-  <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, search: @search} %>
+  <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, following: @following, search: @search} %>
 </script>

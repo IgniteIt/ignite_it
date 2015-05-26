@@ -6,5 +6,20 @@
   <% project.blogs.reverse_each do |blog| %>
     <p><%= blog.title %></p>
     <p><%= blog.content %></p>
+    <% if project.is_owner?(current_user) %>
+      <p><%= link_to 'Edit Blog', edit_project_blog_path(project, blog) %></p>
+      <p><%= link_to 'Delete Blog', project_blog_path(project, blog), method: :delete %></p>
+    <% end %>
+    <h4>Comments</h4>
+    <% if blog.comments.any? %>
+      <% blog.comments.each do |comment| %>
+        <p><%= comment.comment %></p>
+        <% if comment.is_owner?(current_user) %>
+          <%= link_to 'Edit Comment', edit_project_blog_comment_path(project, blog, comment) %>
+          <%= link_to 'Delete Comment', project_blog_comment_path(project, blog, comment), method: :delete %>
+        <% end %>
+      <% end %>
+    <% end%>
+    <p><%= link_to 'Comment', new_project_blog_comment_path(project, blog) %></p>
   <% end %>
 <% end %>
