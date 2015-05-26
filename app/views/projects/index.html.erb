@@ -1,4 +1,6 @@
-<%= link_to_modal "New Project", new_project_path, :class=>"button" %>
+<% if user_signed_in? %>
+  <%= link_to_modal "New Project", new_project_path, :class=>"button" %>
+<% end %>
 
 <a href="#" id="main_link"> Main </a>
 <a href="#" id="near_me_link"> Near Me </a>

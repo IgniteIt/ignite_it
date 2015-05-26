@@ -21,6 +21,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
 .current {
 /*  position: fixed;
   margin: 25%;
@@ -31,6 +32,7 @@
 .modal {
   position: fixed;
   overflow: visible;
+  text-align: center;
   bottom: initial;
   z-index: 2;
   display: block;
