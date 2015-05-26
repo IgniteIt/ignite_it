@@ -1,0 +1,14 @@
+<% if projects.any? %>
+
+  <% projects.each do |project| %>
+    <%= render partial: 'projects/partials/basic_info', locals: {project: project} %>
+    <script>
+      <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
+    </script>
+  <% end %>
+
+<% else %>
+
+  <h3>No projects found.</h3>
+
+<% end %>

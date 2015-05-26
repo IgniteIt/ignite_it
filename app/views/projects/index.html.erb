@@ -1,20 +1,21 @@
+
 <%= link_to 'Add a project', new_project_path %>
 
+<a href="#" id="main_link"> Main </a>
+<a href="#" id="near_me_link"> Near Me </a>
+<a href="#" id="donated_link"> Donated </a>
 <%= render partial: 'projects/partials/search' %>
 
-<%= render partial: 'projects/partials/search_sector' %>
+  <div id="main">
+    <%= render partial: 'project', locals: {projects: @projects} %>
+  </div>
+  <div id="paginator">
+    <%= paginate(@projects, :remote => true, param_name: 'p_page' ) %>
+  </div>
 
-<% if @projects.any? %>
 
-  <% @projects.each do |project| %>
-    <%= render partial: 'projects/partials/basic_info', locals: {project: project} %>
-    <script>
-      <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
-    </script>
-  <% end %>
-<%= paginate @projects %>
-<% else %>
+<input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">
 
-  <h3>No projects found!</h3>
-
-<% end %>
+<script>
+  <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, search: @search} %>
+</script>

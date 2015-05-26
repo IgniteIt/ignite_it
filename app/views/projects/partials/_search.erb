@@ -1,5 +1,8 @@
-<%= form_tag projects_path, :method => :get do %>
+<%= form_tag projects_path, :method => :get, id: :search do %>
   <p>
     <%= text_field_tag :search, params[:search] %>
+    <%= select_tag(:sector, options_for_select(options_for_sector_search,  
+                                                     selected: "Search by sector",
+                                                     disabled: "Search by sector")) %>
     <%= submit_tag "Search", :name => nil %>
 <% end %>

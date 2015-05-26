@@ -1,33 +1,41 @@
 module ProjectsHelper
-  def set_search_variable(params, sector_params)
-    if params.nil? && sector_params.nil? && cant_get_location?
-      @search = 'london'
-    elsif params.nil?
-      @search = request.location.city.downcase
-      @sector = sector_params.downcase if sector_params
+  def set_search_variable(search, sector)
+    if no_params(search, sector)
+      @search = ''
+      @sector = ''
     else
-      @search = params.downcase
+      @search = search.downcase if !empty?(search)
+      @sector = sector.downcase if !empty?(sector)
     end
   end
 
-  def normal_query
+  def get_location
+    @location = request.location.city
+    @location = 'london' if empty?(request.location.city)
+  end
+
+  def get_coords
+    @coord = [request.location.longitude, request.location.latitude]
+    @coord = [51.51, -0.07] if request.location.longitude == 0.0
+  end
+
+  def main_query
     "lower(name) LIKE :search OR lower(address) LIKE :search"
   end
 
-  def sector_query
-    "lower(sector) LIKE :search"
+  def search_query
+    "(lower(name) LIKE :search OR lower(address) LIKE :search) AND lower(sector) LIKE :sector"
   end
 
-  def cant_get_location?
-    request.location.city.length <= 0
+  def empty?(params)
+    params.length <= 0
+  end
+
+  def no_params(search, sector)
+    (search.nil? || empty?(search)) && (sector.nil? || empty?(sector))
   end
 
   def options_for_sector_search
     Project.uniq.pluck(:sector).sort.unshift(['Search by sector', nil])
   end
 end
-
-# distance = 20
-# center_point = [result.latitude, result.longitude]
-# box = Geocoder::Calculations.bounding_box(center_point, distance)
-# Venue.within_bounding_box(box)
