@@ -21,14 +21,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-.current {
-/*  position: fixed;
-  margin: 25%;
-  z-index: 2;
-  display: block;*/
-}
-
 .modal {
   position: fixed;
   overflow: visible;
@@ -36,18 +28,6 @@
   bottom: initial;
   z-index: 2;
   display: block;
-}
-
-.modal-header{
-
-}
-
-.modal-body {
-
-}
-
-.modal-footer{
-
 }
 
 .timer {
