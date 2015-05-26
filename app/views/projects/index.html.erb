@@ -1,10 +1,10 @@
 <%= link_to 'Add a project', new_project_path %>
+<%=  link_to_modal "New Project", new_project_path, :class=>"button" %>
 
 <%= render partial: 'projects/partials/search' %>
 
 <%= render partial: 'projects/partials/search_sector' %>
 
-<%=  link_to_modal "New Project", new_project_path, :class=>"button" %>
 
 <% if @projects.any? %>
 
