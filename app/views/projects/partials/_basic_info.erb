@@ -5,3 +5,4 @@
 <p><%= project.remaining_message %></p>
 <p><%= project.address %></p>
 <p><%= project.sector %></p>
+<%= progress_bar [{percentage: project.percentage_goal_completed, context: :success, label: 'Completed'}, {percentage: project.percentage_goal_pending, context: :warning, animated: true, label: 'Pending'}] %>

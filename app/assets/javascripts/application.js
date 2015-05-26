@@ -12,11 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require gmaps-auto-complete
+//= require jquery-ui
+//= require bootstrap-sprockets
+//= require gmaps-auto-complete 
 //= require jquery.countdown
 //= require underscore
 //= require gmaps/google
-//= require jquery-ui
 //= require jquery.modal
 //= require_tree .
 
