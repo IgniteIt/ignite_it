@@ -58,20 +58,22 @@ feature 'timer' do
   end
 
   context 'when a projects expires' do
-    scenario 'change his status when user is on the page', js: true, driver: :selenium do
-      @project.set_expiration_date(5.seconds)
-      @project.save
-      visit "/"
-      expect(page).to have_content('Seconds')
-      sleep(4)
-      expect(page).to have_content('Project Closed')
-    end
+    # scenario 'change his status when user is on the page', js: true, driver: :selenium do
+    #   @project.set_expiration_date(2.seconds)
+    #   @project.save
+    #   visit "/"
+    #   expect(page).to have_content('Seconds')
+    #   sleep(1)
+    #   expect(page).to have_content('Project Closed')
+    # end
 
     scenario 'when a user arrives on the page status is already changed', js: true, driver: :selenium do
       @project.set_expiration_date(1.second)
       @project.save
       sleep(1)
       visit "/"
+      fill_in :search, with: 'Campaign'
+      click_button 'Search'
       expect(page).to have_content('Project Closed')
     end
   end

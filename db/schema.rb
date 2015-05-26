@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20150525143519) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,10 +67,10 @@ ActiveRecord::Schema.define(version: 20150525143519) do
     t.integer  "goal"
     t.datetime "expiration_date"
     t.string   "sector"
+    t.integer  "user_id"
     t.float    "latitude"
     t.float    "longitude"
     t.text     "address"
-    t.integer  "user_id"
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"

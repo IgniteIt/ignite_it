@@ -20,7 +20,7 @@ feature 'user follows a project' do
 
   context 'user not logged in' do
     scenario 'cannot follow projects' do
-      expect(page).not_to have_link('Follow')
+      expect(page).not_to have_link('Follow', exact: true)
     end
   end
 
@@ -31,14 +31,14 @@ feature 'user follows a project' do
 
     scenario 'cannot follow projects twice' do
       click_link 'Follow'
-      expect(page).not_to have_link 'Follow'
+      expect(page).not_to have_link('Follow', exact: true)
       expect(page).to have_link 'Unfollow'
     end
 
     scenario 'can unfollow projects' do
       click_link 'Follow'
       click_link 'Unfollow'
-      expect(page).to have_link 'Follow'
+      expect(page).to have_link('Follow', exact: true)
       expect(page).not_to have_link 'Unfollow'
     end
 

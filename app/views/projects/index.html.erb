@@ -1,30 +1,23 @@
 <%= link_to_modal "New Project", new_project_path, :class=>"button" %>
 
+<a href="#" id="main_link"> Main </a>
+<a href="#" id="near_me_link"> Near Me </a>
+<% if user_signed_in? %>
+  <a href="#" id="donated_link"> Donated </a>
+  <a href="#" id="following_link"> Following </a>
+<% end %>
+
 <%= render partial: 'projects/partials/search' %>
 
-<%= render partial: 'projects/partials/search_sector' %>
+  <div id="main">
+    <%= render partial: 'project', locals: {projects: @projects} %>
+  </div>
+  <div id="paginator">
+    <%= paginate(@projects, :remote => true, param_name: 'p_page' ) %>
+  </div>
 
+<input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">
 
-<% if @projects.any? %>
-
-  <% @projects.each do |project| %>
-  <%= render partial: 'projects/partials/basic_info', locals: {project:project} %>
-    <section class="followers_count">
-      <%= pluralize(project.followers.count, 'follower') %>
-      <% if user_signed_in? %>
-        <% if project.has_been_followed?(current_user) %>
-          <%= link_to "Unfollow", project_follower_path(project, project.followed_by(current_user).first), method: :delete %>
-        <% else %>
-          <%= link_to "Follow", new_project_follower_path(project) %>
-        <% end %>
-      <% end %>
-    </section>
-      <script>
-        <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
-      </script>
-  <% end %>
-<%= paginate @projects %>
-<% else %>
-
-  <h3>No projects found!</h3>
-<% end %>
+<script>
+  <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, following: @following, search: @search} %>
+</script>

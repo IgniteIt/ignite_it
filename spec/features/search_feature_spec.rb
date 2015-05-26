@@ -7,11 +7,9 @@ feature 'Project search' do
   include UserHelper
 
   before do
-    sign_up
-    visit '/'
-    create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
-    visit '/'
-    create_project('Another', regular_description, '100', '30 days from now', 'Energy', 'Manchester')
+    Project.create!(name: 'Campaign', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Environment', address: 'London')
+    Project.create!(name: 'Another', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'Manchester')
+    Project.create!(name: 'Third', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'London')
     visit '/'
   end
 
@@ -27,46 +25,57 @@ feature 'Project search' do
     #   expect(page).not_to have_content 'London'
     # end
 
-    scenario 'if unable to get location, it set London as default' do
+    it 'doesn\'t show the search' do
       expect(page).to have_content 'London'
       expect(page).not_to have_content 'Manchester'
     end
 
     scenario 'it populates the sector search trough database values' do
-      expect(page).to have_select(:sector_search, options: ['Search by sector', 'Energy', 'Environment'])
+      expect(page).to have_select(:sector, options: ['Search by sector', 'Energy', 'Environment'])
     end
 
-    scenario 'it paginate the query' do
+  end
+
+  context 'performing a search' do
+    scenario 'it paginate the query', js: true, driver: :selenium do
       num = 0
-      until num >= 5 do
-        create_project("Another #{num}", regular_description, '100', '30 days from now', 'Energy', 'London')
-        visit '/'
+      until num > 5 do
+        Project.create(name: "Another #{num}", description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'Manchester')
         num += 1
       end
+      visit '/'
+      fill_in :search, with: 'Another'
+      click_button 'Search'
       click_link 'Next ›'
       expect(page).to have_content "Another 4"
       expect(page).not_to have_content "Another 3"
     end
-  end
 
-  context 'performing a search' do
-    scenario 'it can search for a project by location' do
+    scenario 'it can search for a project by location', js: true, driver: :selenium do
       fill_in :search, with: 'Manchester'
       click_button 'Search'
       expect(page).to have_content 'Manchester'
       expect(page).not_to have_content 'London'
     end
 
-    scenario 'it can search for a project by his name' do
+    scenario 'it can search for a project by his name', js: true, driver: :selenium do
       fill_in :search, with: 'Another'
       click_button 'Search'
       expect(page).to have_content 'Another'
       expect(page).not_to have_content 'Campaign'
     end
 
-    scenario 'it can search for a project by his sector' do
-      select 'Energy', from: :sector_search
-      click_button 'Sector search'
+    scenario 'it can search for a project by his sector', js: true, driver: :selenium do
+      select 'Energy', from: :sector
+      click_button 'Search'
+      expect(page).to have_content 'Third'
+      expect(page).not_to have_content 'Campaign'
+    end
+
+    scenario 'it can perform a combined search', js: true, driver: :selenium do
+      select 'Energy', from: :sector
+      fill_in :search, with: 'Manchester'
+      click_button 'Search'
       expect(page).to have_content 'Another'
       expect(page).not_to have_content 'Campaign'
     end

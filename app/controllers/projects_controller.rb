@@ -3,15 +3,18 @@ class ProjectsController < ApplicationController
   include ProjectsHelper
 
   def index
-    set_search_variable(params[:search], params[:sector_search])
-    if @sector.nil?
-      @projects = Project.where(normal_query, { search: "%#{@search}%" }).page params[:page]
-    else
-      @projects = Project.where(sector_query, { search: "%#{@sector}%" }).page params[:page]
-    end
-    # @near_me
-    # @closed_proj
-    # @follow_proj
+    get_location
+    get_coords
+    set_search_variable(params[:search], params[:sector])
+
+    @not_closed_project = Project.all.where("expiration_date >= ?", Time.now)
+    # Tabs
+    @projects = @not_closed_project.where(main_query, { search: "%#{@location}%" }).page params[:p_page]
+    @near_me = @not_closed_project.near(@coord, 1).page params[:n_page]
+    @donated = Project.joins(:donations).where(user: current_user).uniq.page params[:d_page]
+    @following = Project.joins(:followers).where(user: current_user).page params[:f_page]
+    # Search
+    @search = Project.where(search_query, { search: "%#{@search}%", sector: "%#{@sector}%" }).page params[:s_page]
   end
 
   def new
