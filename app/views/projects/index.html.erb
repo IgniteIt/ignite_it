@@ -22,4 +22,5 @@
 
 <script>
   <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, following: @following, search: @search} %>
+  <%= render partial: 'projects/js/followers', formats: [:js] %>
 </script>

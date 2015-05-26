@@ -1,0 +1,26 @@
+$(document).ready(function() {
+
+  $('.followers-link').click(function(e){
+    e.preventDefault()
+    var link = $(this)
+    var followerCount = link.siblings('.followers_count');
+    if($(this).text() == 'Follow') {
+      $.get(this.href, function(response){
+        link.attr('href', '/projects/' + response.project_id + '/followers/' + response.new_follower_id)
+        link.text('Unfollow');
+        followerCount.text(response.new_follower_count);
+      })
+    } else {
+      $.ajax({
+        url: this.href,
+        type: 'DELETE',
+        success: function(response) {
+          link.attr('href', '/projects/' + response.project_id + '/followers/new')
+          link.text('Follow');
+          followerCount.text(response.new_follower_count);
+        }
+      });
+    }
+  })
+
+});
