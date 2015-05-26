@@ -25,7 +25,9 @@
   <%= current_user.username %>
 <% else %>
     <%= link_to "Sign in", new_user_session_path %>
+    <%=  link_to_modal "New Sign In", new_user_session_path, :class=>"button" %>
     <%= link_to "Sign up", new_user_registration_path %>
+    <%=  link_to_modal "New Sign Up", new_user_registration_path, :class=>"button" %>
     <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
 <% end %>
 
