@@ -1,0 +1,18 @@
+ @import 'bootstrap-sprockets';
+ @import 'bootstrap';
+ @import 'jquery.countdown';
+
+
+.timer {
+  width: 200px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  height: 45px;
+}
+
+.over {
+  text-align: center;
+  font-weight: 800;
+  padding-top: 13px;
+}

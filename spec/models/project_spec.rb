@@ -245,4 +245,11 @@ describe Project, :type => :model do
     expect(project.is_owner?(another_user)).to eq false
   end
 
+  it 'knows the percentage of the goal completed for each project' do
+    project = Project.create(name: 'Campaign', description: regular_description, goal: 100, expiration_date: '30 days from now', sector: 'Environment', address: 'London')
+    project.donations.create(amount: 1000)
+    expect(project.percentage_goal_completed).to eq(10)
+    expect(project.percentage_goal_pending).to eq(90)
+  end
+
 end
