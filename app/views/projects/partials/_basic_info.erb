@@ -1,8 +1,22 @@
+<h3><%= link_to project.name, project_path(project) %></h3>
+
 <div id="due_date_timer_<%= project.id %>" class="timer"></div>
 
-<h3><%= link_to project.name, project_path(project) %></h3>
 <p>£<%= project.goal %></p>
 <p><%= project.remaining_message %></p>
 <p><%= project.address %></p>
 <p><%= project.sector %></p>
+
+<section>
+  <span class="followers_count"> <%= project.followers.count %> </span><%= ' follower'.pluralize(project.followers.count) %>
+  <% if user_signed_in? %>
+    <% if project.has_been_followed?(current_user) %>
+      <%= link_to "Unfollow", project_follower_path(project, project.followed_by(current_user).first), class: "followers-link" %>
+    <% else %>
+      <%= link_to "Follow", new_project_follower_path(project), class: "followers-link" %>
+    <% end %>
+  <% end %>
+</section>
+
+    
 <%= progress_bar [{percentage: project.percentage_goal_completed, context: :success, label: 'Completed'}, {percentage: project.percentage_goal_pending, context: :warning, animated: true, label: 'Pending'}] %>

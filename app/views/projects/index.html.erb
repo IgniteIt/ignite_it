@@ -2,23 +2,16 @@
   <%= link_to_modal "New Project", new_project_path, :class=>"button" %>
 <% end %>
 
-<a href="#" id="main_link"> Main </a>
-<a href="#" id="near_me_link"> Near Me </a>
-<% if user_signed_in? %>
-  <a href="#" id="donated_link"> Donated </a>
-  <a href="#" id="following_link"> Following </a>
-<% end %>
-
 <%= render partial: 'projects/partials/search' %>
 
-  <div id="main">
-    <%= render partial: 'project', locals: {projects: @projects} %>
-  </div>
-  <div id="paginator">
-    <%= paginate(@projects, :remote => true, param_name: 'p_page' ) %>
-  </div>
+<%= render partial: 'projects/partials/index_tabs' %>
 
-<input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">
+<div id="main">
+  <%= render partial: 'project', locals: {projects: @projects} %>
+</div>
+<div id="paginator">
+  <%= paginate(@projects, :remote => true, param_name: 'p_page' ) %>
+</div>
 
 <script>
   <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, following: @following, search: @search} %>

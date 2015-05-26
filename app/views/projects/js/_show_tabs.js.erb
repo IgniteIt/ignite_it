@@ -1,0 +1,33 @@
+$(document).ready(function(){
+
+  $('#main_link').click(function(e){
+    e.preventDefault()
+    $('.blog').css({'opacity': '0',
+                       'position': 'absolute'});
+    $('.investors').css({'opacity': '0',
+                       'position': 'absolute'})
+    $('.main').css({'opacity': '1',
+                        'position': 'relative'});
+  });
+
+  $('#blog_link').click(function(e){
+    e.preventDefault()
+    $('.main').css({'opacity': '0',
+                       'position': 'absolute'});
+    $('.investors').css({'opacity': '0',
+                       'position': 'absolute'})
+    $('.blog').css({'opacity': '1',
+                        'position': 'relative'});
+  })
+
+  $('#investors_link').click(function(e){
+    e.preventDefault()
+    $('.main').css({'opacity': '0',
+                       'position': 'absolute'});
+    $('.blog').css({'opacity': '0',
+                        'position': 'absolute'});
+    $('.investors').css({'opacity': '1',
+                        'position': 'relative'})
+  })
+
+});  

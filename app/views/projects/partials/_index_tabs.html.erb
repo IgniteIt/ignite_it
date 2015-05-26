@@ -1,0 +1,8 @@
+<a href="#" id="main_link"> Main </a>
+<a href="#" id="near_me_link"> Near Me </a>
+<% if user_signed_in? %>
+  <a href="#" id="donated_link"> Donated </a>
+  <a href="#" id="following_link"> Following </a>
+<% end %>
+
+<input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">

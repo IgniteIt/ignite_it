@@ -1,6 +1,0 @@
-<% @donated.each do |project_donated| %>
-  <%= render partial: 'projects/partials/basic_info', locals: {project: project_donated} %>
-  <script>
-    <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project_donated} %>
-  </script>
-<% end %>

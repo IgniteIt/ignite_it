@@ -1,14 +1,27 @@
-<%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
+<%= render partial: 'projects/partials/show_tabs' %>
 
-<%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
+<div class="main">
 
-<%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+  <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
 
-<%= render partial: 'projects/partials/donations', locals: {project: @project} %>
+  <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
 
-<%= render partial: 'projects/partials/blog', locals: {project: @project} %>
+  <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+
+  <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
+  
+</div>
+
+<div class="blog">
+  <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
+</div> 
+
+<div class="investors">
+  <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
+</div>
 
 <script>
   <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: @project} %>
   <%= render partial: 'projects/js/gmaps', formats: [:js] %>
+  <%= render partial: 'projects/js/show_tabs', formats: [:js] %>
 </script>

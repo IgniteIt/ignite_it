@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-  $('.followers-link').click(function(e){
+  $(document).on("click", ".followers-link", function(e){
     e.preventDefault()
     var link = $(this)
     var followerCount = link.siblings('.followers_count');
@@ -18,6 +18,7 @@ $(document).ready(function() {
           link.attr('href', '/projects/' + response.project_id + '/followers/new')
           link.text('Follow');
           followerCount.text(response.new_follower_count);
+          link.fadeIn( "slow" );
         }
       });
     }
