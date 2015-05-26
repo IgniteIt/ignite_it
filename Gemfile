@@ -69,6 +69,9 @@ gem 'kaminari'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+gem 'bh', '~> 1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -97,4 +100,5 @@ group :development, :test do
   gem 'factory_girl_rails'
 
   gem 'poltergeist'
+
 end

@@ -97,4 +97,12 @@ class Project < ActiveRecord::Base
     return false if self.donations.length == 0
     self.donations.all? { |donation| (donation.user == user && donation.paid) }
   end
+
+  def percentage_goal_completed
+    (self.donation_sum.to_f / self.goal.to_f) * 100
+  end
+
+  def percentage_goal_pending
+    (self.remaining.to_f / self.goal.to_f) * 100
+  end
 end
