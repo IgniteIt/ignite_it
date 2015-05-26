@@ -18,6 +18,7 @@ feature 'projects crud' do
   end
 
   context 'creating projects' do
+
     scenario 'prompts user to fill out a form, then displays a new project' do
       visit '/'
       create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')

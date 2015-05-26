@@ -1,5 +1,7 @@
 <%= render partial: 'layouts/errors', locals: { element: @project } %>
 
+<h2>New Project</h2>
+
 <%= simple_form_for @project, html: {multipart: true} do |f| %>
   <%= f.input :name %>
   <p>
@@ -34,10 +36,28 @@
                                             "Healthcare",
                                             "Transportation",
                                             "Other"]),
-                                            selected: "Select a sector", 
+                                            selected: "Select a sector",
                                             disabled: "Select a sector"%>
   <p>
   <%= f.input :description %>
   <p>
   <%= f.submit %>
 <% end %>
+
+<script>
+  jQuery(function() {
+    var completer;
+
+    completer = new GmapsCompleter({
+      inputField: '#gmaps-input-address',
+      errorField: '#gmaps-error'
+    });
+
+    completer.autoCompleteInit({
+      region: "UK",
+      autocomplete: {
+        minLength: 3
+      }
+    });
+  });
+</script>

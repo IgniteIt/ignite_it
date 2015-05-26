@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'jquery-ui-rails'
+gem 'jquery-modal-rails'
 # environment variables for secruity
 gem 'dotenv-rails', :groups => [:development, :test]
 
@@ -39,8 +41,6 @@ gem 'geocoder'
 
 gem 'gmaps-autocomplete-rails'
 
-gem 'jquery-ui-rails'
-
 gem 'simple_form'
 
 gem 'gmaps4rails'
@@ -60,6 +60,8 @@ gem 'rufus-scheduler', :groups => [:development, :production]
 gem 'webmock', group: :test
 
 gem 'kaminari'
+
+gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

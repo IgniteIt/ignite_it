@@ -18,6 +18,7 @@
 //= require jquery.countdown
 //= require underscore
 //= require gmaps/google
+//= require jquery.modal
 //= require_tree .
 
 jQuery(function() {

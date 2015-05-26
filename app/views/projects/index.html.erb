@@ -1,5 +1,6 @@
-
-<%= link_to 'Add a project', new_project_path %>
+<% if user_signed_in? %>
+  <%= link_to_modal "New Project", new_project_path, :class=>"button" %>
+<% end %>
 
 <a href="#" id="main_link"> Main </a>
 <a href="#" id="near_me_link"> Near Me </a>
@@ -16,7 +17,6 @@
   <div id="paginator">
     <%= paginate(@projects, :remote => true, param_name: 'p_page' ) %>
   </div>
-
 
 <input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">
 
