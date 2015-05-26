@@ -25,7 +25,7 @@ feature 'projects' do
     scenario 'should display a prompt to add a project' do
       visit '/'
       expect(page).to have_content 'No projects found'
-      expect(page).to have_link 'Add a project'
+      expect(page).to have_link 'New Project'
     end
   end
 

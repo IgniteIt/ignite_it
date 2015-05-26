@@ -18,6 +18,9 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 .timer {
   width: 200px;
   display: inline-block;
