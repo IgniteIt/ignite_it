@@ -38,5 +38,9 @@ namespace :spec do
   RSpec::Core::RakeTask.new(:all_without_stripe) do |t|
     t.pattern = Dir['spec/*/**/*_spec.rb'].reject{ |f| f['/features/charges_features_spec.rb'] }
   end
+  
+  RSpec::Core::RakeTask.new(:followers) do |t|
+    t.pattern = "spec/features/followers_feature_spec.rb"
+  end
 
 end
