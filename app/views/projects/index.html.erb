@@ -3,7 +3,7 @@
 <%= request.location.city %>
 lat: <%= request.location.latitude %>
 lon: <%= request.location.longitude %>
-<%= request.location.location_type %>
+<%= request.location.type %>
 
 <div id="main">
   <%= render partial: 'project', locals: {projects: @projects} %>
