@@ -1,25 +1,29 @@
 <%= render partial: 'projects/partials/show_tabs' %>
 
-<div class="main">
+<div class="row">
+  <section class="main col-md-8">
 
-  <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
+    <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
 
-  <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
+    <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
 
-  <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+    <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+    
+  </section>
 
-  <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
-  
+  <section class="blog col-md-8">
+    <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
+  </section> 
+
+  <section class="investors col-md-8">
+    <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
+  </section>
+
+  <section class="sidebar col-md-4">
+    <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
+    <%= render partial: 'projects/partials/map' %>
+  </section>
 </div>
-
-<div class="blog">
-  <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
-</div> 
-
-<div class="investors">
-  <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
-</div>
-
 <script>
   <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: @project} %>
   <%= render partial: 'projects/js/gmaps', formats: [:js] %>
