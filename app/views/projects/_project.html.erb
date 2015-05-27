@@ -3,6 +3,16 @@
   <% projects.each do |project| %>
     <%= render partial: 'projects/partials/basic_info', locals: {project: project} %>
     <p><%= project.goal %></p>
+    <section>
+      <span class="badge badge-notify followers_count"> <%= project.followers.count %> </span>
+      <% if user_signed_in? %>
+        <% if project.has_been_followed?(current_user) %>
+          <%= link_to "<span class='glyphicon glyphicon-star'></span>", project_follower_path(project, project.followed_by(current_user).first), class: "followers-link" %>
+        <% else %>
+          <%= link_to "<span class='glyphicon glyphicon-star-empty'></span>", new_project_follower_path(project), class: "followers-link" %>
+        <% end %>
+      <% end %>
+    </section>
     <%= render partial: 'projects/partials/goal_remaining', locals: {project: project} %>
     <%= render partial: 'projects/partials/timer', locals: {project: project} %>
     <%= render partial: 'projects/partials/progress_bar', locals: {project: project} %>

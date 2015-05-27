@@ -4,6 +4,14 @@ a:hover {
   text-decoration: none;
 }
 
+a:focus {
+  outline: none;
+}
+
+img{
+  max-width: 100%
+}
+
 .simple_form label {
   margin-top: 15px;
   display: block;
@@ -162,11 +170,30 @@ select option{color: #555;}
 
 .side-title {
     margin: 0 -20px;
-    padding: 20px 0;
+    padding: 20px 0 10px;
 }
 
 .money-info {
   text-align: right;
   margin-top: 20px;
   padding-right: 5%;
+}
+
+.badge-notify{
+   background:white;
+   margin-top: 0px;
+  }
+
+.followers-link{
+  font-size: 24px;
+  color: white;
+}
+
+.followers-link:hover, 
+.followers-link:focus {
+  color: white;
+}
+
+.followers-side-bar{
+
 }
