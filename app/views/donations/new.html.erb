@@ -4,7 +4,7 @@
   <br>
   <%= simple_form_for [@project, @donation] do |f| %>
   <div class="input-group-addon">£</div>
-  <%= f.input_field :amount, class: "form-control", placeholder: "Please enter donation amount..." %>
+  <%= f.input :amount, class: "form-control", placeholder: "Please enter donation amount..." %>
   <div class="input-group-addon">.00</div>
     <p>
     </p>
