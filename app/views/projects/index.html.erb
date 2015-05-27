@@ -1,5 +1,7 @@
 <%= render partial: 'projects/partials/index_tabs' %>
 
+<%= request.location.city %>
+
 <div id="main">
   <%= render partial: 'project', locals: {projects: @projects} %>
 </div>
