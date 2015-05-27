@@ -1,4 +1,5 @@
 <div class="panel-heading side-title">
+
   <div class="row">
     <div class="col-md-3">
         <%= render partial: 'projects/partials/followers', locals: {project: project} %>
@@ -11,6 +12,10 @@
     </div>
   </div>
 </div>
+
+<section class="row">
+  <%= render partial: 'projects/partials/owner_buttons', locals: {project: project} %>
+</section>
 
 <section class="side-info">
   <%= render partial: 'projects/partials/timer', locals: {project: project} %>
