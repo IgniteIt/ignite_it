@@ -73,7 +73,7 @@ feature 'Donations' do
           visit "projects/#{@project.id}/donations/new"
           fill_in('Amount', with: 75)
           sleep(2)
-          click_button 'Submit'
+          click_button 'Donate'
           expect(page).to have_content('Project has expired')
         end
       end
