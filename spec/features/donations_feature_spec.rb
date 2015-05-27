@@ -26,13 +26,6 @@ feature 'Donations' do
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
-    scenario 'Current project pledged money is visible on the homepage' do
-      click_link 'Campaign'
-      make_payment(75)
-      visit '/'
-      expect(page).to have_content('Pending: £ 25')
-    end
-
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
       click_link 'Campaign'

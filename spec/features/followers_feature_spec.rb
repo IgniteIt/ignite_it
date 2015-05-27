@@ -48,7 +48,7 @@ feature 'user follows a project' do
       expect(page).to have_css('.followers_count', text: "1")
     end
 
-    scenario 'if follow is not saved, then user is redirected to the projects page' do
+    scenario 'if follow is not saved, then user is redirected to the projects page', js: true, driver: :selenium do
       find('.glyphicon-star-empty').click
       visit "/projects/#{Project.last.id}/followers/new"
       expect(current_path).to eq '/projects'
