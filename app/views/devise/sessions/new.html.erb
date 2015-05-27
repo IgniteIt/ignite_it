@@ -1,5 +1,5 @@
 <h2>Log in</h2>
-
+<p>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :login %><br />
@@ -20,6 +20,7 @@
 
   <div class="actions">
     <%= f.submit "Log in", class: "btn btn-primary" %>
+    <%= f.submit "Log in", class: "btn btn-success" %>
   </div>
 <% end %>
 
