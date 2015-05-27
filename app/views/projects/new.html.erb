@@ -6,24 +6,26 @@
 
   <%= simple_form_for @project, html: {multipart: true} do |f| %>
     <p>
-    <%= f.input :name%>
+    <%= f.input :name, class: "form-control" %>
     <p>
     <p>
-    <%= f.input :goal%>
+    <%= f.input :goal, class: "form-control" %>
     <p>
     <p>
-    <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'} %>
+    <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'}, class: "form-control"  %>
     <p>
+    <b>Add an Image</b>
     <p>
-    <span class="btn btn-default btn-file">
-      Browse<%= f.file_field :image %>
+    <span class="btn btn-primary btn-file">
+      Browse Files<%= f.file_field :image %>
     </span>
     <p>
     <p>
     <p>
-    <%= f.input :video_url %>
+    <%= f.input :video_url, class: "form-control" %>
     <p>
     <p>
+    <div class="form-group">
     <%= f.label :expiration_date %>
     <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
                                                       ["30 days from now", 30.days],
@@ -32,9 +34,11 @@
                                                       ["75 days from now", 75.days],
                                                       ["90 days from now", 90.days]]),
                                                        selected: "Select an expiration date",
-                                                       disabled: "Select an expiration date" %>
+                                                       disabled: "Select an expiration date", class: "form-control" %>
+    </div>
     <p>
     <p>
+    <div>
     <%= f.label :sector %>
     <%= f.select :sector, options_for_select([["Select a sector", nil],
                                               "Community",
@@ -49,12 +53,13 @@
                                               "Other"]),
                                               selected: "Select a sector",
                                               disabled: "Select a sector"%>
+    </div>
     <p>
     <p>
-    <%= f.input :description %>
+    <%= f.input :description, class: "form-control"  %>
     <p>
     <p>
-    <%= f.submit %>
+    <%= f.submit "Submit", class: "btn btn-success" %>
   <% end %>
 
 </section>

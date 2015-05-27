@@ -4,13 +4,13 @@ module ProjectsHelper
   def create_project(name, description, goal, exp_date, sector, address)
     click_link 'New Project'
     fill_in_form(name, description, goal, exp_date, sector, address)
-    click_button 'Create Project'
+    click_button 'Submit'
   end
 
   def create_project_with_media(name, description, goal, exp_date, sector, address)
     click_link 'New Project'
     fill_in_media(name, description, goal, exp_date, sector, address)
-    click_button 'Create Project'
+    click_button 'Submit'
   end
 
   def edit_project(description)

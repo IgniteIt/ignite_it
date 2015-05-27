@@ -1,9 +1,9 @@
 <% if project.was_paid?(current_user) %>
   You have paid
 <% elsif project.is_payable_by(current_user) %>
-  <%= link_to 'Pay', new_project_charge_path(project) %>
+  <%= link_to_modal 'Pay', new_project_charge_path(project) %>
 <% elsif project.has_expired? %>
   Project expired!
 <% else %>
-  <%= link_to 'Donate', new_project_donation_path(project) %>
+  <%= link_to_modal 'Donate', new_project_donation_path(project) %>
 <% end %>

@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -14,35 +14,35 @@
 
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :password %> <br><i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <br><i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
+    <span class="btn btn-primary btn-file">Browse Files<%= f.file_field :avatar %></span>
   </div>
 
   <div class="actions">
     <br>
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", class: "btn btn-success" %>
   </div>
 <% end %>
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?" }, method: :delete %></p>
