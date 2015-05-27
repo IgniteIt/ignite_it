@@ -25,7 +25,7 @@
 <% else %>
     <%= link_to_modal "Sign in", new_user_session_path, :class=>"btn btn-info" %>
     <%= link_to_modal "Sign up", new_user_registration_path, :class=>"btn btn-warning" %>
-    <%= link_to image_tag("http://www.theonlyquran.com/images/fb_login_button.png", :width => 150, :id => 'facebook_login'), user_omniauth_authorize_path(:facebook) %>
+    <%= link_to image_tag("http://www.theonlyquran.com/images/fb_login_button.png", :width => 150), user_omniauth_authorize_path(:facebook), :id => 'facebook_login' %>
 <% end %>
 
 <% if user_signed_in? %>
