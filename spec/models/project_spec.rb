@@ -112,13 +112,13 @@ describe Project, :type => :model do
     project.set_expiration_date(1.day)
     project.donations.create(amount: 1000)
     project.donations.create(amount: 3000)
-    expect(project.remaining_message).to eq '£60 remaining!'
+    expect(project.remaining_message).to eq 'Pending: £ 60'
   end
 
   it 'print a message when the goal is reached' do
     project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project.donations.create(amount: 10000)
-    expect(project.remaining_message).to eq 'Goal reached! The crowd has pledged a total of £100.'
+    expect(project.remaining_message).to eq 'Goal reached!'
   end
 
   it 'print a message when the goal is not reached' do

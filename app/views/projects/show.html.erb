@@ -3,9 +3,9 @@
     <%= render partial: 'projects/partials/show_tabs' %>
 
     <section class='main'>
-      <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
-
       <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
+
+      <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
 
       <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
     </section>
@@ -20,7 +20,16 @@
     
   </section>
 
-  <section class="sidebar col-md-4">
+  <section class="sidebar well col-md-4">
+    <section class="side-info">
+      <%= render partial: 'projects/partials/timer', locals: {project: @project} %>
+      <div class="money-info">
+        <%= render partial: 'projects/partials/goal_remaining', locals: {project: @project} %>
+      </div>
+    </section>
+    <div class="progress-wrap">
+      <%= render partial: 'projects/partials/progress_bar', locals: {project: @project} %>
+    </div>
     <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
     <%= render partial: 'projects/partials/map' %>
   </section>
@@ -29,4 +38,5 @@
   <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: @project} %>
   <%= render partial: 'projects/js/gmaps', formats: [:js] %>
   <%= render partial: 'projects/js/show_tabs', formats: [:js] %>
+  <%= render partial: 'projects/js/followers', formats: [:js] %>
 </script>

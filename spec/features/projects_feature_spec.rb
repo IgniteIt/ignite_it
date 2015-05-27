@@ -58,7 +58,7 @@ feature 'projects' do
       end
 
       scenario 'there is a project with a goal' do
-        expect(page).to have_content '£100'
+        expect(page).to have_content '£ 100'
       end
 
       scenario 'there is a project with a expiration date' do
@@ -67,12 +67,12 @@ feature 'projects' do
 
       scenario 'there is a project with a remaning amount' do
         make_payment(75)
-        expect(page).to have_content('£25 remaining!')
+        expect(page).to have_content('Pending: £ 25')
       end
 
       scenario 'there is a project with a completed goal' do
         make_payment(100)
-        expect(page).to have_content('Goal reached! The crowd has pledged a total of £100.')
+        expect(page).to have_content('Goal reached!')
       end
 
       scenario 'there is a project with a non completed goal' do

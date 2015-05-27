@@ -2,6 +2,9 @@
 
   <% projects.each do |project| %>
     <%= render partial: 'projects/partials/basic_info', locals: {project: project} %>
+    <%= render partial: 'projects/partials/goal_remaining', locals: {project: project} %>
+    <%= render partial: 'projects/partials/timer', locals: {project: project} %>
+    <%= render partial: 'projects/partials/progress_bar', locals: {project: project} %>
     <script>
       <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: project} %>
     </script>

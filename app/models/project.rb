@@ -61,11 +61,11 @@ class Project < ActiveRecord::Base
 
   def remaining_message
     if self.goal_reached?
-      "Goal reached! The crowd has pledged a total of £#{self.donation_sum}."
+      "Goal reached!"
     elsif self.has_expired?
       "Goal not reached."
     else
-      "£#{self.remaining} remaining!"
+      "Pending: £ #{self.remaining}"
     end
   end
 

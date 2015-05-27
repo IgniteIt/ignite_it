@@ -69,27 +69,55 @@ select option{color: #555;}
   display: block;
 }
 
-.timer {
-  width: 200px;
-  display: inline-block;
-  border: 1px solid #ccc;
-  background-color: #eee;
-  height: 45px;
-}
-
 .over {
   text-align: center;
   font-weight: 800;
   padding-top: 13px;
 }
 
+.main {
+  z-index: 100;
+}
+
 .investors,
 .blog {
-  opacity: 0;
+  visibility: hidden;
   position: absolute;
+  z-index: 0;
 }
 
 .main {
   opacity: 1;
   position: relative;
+}
+
+.sidebar {
+  text-align: center;
+  border-radius: 4px;
+}
+
+.timer {
+  background-color: transparent;
+  width: 144px;
+  display: inline-block;
+  border: 0px;
+  padding-left: 23px;
+  float: left;
+}
+
+.countdown-section {
+  width: 40% !important ;
+}
+
+.donate_btn {
+  width: 90%;
+}
+
+.progress-wrap {
+  width: 90%;
+  margin-left: 5%;
+}
+
+.money-info {
+  text-align: left;
 }

@@ -30,13 +30,13 @@ feature 'Donations' do
       click_link 'Campaign'
       make_payment(75)
       visit '/'
-      expect(page).to have_content('£25 remaining')
+      expect(page).to have_content('Pending: £ 25')
     end
 
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
       click_link 'Campaign'
-      click_link 'Donate'
+      click_button 'Donate'
       expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
 
@@ -91,7 +91,7 @@ feature 'Donations' do
 
         scenario 'show a pay link if user has donated' do
           click_link 'Campaign'
-          click_link 'Pay'
+          click_button 'Pay'
           expect(page).to have_content 'Amount: £ 100'
         end
       end

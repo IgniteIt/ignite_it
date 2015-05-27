@@ -2,32 +2,39 @@ $(document).ready(function(){
 
   $('#main_link').click(function(e){
     e.preventDefault()
-    $('.blog').css({'opacity': '0',
-                       'position': 'absolute'});
-    $('.investors').css({'opacity': '0',
-                       'position': 'absolute'})
-    $('.main').css({'opacity': '1',
-                        'position': 'relative'});
+    $('.blog').css({'visibility': 'hidden',
+                    'position': 'absolute',
+                    'z-index': '0'});
+    $('.investors').css({'visibility': 'hidden',
+                        'position': 'absolute',
+                        'z-index': '0'})
+    $('.main').css({'visibility': 'visible',
+                    'position': 'relative',
+                    'z-index': '100'});
   });
 
   $('#blog_link').click(function(e){
     e.preventDefault()
-    $('.main').css({'opacity': '0',
-                       'position': 'absolute'});
-    $('.investors').css({'opacity': '0',
-                       'position': 'absolute'})
-    $('.blog').css({'opacity': '1',
-                        'position': 'relative'});
+    $('.main').css({'visibility': 'hidden',
+                    'position': 'absolute',
+                    'z-index': '0'});
+    $('.investors').css({'visibility': 'hidden',
+                         'position': 'absolute',
+                         'z-index': '0'})
+    $('.blog').css({'visibility': 'visible',
+                    'position': 'relative',
+                    'z-index': '100'});
   })
 
   $('#investors_link').click(function(e){
     e.preventDefault()
-    $('.main').css({'opacity': '0',
-                       'position': 'absolute'});
-    $('.blog').css({'opacity': '0',
-                        'position': 'absolute'});
-    $('.investors').css({'opacity': '1',
-                        'position': 'relative'})
+    $('.main').css({'visibility': 'hidden',
+                    'position': 'absolute'});
+    $('.blog').css({'visibility': 'hidden',
+                    'position': 'absolute'});
+    $('.investors').css({'visibility': 'visibile',
+                         'position': 'relative',
+                         'z-index': '100'})
   })
 
   $('.nav-pills li').click(function(){

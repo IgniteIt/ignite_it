@@ -1,0 +1,6 @@
+<p><%= project.remaining_message %></p>
+<% if !project.goal_reached? %>
+  <p>Goal: £ <%= project.goal %></p>
+<% else %>
+  Pledged: £ <%= project.donation_sum %>.
+<% end %>
