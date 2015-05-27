@@ -1,39 +1,39 @@
-<h2>Sign up</h2>
-
+<h2>Sign Up</h2>
+<p>
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, class: "form-control" %>
   </div>
-
+<p>
   <div class="field">
     <%= f.label :username %><br />
-    <%= f.text_field :username %>
+    <%= f.text_field :username, class: "form-control" %>
   </div>
-
+<p>
   <div class="field">
     <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
   </div>
-
+<p>
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
   </div>
-
+<p>
   <div class="field">
     <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
+    <span class="btn btn-default btn-file">Browse Files<%= f.file_field :avatar %></span>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+<p>
+  <div class="actions" id='sign_up'>
+    <%= f.submit "Sign up", class:"btn btn-success" %>
   </div>
 <% end %>
-
+<p>
 <%= render "devise/shared/links" %>

@@ -36,7 +36,7 @@ feature 'Donations' do
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
       click_link 'Campaign'
-      click_button 'Donate'
+      click_link 'Donate'
       expect(page).to have_content 'You need to sign in or sign up before continuing.'
     end
 
@@ -91,7 +91,7 @@ feature 'Donations' do
 
         scenario 'show a pay link if user has donated' do
           click_link 'Campaign'
-          click_button 'Pay'
+          click_link 'Pay'
           expect(page).to have_content 'Amount: £ 100'
         end
       end

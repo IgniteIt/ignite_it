@@ -1,5 +1,40 @@
 body { padding-top: 65px; }
 
+.simple_form label {
+  margin-top: 15px;
+  display: block;
+  text-align: center !important;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+
+#project_image {
+  margin-left: 38%;
+};
+
 input.search-bar {
   width: 200px;
 }
@@ -76,7 +111,7 @@ select option{color: #555;}
 }
 
 .main {
-  z-index: 100;
+  z-index: 1;
 }
 
 .investors,

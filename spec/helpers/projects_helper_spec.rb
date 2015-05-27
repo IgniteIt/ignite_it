@@ -4,13 +4,13 @@ module ProjectsHelper
   def create_project(name, description, goal, exp_date, sector, address)
     click_link('new_project_link')
     fill_in_form(name, description, goal, exp_date, sector, address)
-    click_button 'Create Project'
+    click_button 'Submit'
   end
 
   def create_project_with_media(name, description, goal, exp_date, sector, address)
     click_link('new_project_link')
     fill_in_media(name, description, goal, exp_date, sector, address)
-    click_button 'Create Project'
+    click_button 'Submit'
   end
 
   def edit_project(description)
@@ -28,10 +28,10 @@ module ProjectsHelper
   end
 
   def fill_in_form(name, description, goal, exp_date, sector, address)
-    fill_in 'Name', with: name
-    fill_in 'Description', with: description
-    fill_in 'Goal', with: goal
-    fill_in 'Address', with: address
+    fill_in 'project_name', with: name
+    fill_in 'project_description', with: description
+    fill_in 'project_goal', with: goal
+    fill_in 'gmaps-input-address', with: address
     select exp_date, from: 'Expiration date'
     select sector, from: 'Sector'
   end
@@ -39,7 +39,7 @@ module ProjectsHelper
   def fill_in_media(name, description, goal, exp_date, sector, address)
     fill_in_form(name, description, goal, exp_date, sector, address)
     fill_in 'Video url', with: "https://www.youtube.com/watch?v=FOjdXSrtUxA"
-    attach_file "Image",  Rails.root + "spec/asset_specs/rubber_duck.jpg"
+    attach_file "project_image",  Rails.root + "spec/asset_specs/rubber_duck.jpg"
   end
 
   def configure_project_stubs
