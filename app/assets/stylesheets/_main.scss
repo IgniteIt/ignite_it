@@ -46,6 +46,7 @@ input.search-bar {
 
 .navbar {
   height: 65px;
+  max-height: 10%;
 }
 
 .navbar-link { 
@@ -97,11 +98,12 @@ select option{color: #555;}
 
 .modal {
   position: fixed;
-  overflow: visible;
+  overflow: auto;
   text-align: center;
   bottom: initial;
   z-index: 2;
   display: block;
+  max-height: 80%;
 }
 
 .over {
@@ -155,4 +157,16 @@ select option{color: #555;}
 
 .money-info {
   text-align: left;
+}
+
+.close-modal {
+  z-index:4;
+  position:absolute;
+  top: 1% !important;
+  right: 2% !important;
+}
+
+.modal a.close-modal {
+  top: inherit;
+  right: inherit;
 }
