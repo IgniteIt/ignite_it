@@ -1,5 +1,9 @@
 body { padding-top: 65px; }
 
+a:hover {
+  text-decoration: none;
+}
+
 .simple_form label {
   margin-top: 15px;
   display: block;
@@ -69,7 +73,7 @@ input.search-bar {
 
 .search-section {
   text-align: center;
-  background-color: lightblue;
+  background-color: #337AB7;
   padding: 33px 0 10px;
   display: none;
 }
@@ -129,6 +133,7 @@ select option{color: #555;}
 .sidebar {
   text-align: center;
   border-radius: 4px;
+  padding-top: 0;
 }
 
 .timer {
@@ -146,13 +151,22 @@ select option{color: #555;}
 
 .donate_btn {
   width: 90%;
+  margin: 0 0 20px;
 }
 
 .progress-wrap {
   width: 90%;
   margin-left: 5%;
+  margin-top: 25px;
+}
+
+.side-title {
+    margin: 0 -20px;
+    padding: 20px 0;
 }
 
 .money-info {
-  text-align: left;
+  text-align: right;
+  margin-top: 20px;
+  padding-right: 5%;
 }
