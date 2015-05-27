@@ -20,7 +20,7 @@
 
 <% if user_signed_in? %>
   <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class=>"btn btn-danger" %>
-  <%= link_to_modal "Edit profile", edit_user_registration_path, :class=>"button" %>
+  <%= link_to_modal "Edit profile", edit_user_registration_path, :class=>"btn btn-warning" %>
   <%= current_user.username %>
 <% else %>
     <%= link_to_modal "Sign in", new_user_session_path, :class=>"btn btn-info" %>
@@ -29,7 +29,7 @@
 <% end %>
 
 <% if user_signed_in? %>
-  <%= link_to_modal "New Project", new_project_path, :class=>"button" %>
+  <%= link_to_modal "New Project", new_project_path, :class=>"btn btn-success" %>
 <% end %>
 
 
