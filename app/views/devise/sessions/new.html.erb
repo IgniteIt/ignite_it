@@ -3,10 +3,7 @@
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
     <%= f.label :login %><br />
-    <%= f.text_field :login%>
-<!-- 
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %> -->
+    <%= f.text_field :login, autofocus: true%>
   </div>
 
   <div class="field">
@@ -22,7 +19,7 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: "btn btn-primary" %>
   </div>
 <% end %>
 
