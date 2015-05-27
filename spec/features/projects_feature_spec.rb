@@ -134,7 +134,7 @@ feature 'projects' do
 
     scenario 'project view page has a return to homepage link' do
       click_link 'Campaign'
-      click_link 'Return to Homepage'
+      click_link 'Ignite'
       expect(current_path).to eq '/projects'
     end
   end
