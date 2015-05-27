@@ -15,7 +15,7 @@ module ProjectsHelper
   end
 
   def get_coords
-    @coord = [request.location.longitude, request.location.latitude]
+    @coord = [request.location.latitude, request.location.longitude]
     @coord = [51.51, -0.07] if request.location.longitude == 0.0
   end
 
