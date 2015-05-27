@@ -10,28 +10,7 @@
 </head>
 <body>
 
-<%= link_to "Return to Homepage", projects_path %>
-
-<br>
-
-<% if current_user %>
-  <%= image_tag current_user.avatar.url(:thumb), :id => "avatar_image"%>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= link_to "Sign out", destroy_user_session_path, method: :delete, :class=>"button" %>
-  <%= link_to_modal "Edit profile", edit_user_registration_path, :class=>"button" %>
-  <%= current_user.username %>
-<% else %>
-    <%= link_to_modal "Sign in", new_user_session_path, :class=>"button" %>
-    <%= link_to_modal "Sign up", new_user_registration_path, :class=>"button" %>
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %>
-<% end %>
-
-<% if user_signed_in? %>
-  <%= link_to_modal "New Project", new_project_path, :class=>"button" %>
-<% end %>
-
+<%= render partial: 'layouts/partials/navbar' %>
 
 <%= render partial: 'layouts/partials/search' %>
 
