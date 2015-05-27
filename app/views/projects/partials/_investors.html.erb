@@ -1,5 +1,9 @@
 <% if project.donations.any? %>
+  <div class="container">
   <% project.donations.reverse_each do |donation| %>
-    <p><%= donation.user.username %> donated £<%= without_pence(donation.amount) %></p>
+    <div class="row">
+      <p class="col-md-12 donations"><%= donation.user.username %> donated £<%= without_pence(donation.amount) %></p>
+    </div>
   <% end %>
+  </div>
 <% end %>
