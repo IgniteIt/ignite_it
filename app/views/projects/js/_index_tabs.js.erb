@@ -38,7 +38,12 @@ $(document).ready(function(){
     $("#tab").val('5')
   });
 
-  $('#tab').appendTo('form');
+  $('#tab').appendTo('form'); 
+  
+  $('.nav-pills li').click(function(){
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  })
 })
 
 function loadProjectsTab() {

@@ -30,4 +30,9 @@ $(document).ready(function(){
                         'position': 'relative'})
   })
 
+  $('.nav-pills li').click(function(){
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  })
+
 });  

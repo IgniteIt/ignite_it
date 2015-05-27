@@ -1,22 +1,23 @@
-<%= render partial: 'projects/partials/show_tabs' %>
-
 <div class="row">
-  <section class="main col-md-8">
+  <section class="col-md-8">
+    <%= render partial: 'projects/partials/show_tabs' %>
 
-    <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
+    <section class='main'>
+      <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
 
-    <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
+      <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
 
-    <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+      <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+    </section>
+
+    <section class="blog">
+      <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
+    </section> 
+
+    <section class="investors">
+      <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
+    </section>
     
-  </section>
-
-  <section class="blog col-md-8">
-    <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
-  </section> 
-
-  <section class="investors col-md-8">
-    <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
   </section>
 
   <section class="sidebar col-md-4">

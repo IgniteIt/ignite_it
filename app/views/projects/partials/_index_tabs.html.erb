@@ -1,8 +1,10 @@
-<a href="#" id="main_link"> Main </a>
-<a href="#" id="near_me_link"> Near Me </a>
+<ul class="nav nav-pills nav-justified">
+<li role="presentation" class="active"><a href="#" id="main_link"> Main</a></li>
+<li role="presentation"><a href="#" id="near_me_link"> Near Me </a></li>
 <% if user_signed_in? %>
-  <a href="#" id="donated_link"> Donated </a>
-  <a href="#" id="following_link"> Following </a>
+  <li role="presentation"><a href="#" id="donated_link"> Donated </a></li>
+  <li role="presentation"><a href="#" id="following_link"> Following </a></li>
 <% end %>
 
+</ul>
 <input id="tab" name="tab" type="hidden" value="<%= params[:tab] || 1 %>">
