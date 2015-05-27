@@ -1,48 +1,69 @@
 <%= render partial: 'layouts/errors', locals: { element: @project } %>
 
-<h2>New Project</h2>
+<section>
 
-<%= simple_form_for @project, html: {multipart: true} do |f| %>
-  <%= f.input :name %>
-  <p>
-  <%= f.input :goal %>
-  <p>
-  <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'} %>
-  <p>
-  <%= f.label :image %>
-  <%= f.file_field :image %>
-  <p>
-  <%= f.input :video_url %>
-  <p>
-  <%= f.label :expiration_date %>
-  <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
-                                                    ["30 days from now", 30.days],
-                                                    ["45 days from now", 45.days],
-                                                    ["60 days from now", 60.days],
-                                                    ["75 days from now", 75.days],
-                                                    ["90 days from now", 90.days]]),
-                                                     selected: "Select an expiration date",
-                                                     disabled: "Select an expiration date" %>
-  <p>
-  <%= f.label :sector %>
-  <%= f.select :sector, options_for_select([["Select a sector", nil],
-                                            "Community",
-                                            "Children",
-                                            "Education",
-                                            "Elderly",
-                                            "Energy",
-                                            "Entertainment",
-                                            "Environment",
-                                            "Healthcare",
-                                            "Transportation",
-                                            "Other"]),
-                                            selected: "Select a sector",
-                                            disabled: "Select a sector"%>
-  <p>
-  <%= f.input :description %>
-  <p>
-  <%= f.submit %>
-<% end %>
+  <h2>New Project</h2>
+
+  <%= simple_form_for @project, html: {multipart: true}, defaults: {label: false} do |f| %>
+    <b>
+    Name:
+    <p>
+    <%= f.input :name%>
+    <p>
+    Goal:
+    <p>
+    <%= f.input :goal%>
+    <p>
+    Address:
+    <p>
+    <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'} %>
+    <p>
+    Image:
+    <p>
+      <%= f.file_field :image %>
+    <p>
+    <p>
+    Video Url:
+    <p>
+    <%= f.input :video_url %>
+    <p>
+    Expiration Date:
+    <p>
+    <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
+                                                      ["30 days from now", 30.days],
+                                                      ["45 days from now", 45.days],
+                                                      ["60 days from now", 60.days],
+                                                      ["75 days from now", 75.days],
+                                                      ["90 days from now", 90.days]]),
+                                                       selected: "Select an expiration date",
+                                                       disabled: "Select an expiration date" %>
+    <p>
+    Sector:
+    <p>
+    <%= f.select :sector, options_for_select([["Select a sector", nil],
+                                              "Community",
+                                              "Children",
+                                              "Education",
+                                              "Elderly",
+                                              "Energy",
+                                              "Entertainment",
+                                              "Environment",
+                                              "Healthcare",
+                                              "Transportation",
+                                              "Other"]),
+                                              selected: "Select a sector",
+                                              disabled: "Select a sector"%>
+    <p>
+    Description:
+    <p>
+    <%= f.input :description %>
+    <p>
+    <p>
+    </b>
+    <%= f.submit %>
+  <% end %>
+
+</section>
 
 <script>
   jQuery(function() {
