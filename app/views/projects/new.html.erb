@@ -4,33 +4,27 @@
 
   <h2>New Project</h2>
 
-  <%= simple_form_for @project, html: {multipart: true}, defaults: {label: false} do |f| %>
-    <b>
-    Name:
+  <%= simple_form_for @project, html: {multipart: true} do |f| %>
     <p>
     <%= f.input :name%>
     <p>
-    Goal:
     <p>
     <%= f.input :goal%>
     <p>
-    Address:
     <p>
     <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'} %>
     <p>
-    Image:
     <p>
     <span class="btn btn-default btn-file">
       Browse<%= f.file_field :image %>
     </span>
     <p>
     <p>
-    Video Url:
     <p>
     <%= f.input :video_url %>
     <p>
-    Expiration Date:
     <p>
+    <%= f.label :expiration_date %>
     <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
                                                       ["30 days from now", 30.days],
                                                       ["45 days from now", 45.days],
@@ -40,8 +34,8 @@
                                                        selected: "Select an expiration date",
                                                        disabled: "Select an expiration date" %>
     <p>
-    Sector:
     <p>
+    <%= f.label :sector %>
     <%= f.select :sector, options_for_select([["Select a sector", nil],
                                               "Community",
                                               "Children",
@@ -56,12 +50,10 @@
                                               selected: "Select a sector",
                                               disabled: "Select a sector"%>
     <p>
-    Description:
     <p>
     <%= f.input :description %>
     <p>
     <p>
-    </b>
     <%= f.submit %>
   <% end %>
 

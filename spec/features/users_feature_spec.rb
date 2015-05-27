@@ -18,13 +18,13 @@ context "user not signed in and on the homepage" do
   it "when facebook credentials are invalid, will show an error" do
     configure_user_stubs
     OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
-    click_link 'Sign in with Facebook'
+    click_link 'facebook_login'
     expect(page).to have_content ('Invalid credentials')
   end
 
   it "when facebook credentials are valid, it will make a user" do
     configure_user_stubs
-    click_link 'Sign in with Facebook'
+    click_link 'facebook_login'
     expect(User.last.email).to eq "testing@facebook.com"
   end
 
