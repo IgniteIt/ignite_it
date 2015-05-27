@@ -1,92 +1,23 @@
 <div class="row">
   <section class="col-md-8">
     <%= render partial: 'projects/partials/show_tabs' %>
-
     <section class='main'>
-      <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
-
-      <div class="row">
-        <div class="col-md-4">
-          <% if @project.has_pic? %>
-            <%= image_tag @project.image.url(:medium) %>
-          <% end %>
-        </div>
-        <div class="col-md-8">
-          <h3><%= link_to @project.name, project_path(@project) %></h3>
-          <strong>Address:</strong>
-          <p><%= @project.address %></p>
-
-          <strong>Sector:</strong>
-          <p><%= @project.sector %></p>
-        </div>
-      </div>
-
-
-      <div class="embed-responsive embed-responsive-16by9">
-        <% if @project.has_video? %>
-          <%= @video.code.html_safe %>
-        <% end %>
-      </div>
-
-      <div class="panel panel-primary">
-        <div class="panel-heading">
-          <h5 class="panel-title">Description</h5>
-        </div>
-        <div class="panel-body">
-          <p><%= @project.description %></p>
-        </div>
-      </div>
-
-      <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+      <%= render partial: 'projects/partials/main_show', locals: {project: @project, video: @video, user: @user} %>
     </section>
-
     <section class="blog">
       <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
     </section> 
-
     <section class="investors">
       <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
     </section>
-    
   </section>
 
   <section class="sidebar well panel panel-primary col-md-4">
-    <div class="panel-heading side-title">
-    <div class="row">
-      <div class="col-md-3">
-        <section class="followers-side-bar">
-          <% if user_signed_in? %>
-            <% if @project.has_been_followed?(current_user) %>
-              <%= link_to "<span class='glyphicon glyphicon-star'></span>", project_follower_path(@project, @project.followed_by(current_user).first), class: "followers-link" %>
-            <% else %>
-              <%= link_to "<span class='glyphicon glyphicon-star-empty'></span>", new_project_follower_path(@project), class: "followers-link" %>
-            <% end %>
-          <% end %>
-        </section>
-      </div>
-      <div class="col-md-6">
-        <h4 class="panel-title"><%= @project.name %></h4>
-      </div>
-      <div class="col-md-3">
-        <span class="badge badge-notify followers_count"> <%= @project.followers.count %> </span>
-      </div>
-    </div>
-
-
-    </div>
-    <section class="side-info">
-      <%= render partial: 'projects/partials/timer', locals: {project: @project} %>
-      <div class="money-info">
-        <%= render partial: 'projects/partials/goal_remaining', locals: {project: @project} %>
-      </div>
-    </section>
-    <div class="progress-wrap">
-      <%= render partial: 'projects/partials/progress_bar', locals: {project: @project} %>
-    </div>
-    <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
-    <%= render partial: 'projects/partials/map' %>
+    <%= render partial: 'projects/partials/sidebar', locals: {project: @project} %>
   </section>
 </div>
+
+
 <script>
   <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: @project} %>
   <%= render partial: 'projects/js/gmaps', formats: [:js] %>

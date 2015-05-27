@@ -1,12 +1,7 @@
-<div class="row">
-  <div class="col-md-4">
-  </div>
-  <div class="col-md-8">
-    <h3><%= link_to project.name, project_path(project) %></h3>
-    <strong>Address:</strong>
-    <p><%= project.address %></p>
+<h3><%= link_to project.name, project_path(project) %></h3>
 
-    <strong>Sector:</strong>
-    <p><%= project.sector %></p>
-  </div>
-</div>
+<strong>Sector:</strong>
+<p><%= project.sector %></p>
+
+<strong>Location:</strong>
+<p><%= project.address %></p>
