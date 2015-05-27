@@ -11,6 +11,7 @@ feature 'Project search' do
     Project.create!(name: 'Another', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'Manchester')
     Project.create!(name: 'Third', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'London')
     visit '/'
+    find('#search_link').click
   end
 
   before(:each) do
@@ -37,13 +38,13 @@ feature 'Project search' do
   end
 
   context 'performing a search' do
+
     scenario 'it paginate the query', js: true, driver: :selenium do
       num = 0
       until num > 5 do
         Project.create(name: "Another #{num}", description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'Manchester')
         num += 1
       end
-      visit '/'
       fill_in :search, with: 'Another'
       click_button 'Search'
       click_link 'Next ›'

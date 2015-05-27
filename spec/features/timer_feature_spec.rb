@@ -72,6 +72,7 @@ feature 'timer' do
       @project.save
       sleep(1)
       visit "/"
+      find('#search_link').click
       fill_in :search, with: 'Campaign'
       click_button 'Search'
       expect(page).to have_content('Project Closed')

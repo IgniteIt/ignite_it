@@ -180,7 +180,7 @@ describe Project, :type => :model do
   it 'can get sector values' do
     project = Project.create(name: 'Campaign', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Environment', address: 'London')
     project = Project.create(name: 'Another', description: regular_description, goal: '100', expiration_date: '30 days from now', sector: 'Energy', address: 'London')
-    expect(options_for_sector_search).to eq([["Search by sector", nil], 'Energy', 'Environment'])
+    expect(options_for_sector_search).to eq([["Search by sector", nil, {:disabled=>true, :selected=>true}], 'Energy', 'Environment'])
   end
 
   it 'knows if a user has donated' do

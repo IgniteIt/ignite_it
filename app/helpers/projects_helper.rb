@@ -4,8 +4,8 @@ module ProjectsHelper
       @search = ''
       @sector = ''
     else
-      @search = search.downcase if !empty?(search)
-      @sector = sector.downcase if !empty?(sector)
+      @search = search.downcase if !search.nil?
+      @sector = sector.downcase if !sector.nil?
     end
   end
 
@@ -36,6 +36,6 @@ module ProjectsHelper
   end
 
   def options_for_sector_search
-    Project.uniq.pluck(:sector).sort.unshift(['Search by sector', nil])
+    Project.uniq.pluck(:sector).sort.unshift(['Search by sector', nil, disabled: true, selected: true])
   end
 end

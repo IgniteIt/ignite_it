@@ -15,12 +15,12 @@
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
+        <li> <a href= "#" class="navbar-link"> <span id="search_link" class= 'glyphicon glyphicon-search'> </span> </a> </li>
         <% if user_signed_in? %>
-          <li> <a href= "#" class="navbar-link"> <span id="search_link" class= 'glyphicon glyphicon-search'> </span> </a> </li>
-          <li><%= link_to_modal "<span class= 'glyphicon glyphicon-plus'></span>", new_project_path, class: "navbar-link" %> </li>
+          <li><%= link_to_modal "<span class= 'glyphicon glyphicon-plus'></span>", new_project_path, class: "navbar-link", id: 'new_project_link' %> </li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" class="navbar-link" role="button" aria-expanded="false">
-              <span class="navbar-username"><%= current_user.username %></span>
+              <span class="navbar-user"><%= current_user.username %></span>
               <span class="navbar-avatar"><%= image_tag current_user.avatar.url(:thumb), :id => "avatar_image"%></span>
               <span class="caret"></span>
             </a>

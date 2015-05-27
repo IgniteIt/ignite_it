@@ -2,13 +2,13 @@ require 'rails_helper'
 
 module ProjectsHelper
   def create_project(name, description, goal, exp_date, sector, address)
-    click_link 'New Project'
+    click_link('new_project_link')
     fill_in_form(name, description, goal, exp_date, sector, address)
     click_button 'Create Project'
   end
 
   def create_project_with_media(name, description, goal, exp_date, sector, address)
-    click_link 'New Project'
+    click_link('new_project_link')
     fill_in_media(name, description, goal, exp_date, sector, address)
     click_button 'Create Project'
   end

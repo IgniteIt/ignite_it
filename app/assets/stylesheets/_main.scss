@@ -1,0 +1,95 @@
+body { padding-top: 65px; }
+
+input.search-bar {
+  width: 200px;
+}
+
+#avatar_image {
+  width: 35px;
+  border-radius: 20px;
+}
+
+.navbar {
+  height: 65px;
+}
+
+.navbar-link { 
+  padding-top: 22px !important;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+.navbar-avatar {
+}
+
+.navbar-user {
+  margin: 0 8px;
+}
+
+.dropdown-toggle { 
+  text-align: right;
+}
+
+.search-section {
+  text-align: center;
+  background-color: lightblue;
+  padding: 33px 0 10px;
+  display: none;
+}
+
+.search-section * {
+  margin-bottom: 12px;
+}
+
+.placeholder {
+  color: gray;
+}
+
+select option:first-child{color: grey; display: none;}
+select option{color: #555;}
+
+.search-bar {
+  width: 30%;
+  margin-left: 35%;
+}
+
+.search-select {
+  width: 20%;
+  margin-left: 40%;
+}
+
+.modal {
+  position: fixed;
+  overflow: visible;
+  text-align: center;
+  bottom: initial;
+  z-index: 2;
+  display: block;
+}
+
+.timer {
+  width: 200px;
+  display: inline-block;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  height: 45px;
+}
+
+.over {
+  text-align: center;
+  font-weight: 800;
+  padding-top: 13px;
+}
+
+.investors,
+.blog {
+  opacity: 0;
+  position: absolute;
+}
+
+.main {
+  opacity: 1;
+  position: relative;
+}

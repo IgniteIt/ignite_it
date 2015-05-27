@@ -1,8 +1,13 @@
-<%= form_tag projects_path, :method => :get, id: :search do %>
-  <p>
-    <%= text_field_tag :search, params[:search] %>
-    <%= select_tag(:sector, options_for_select(options_for_sector_search,  
-                                                     selected: "Search by sector",
-                                                     disabled: "Search by sector")) %>
-    <%= submit_tag "Search", :name => nil %>
-<% end %>
+<section class="search-section">  
+  <%= form_tag projects_path, :method => :get, id: :search do %>
+    <p>
+      <%= text_field_tag :search, params[:search], placeholder: "Search by name or location...", class: 'form-control search-bar' %>
+    </p>
+    <p>
+      <%= select_tag(:sector, options_for_select(options_for_sector_search), class: 'form-control placeholder search-select') %>
+    </p>
+    <p>                                                      
+      <%= submit_tag "Search", :name => nil, class: 'btn' %>
+    </p>
+  <% end %>
+</section>
