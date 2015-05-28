@@ -1,7 +1,6 @@
 #Ignite
 
-[Use Ignite on Heroku
-https://igniteit.herokuapp.com/
+[Use Ignite on Heroku](https://igniteit.herokuapp.com/)
 
 ####Brief:
 
