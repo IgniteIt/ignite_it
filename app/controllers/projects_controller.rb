@@ -72,4 +72,12 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:name, :description, :goal, :expiration_date, :sector, :address, :latitude, :longitude, :image, :video_url)
   end
+
+  def refresh_donate
+    @data = nil
+    # get whatever data you need to a variable named @data
+    respond_to do |format|
+      format.js
+    end
+  end
 end

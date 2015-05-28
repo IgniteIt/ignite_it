@@ -28,6 +28,18 @@
   <%= render partial: 'projects/partials/progress_bar', locals: {project: project} %>
 </div>
 
-<%= render partial: 'projects/partials/donations', locals: {project: project} %>
+<span id="refresh_me"><%= render partial: 'projects/partials/donations', locals: {project: project} %></span>
+
+<script>
+  $(document).ready(function () {
+    setInterval(refreshPartial, 5000)
+  });
+
+  function refreshPartial() {
+    $.ajax({
+      url: "projects_controller/refresh_donate";
+   })
+  }
+</script>
 
 <%= render partial: 'projects/partials/map' %>
