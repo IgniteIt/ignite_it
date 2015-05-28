@@ -47,7 +47,7 @@ As somebody who has donated:
 ####Tests:
 
 #####140 tests, 97.12% test coverage
-'''
+```
 blogs
   Projects and their blogs
     Owner creates a blog
