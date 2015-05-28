@@ -16,25 +16,21 @@ $(document).ready(function(){
   
   $('#main_link').click(function(){
     $("#tab").val('1')
-    $('#main').load('/projects #main')
     loadProjectsTab();
   });
 
   $('#near_me_link').click(function(){
     $("#tab").val('2')
-    $('#main').load('/projects #main')
     loadNearMeTab();
   });
 
   $('#donated_link').click(function(){
     $("#tab").val('3')
-    $('#main').load('/projects #main')
     loadDonatedTab();
   });
 
   $('#following_link').click(function(){
     $("#tab").val('4')
-    $('#main').load('/projects #main')
     loadFollowingTab();
   });
 
