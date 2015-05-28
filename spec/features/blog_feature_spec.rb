@@ -54,7 +54,7 @@ feature 'blogs' do
 
     scenario 'Owner can edit a blog' do
       make_blog
-      click_link 'Edit Blog'
+      click_link 'Edit Update'
       fill_in 'Content', with: 'This is not my project'
       click_button 'Submit'
       expect(page).to have_content 'This is not my project'
@@ -62,7 +62,7 @@ feature 'blogs' do
 
     scenario 'Owner can delete a blog' do
       make_blog
-      click_link 'Delete Blog'
+      click_link 'Delete Update'
       expect(page).to have_content 'Blog deleted'
       expect(page).not_to have_content 'This is my project'
     end
