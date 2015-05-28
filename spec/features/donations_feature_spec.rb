@@ -11,7 +11,7 @@ feature 'Donations' do
   before(:each) do
     allow_any_instance_of(Project).to receive(:geocode).and_return([1,1])
   end
-  
+
   before do
     sign_up
     create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
@@ -26,6 +26,13 @@ feature 'Donations' do
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
+    scenario 'I can not make a negative donation' do
+      click_link 'Campaign'
+      make_negative_payment
+      expect(page).to have_content('Incorrect value, please enter a positive amount')
+    end
+
+
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
       visit("/projects/#{Project.last.id}/donations/new")
@@ -37,6 +44,7 @@ feature 'Donations' do
       make_payment
       expect(page).to have_content('Paul: £25')
     end
+
 
     context 'if the project has expired' do
 
