@@ -1,4 +1,7 @@
+offset = $(document).offset()
+
 $('#search_link').click(function(){
+  $('.search-section').css({'top': $(document).scrollTop()})
   $('.search-section').slideToggle('slow');
 })
 

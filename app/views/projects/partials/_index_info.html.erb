@@ -2,7 +2,7 @@
 
 <% text = project.description %>
 
-<%= truncate(text, length: 200, separator: ' ') do
+<%= truncate(text, length: 400, separator: ' ') do
   link_to 'read more...', project_path(project)
 end
 %>
