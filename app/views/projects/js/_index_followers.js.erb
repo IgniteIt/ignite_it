@@ -1,0 +1,28 @@
+$(document).ready(function() {
+
+  $(document).on("click", ".followers-link", function(e){
+    e.preventDefault()
+    var link = $(this)
+    var followerCount = link.siblings('.followers_count');
+    if($(this).children().hasClass("glyphicon-star-empty")) {
+      $.get(this.href, function(response){
+        link.attr('href', '/projects/' + response.project_id + '/followers/' + response.new_follower_id)
+        link.children().removeClass("glyphicon-star-empty");
+        link.children().addClass("glyphicon-star");
+        followerCount.text(response.new_follower_count);
+      })
+    } else {
+      $.ajax({
+        url: this.href,
+        type: 'DELETE',
+        success: function(response) {
+          link.attr('href', '/projects/' + response.project_id + '/followers/new')
+          link.children().removeClass("glyphicon-star");
+          link.children().addClass("glyphicon-star-empty");
+          followerCount.text(response.new_follower_count);
+        }
+      });
+    }
+  })
+
+});
