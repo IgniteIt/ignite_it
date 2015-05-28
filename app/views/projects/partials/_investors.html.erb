@@ -4,7 +4,7 @@
     <tr>
       <td class="investor_table">
         <%= image_tag donation.user.avatar.url(:thumb), :class => "investor_image" %>
-        <%= donation.user.username %> donated £<%= without_pence(donation.amount) %>
+        <b><%= donation.user.username %>:</b> £<%= without_pence(donation.amount) %>
       </td>
     </tr>
   <% end %>
