@@ -11,8 +11,8 @@ class ProjectsController < ApplicationController
     # Tabs
     @projects = @not_closed_project.where(main_query, { search: "%#{@location}%" }).page params[:p_page]
     @near_me = @not_closed_project.near(@coord, 20).page params[:n_page]
-    @donated = Project.joins(:donations).where(user: current_user).uniq.page params[:d_page]
-    @following = Project.joins(:followers).where(user: current_user).page params[:f_page]
+    @donated = Project.joins(:donations).where("donations.user_id = ?",  current_user.id).uniq.page params[:d_page]
+    @following = Project.joins(:followers).where("followers.user_id = ?" current_user.id).uniq.page params[:f_page]
     # Search
     @search = Project.where(search_query, { search: "%#{@search}%", sector: "%#{@sector}%" }).page params[:s_page]
   end
