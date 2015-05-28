@@ -14,22 +14,22 @@
       </div>
       <div class="col-md-1">
         <section class="followers-index">
-          <span class="badge badge-notify followers_count"> <%= project.followers.count %> </span>
+          <span class="badge badge-notify followers_count index_count"> <%= project.followers.count %> </span>
           <%= render partial: 'projects/partials/followers', locals: {project: project} %>
         </section>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-4" style="padding-top: 29px;">
         <strong>Sector: </strong> <br> 
         <%= project.sector %>
       </div>
-      <div class="col-md-4 index-timer">
+      <div class="col-md-4">
         <%= render partial: 'projects/partials/timer', locals: {project: project} %>
       </div>
-      <div class="col-md-4 index-goal">
-        <div><strong>Goal: </strong><br>£<%= project.goal %></br></div>
+      <div class="col-md-4" style="padding-top: 13px;">
+        <h6 style="margin-top:0; margin-bottom: 0;">Goal: </h6><br><h3 style="margin-top:0; margin-bottom: 0; padding-left: 10px;">£<%= project.goal %></h3>
       </div>
     </div>
 

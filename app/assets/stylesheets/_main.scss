@@ -204,14 +204,6 @@ select option{color: #555;}
   margin-bottom: 30px;
 }
 
-.index-timer {
-  margin-top: 30px;
-}
-
-.index-goal {
-  margin-top: 30px;
-}
-
 .followers-index a {
   color: #337AB7 !important;
 }
@@ -252,4 +244,9 @@ select option{color: #555;}
 .comment_list {
   list-style-type: none;
   display: none;
+}
+
+.index_count {
+  background: #337AB7 !important;
+  color: white;
 }
