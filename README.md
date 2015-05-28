@@ -1,46 +1,54 @@
-Ignite
+#Ignite
 
-Use Ignite on Heroku
+[Use Ignite on Heroku
 https://igniteit.herokuapp.com/
 
-Brief:
+####Brief:
 
 To create a crowdfunding platform for local community projects.
 
-Technologies:
+####Technologies:
 
 Ruby, Rails, JQuery, Capybara, Selenium, RSpec, Stripe, Mailgun, Google APIs, Youtube API incl. other gems.
 
-User Stories:
+###User Stories:
 
 As a first time user:
-
-I want to be able to sign up and create an account
-I want to be able to sing in with facebook
-I want to be able to sign out
-I want to be able to reset my password if forgotten
-I want the ability to edit my profile
+```
+    I want to be able to sign up and create an account
+    I want to be able to sing in with facebook
+    I want to be able to sign out
+    I want to be able to reset my password if forgotten
+    I want the ability to edit my profile
+```
 
 As a signed in user:
-I want the ability to view projects on the homepage ordered by projects nearest to me, by those i have donated to and by those I am following
-I want the ability to follow and unfollow projects displayed on the tabs
-I want the ability to add a new project using a title, goal, sector, location, description, picture, youtube url and expiration date
-I want the ability to search for projects by name, location or sector
-I want the ability to donate to projects that have not expired
+
+```
+    I want the ability to view projects on the homepage ordered by projects nearest to me, by those i have donated to and by those I am following
+    I want the ability to follow and unfollow projects displayed on the tabs
+    I want the ability to add a new project using a title, goal, sector, location, description, picture, youtube url and expiration date
+    I want the ability to search for projects by name, location or sector
+    I want the ability to donate to projects that have not expired
+```
 
 As a user on the projects page:
-I want to be able to view the title, sector, location, description, video, expiration date, progress bar, submitters's profile picture and name
-I want to be able to click on a tab to see a Q&A forum for each project
-I want to be able to click on a tab to see a list of users who have donated to the project
+```
+    I want to be able to view the title, sector, location, description, video, expiration date, progress bar, submitters's profile picture and name
+    I want to be able to click on a tab to see a Q&A forum for each project
+    I want to be able to click on a tab to see a list of users who have donated to the project
+```
 
 As somebody who has donated:
-I want to get an email which notifies me that the project has funded and/or expired
-I want to be able to pay via stripe using my credit/debit card once a project has expired and funded
+```
+    I want to get an email which notifies me that the project has funded and/or expired
+    I want to be able to pay via stripe using my credit/debit card once a project has expired and funded
+```
 
-Tests:
+####Tests:
 
-140 tests, 97.12% test coverage
-
+#####140 tests, 97.12% test coverage
+'''
 blogs
   Projects and their blogs
     Owner creates a blog
@@ -244,3 +252,4 @@ User
   should have many donations dependent => destroy
   should have many comments
   should have many comments dependent => destroy
+```
