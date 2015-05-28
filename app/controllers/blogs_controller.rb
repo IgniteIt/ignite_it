@@ -5,7 +5,7 @@ class BlogsController < ApplicationController
   def new
     @project = Project.find(params[:project_id])
     if @project.is_not_owner?(current_user)
-      flash[:notice] = 'You are not the project owner'
+      flash[:alert] = 'You are not the project owner'
       redirect_to '/'
     else
       @blog = Blog.new
@@ -23,7 +23,7 @@ class BlogsController < ApplicationController
     @project = Project.find(params[:project_id])
     @blog = Blog.find(params[:id])
     if @project.is_not_owner?(current_user)
-      flash[:notice] = 'You are not the project owner'
+      flash[:alert] = 'You are not the project owner'
       redirect_to project_path(@project)
     end
   end
@@ -42,7 +42,7 @@ class BlogsController < ApplicationController
       @blog.destroy
       flash[:notice] = 'Blog deleted'
     else
-      flash[:notice] = 'You are not the project owner'
+      flash[:alert] = 'You are not the project owner'
     end
     redirect_to project_path(@blog.project_id)  
   end

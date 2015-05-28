@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
     @blog = Blog.find(params[:blog_id])
     @comment = Comment.find(params[:id])
     if @comment.user != current_user
-      flash[:notice] = 'Error, you did not create this comment'
+      flash[:alert] = 'Error, you did not create this comment'
       redirect_to project_path(@project)
     end
   end
@@ -40,7 +40,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       flash[:notice] = 'Comment deleted'
     else
-      flash[:notice] = 'Error, you did not create this comment'
+      flash[:alert] = 'Error, you did not create this comment'
     end
     redirect_to project_path(@project)
   end

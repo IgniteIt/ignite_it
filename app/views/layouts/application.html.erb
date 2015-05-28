@@ -15,9 +15,21 @@
 <%= render partial: 'layouts/partials/search' %>
 
 <section class="container">
-  
-  <p class="flash_class_notice"><%= notice %></p>
-  <p class="flash_class_alert"><%= alert %></p>
+  <% if alert %>
+  <div class="alert alert-danger" role="alert">
+    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+    <span class="sr-only"></span> 
+    <%= alert %>
+  </div>
+  <% end %>
+
+  <% if notice %>
+  <div class="alert alert-success" role="alert">
+    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+    <span class="sr-only"></span> 
+    <%= notice %>
+  </div>
+  <% end %>
 
   <%= yield %>
 
