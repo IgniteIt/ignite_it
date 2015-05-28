@@ -4,37 +4,31 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    <%= f.email_field :email, autofocus: true, class: "form-control", :placeholder => "Email" %>
   </div>
-
+<p>
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
+<p>
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, class: "form-control" %>
+    <%= f.text_field :username, class: "form-control", :placeholder => "Username"%>
   </div>
-
+<p>
   <div class="field">
-    <%= f.label :password %> <br><i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control", :placeholder => "Password (If you want to change it)" %>
   </div>
-
+<p>
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :placeholder => "Password Confirmation" %>
   </div>
-
+<p>
   <div class="field">
-    <%= f.label :current_password %> <br><i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :current_password, autocomplete: "off", class: "form-control", :placeholder => "Current Password (To confirm your changes)" %>
   </div>
-
+<p>
   <div class="field">
-    <%= f.label :avatar %><br />
-    <span class="btn btn-primary btn-file">Browse Files<%= f.file_field :avatar %></span>
+    <span class="btn btn-primary btn-file">Change Avatar<%= f.file_field :avatar %></span>
   </div>
 
   <div class="actions">

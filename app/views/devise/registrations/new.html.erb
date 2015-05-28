@@ -4,33 +4,28 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
+    <%= f.email_field :email, autofocus: true, class: "form-control", :placeholder => "Email" %>
   </div>
 <p>
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username, class: "form-control" %>
+    <%= f.text_field :username, class: "form-control", :placeholder => "Username" %>
   </div>
 <p>
   <div class="field">
-    <%= f.label :password %>
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "off", class: "form-control", :placeholder => "Password" %>
   </div>
 <p>
   <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", :placeholder => "Password Confirmation" %>
   </div>
 <p>
   <div class="field">
-    <%= f.label :avatar %><br />
-    <span class="btn btn-default btn-file">Browse Files<%= f.file_field :avatar %></span>
+    <span class="btn btn-primary btn-file">Add User Avatar<%= f.file_field :avatar, :placeholder => "Avatar" %></span>
   </div>
-<p>
+<br>
   <div class="actions" id='sign_up'>
     <%= f.submit "Sign up", class:"btn btn-success" %>
   </div>

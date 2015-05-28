@@ -32,7 +32,7 @@ context "user not signed in and on the homepage" do
 
   it "on sign up, the user is sent an email" do
     sign_up
-    expect(WebMock).to have_requested(:post, 
+    expect(WebMock).to have_requested(:post,
       "https://api:#{ENV['MAILGUN_KEY']}@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages"
       ).with(:body => "from=postmaster%40sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org&to=test%40example.com&subject=Thanks!&text=Thank%20you%20for%20signing%20up%20to%20IgniteIt!")
   end
@@ -68,7 +68,7 @@ context "user can upload an avatar" do
     click_link('Sign up')
     fill_in('Email', with: 'test@example.com')
     fill_in('Password', with: 'testtest')
-    fill_in('Password confirmation', with: 'testtest')
+    fill_in('Password Confirmation', with: 'testtest')
     fill_in('Username', with: 'Paul')
     attach_file 'user_avatar', './spec/fixtures/me.jpg'
     click_button('Sign up')
