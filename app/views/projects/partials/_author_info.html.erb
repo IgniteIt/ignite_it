@@ -1,0 +1,4 @@
+<% if !project.is_owner?(current_user) %>
+  <p>This project was created by <%= project.user.username %></p>
+  <%= image_tag project.user.avatar.url(:thumb), :id => "creator_avatar"%>
+<% end %>

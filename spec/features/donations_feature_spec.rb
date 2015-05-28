@@ -26,13 +26,6 @@ feature 'Donations' do
       expect(current_path).to eq "/projects/#{Project.last.id}"
     end
 
-    scenario 'Current project pledged money is visible on the homepage' do
-      click_link 'Campaign'
-      make_payment(75)
-      visit '/'
-      expect(page).to have_content('Pending: £ 25')
-    end
-
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
       click_link 'Campaign'
@@ -73,7 +66,7 @@ feature 'Donations' do
           visit "projects/#{@project.id}/donations/new"
           fill_in('Amount', with: 75)
           sleep(2)
-          click_button 'Submit'
+          click_button 'Donate'
           expect(page).to have_content('Project has expired')
         end
       end

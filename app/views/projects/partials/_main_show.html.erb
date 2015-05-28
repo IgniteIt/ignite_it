@@ -1,0 +1,12 @@
+<div class="row project_info">
+  <% if @project.has_pic? %>
+    <div class="col-md-4">
+      <%= render partial: 'projects/partials/pic', locals: {project: @project} %>
+    </div>
+  <% end %>
+  <div class="col-md-8">
+    <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
+  </div>
+</div>
+<%= render partial: 'projects/partials/video', locals: {project: @project, video: @video} %>
+<%= render partial: 'projects/partials/full_description', locals: {project: @project} %>

@@ -1,5 +1,17 @@
 body { padding-top: 65px; }
 
+a:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+img{
+  max-width: 100%
+}
+
 .simple_form label {
   margin-top: 15px;
   display: block;
@@ -44,6 +56,13 @@ input.search-bar {
   border-radius: 20px;
 }
 
+#creator_avatar {
+  width: 90px;
+  border-radius: 45px;
+  float: left;
+  left: 5%;
+  }
+
 .navbar {
   height: 65px;
   max-height: 10%;
@@ -70,7 +89,7 @@ input.search-bar {
 
 .search-section {
   text-align: center;
-  background-color: lightblue;
+  background-color: #337AB7;
   padding: 33px 0 10px;
   display: none;
 }
@@ -131,6 +150,7 @@ select option{color: #555;}
 .sidebar {
   text-align: center;
   border-radius: 4px;
+  padding-top: 0;
 }
 
 .timer {
@@ -138,7 +158,6 @@ select option{color: #555;}
   width: 144px;
   display: inline-block;
   border: 0px;
-  padding-left: 23px;
   float: left;
 }
 
@@ -148,14 +167,70 @@ select option{color: #555;}
 
 .donate_btn {
   width: 90%;
+  margin: 0 0 20px;
 }
 
 .progress-wrap {
   width: 90%;
   margin-left: 5%;
+  margin-top: 25px;
+}
+
+.side-title {
+    margin: 0 -20px;
+    padding: 20px 0 10px;
 }
 
 .money-info {
+  text-align: right;
+  margin-top: 14px;
+  padding-right: 5%;
+}
+
+.badge-notify{
+   background:white;
+   margin-top: 0px;
+  }
+
+.followers-link{
+  font-size: 24px;
+  color: white;
+}
+
+.followers-link:hover, 
+.followers-link:focus {
+  color: white;
+}
+
+.index-tabs {
+  margin-bottom: 30px;
+}
+
+.followers-index a {
+  color: #337AB7 !important;
+}
+
+.creator_info {
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+.creator_info_text {
+  text-align: right;
+  padding-right: 46px;
+  padding-top: 22px;
+}
+
+.creator_avatar {
+  padding-left: 40px;
+}
+
+.project_info {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.timer_container {
   text-align: left;
 }
 
@@ -177,4 +252,23 @@ select option{color: #555;}
 
 .investor_table {
   vertical-align: inherit !important;
+}
+
+.video {
+  margin-bottom: 40px;
+}
+
+.blog_list {
+  list-style-type: none;
+  margin-top: 25px;
+}
+
+.comment_list {
+  list-style-type: none;
+  display: none;
+}
+
+.index_count {
+  background: #337AB7 !important;
+  color: white;
 }
