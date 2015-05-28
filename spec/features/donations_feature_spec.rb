@@ -43,7 +43,7 @@ feature 'Donations' do
     scenario 'Can list users who donated' do
       click_link 'Campaign'
       make_payment
-      expect(page).to have_content('Paul donated £25')
+      expect(page).to have_content('Paul: £25')
     end
 
     context 'if the project has expired' do
