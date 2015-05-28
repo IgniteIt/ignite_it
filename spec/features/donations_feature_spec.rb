@@ -28,10 +28,9 @@ feature 'Donations' do
 
     scenario 'I can not make a negative donation' do
       click_link 'Campaign'
-      make_negative_payment
+      make_neg_payment
       expect(page).to have_content('Incorrect value, please enter a positive amount')
     end
-
 
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
