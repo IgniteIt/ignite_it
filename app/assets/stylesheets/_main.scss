@@ -56,6 +56,13 @@ input.search-bar {
   border-radius: 20px;
 }
 
+#creator_avatar {
+  width: 90px;
+  border-radius: 45px;
+  float: left;
+  left: 5%;
+  }
+
 .navbar {
   height: 65px;
 }
@@ -149,7 +156,6 @@ select option{color: #555;}
   width: 144px;
   display: inline-block;
   border: 0px;
-  padding-left: 23px;
   float: left;
 }
 
@@ -175,7 +181,7 @@ select option{color: #555;}
 
 .money-info {
   text-align: right;
-  margin-top: 20px;
+  margin-top: 14px;
   padding-right: 5%;
 }
 
@@ -200,4 +206,32 @@ select option{color: #555;}
 
 .followers-index {
   
+}
+
+.creator_info {
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+.creator_info_text {
+  text-align: right;
+  padding-right: 46px;
+  padding-top: 22px;
+}
+
+.creator_avatar {
+  padding-left: 40px;
+}
+
+.project_info {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.timer_container {
+  text-align: left;
+}
+
+.video {
+  margin-bottom: 40px;
 }
