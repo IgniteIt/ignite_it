@@ -34,7 +34,7 @@
   $(document).ready(
     function() {
       setInterval(function() {
-        $('#refresh_me').load('/projects/refresh_donate');
+        $("#refresh_me").html("<%= escape_javascript render(partial: '/partials/donations' %>");
       }, 3000);
   });
 </script>
