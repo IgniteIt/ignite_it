@@ -79,10 +79,6 @@ class ProjectsController < ApplicationController
   end
 
   def refresh_donate
-    @data = nil
-    # get whatever data you need to a variable named @data
-    respond_to do |format|
-      format.js
-    end
+    render :partial => "projects/partials/donations"
   end
 end

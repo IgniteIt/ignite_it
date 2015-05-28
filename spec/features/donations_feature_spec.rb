@@ -28,8 +28,8 @@ feature 'Donations' do
 
     scenario 'Must be logged in to donate' do
       click_link 'Sign out'
-      click_link 'Campaign'
-      expect(page).not_to have_content 'Donate'
+      visit("/projects/#{Project.last.id}/donations/new")
+      expect(page).to have_content 'You need to sign in or sign up before continuing'
     end
 
     scenario 'Can list users who donated' do

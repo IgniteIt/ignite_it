@@ -31,15 +31,12 @@
 <span id="refresh_me"><%= render partial: 'projects/partials/donations', locals: {project: project} %></span>
 
 <script>
-  $(document).ready(function () {
-    setInterval(refreshPartial, 5000)
+  $(document).ready(
+    function() {
+      setInterval(function() {
+        $('#refresh_me').load('/projects/refresh_donate');
+      }, 3000);
   });
-
-  function refreshPartial() {
-    $.ajax({
-      url: "projects_controller/refresh_donate";
-   })
-  }
 </script>
 
 <%= render partial: 'projects/partials/map' %>
