@@ -30,7 +30,12 @@
     <div class="progress-wrap">
       <%= render partial: 'projects/partials/progress_bar', locals: {project: @project} %>
     </div>
-    <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
+    <% if user_signed_in? %>
+      <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
+      <br>
+    <% else %>
+      <p>Please sign to donate</p>
+    <% end %>
     <%= render partial: 'projects/partials/map' %>
   </section>
 </div>
