@@ -21,19 +21,16 @@
     </div>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <strong>Sector: </strong> <br> 
         <%= project.sector %>
       </div>
-      <div class="col-md-3">
-        <strong>Goal: £<%= project.goal %></strong>
-      </div>
-      <div class="col-md-3">
-        <strong> Project expires in: </strong> 
-      </div>
-      <strong class="col-md-3">
+      <div class="col-md-4 index-timer">
         <%= render partial: 'projects/partials/timer', locals: {project: project} %>
-      </strong>
+      </div>
+      <div class="col-md-4 index-goal">
+        <div><strong>Goal: </strong><br>£<%= project.goal %></br></div>
+      </div>
     </div>
 
     <div class="row" style="margin-bottom: -15px">
