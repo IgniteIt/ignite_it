@@ -12,23 +12,6 @@
     </section>
   </section>
 
-  <section class="sidebar well col-md-4">
-    <section class="side-info">
-      <%= render partial: 'projects/partials/timer', locals: {project: @project} %>
-      <div class="money-info">
-        <%= render partial: 'projects/partials/goal_remaining', locals: {project: @project} %>
-      </div>
-    </section>
-    <div class="progress-wrap">
-      <%= render partial: 'projects/partials/progress_bar', locals: {project: @project} %>
-    </div>
-    <% if user_signed_in? %>
-      <%= render partial: 'projects/partials/donations', locals: {project: @project} %>
-      <br>
-    <% else %>
-      <p>Please sign to donate</p>
-    <% end %>
-    <%= render partial: 'projects/partials/map' %>
   <section class="sidebar well panel panel-primary col-md-4">
     <%= render partial: 'projects/partials/sidebar', locals: {project: @project} %>
   </section>
