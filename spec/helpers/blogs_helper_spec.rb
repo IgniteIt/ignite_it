@@ -3,7 +3,7 @@ require 'rails_helper'
 module BlogsHelper
   def make_blog
     click_link 'Campaign'
-    click_link 'Create Blog'
+    click_link 'Write Update'
     fill_in 'Title', with: 'Blog 1'
     fill_in 'Content', with: 'This is my project'
     click_button 'Submit'
