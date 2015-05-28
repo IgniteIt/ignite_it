@@ -68,7 +68,7 @@ input.search-bar {
   max-height: 10%;
 }
 
-.navbar-link { 
+.navbar-link {
   padding-top: 22px !important;
 }
 
@@ -83,7 +83,7 @@ input.search-bar {
   margin: 0 8px;
 }
 
-.dropdown-toggle { 
+.dropdown-toggle {
   text-align: right;
 }
 
@@ -197,7 +197,7 @@ select option{color: #555;}
   color: white;
 }
 
-.followers-link:hover, 
+.followers-link:hover,
 .followers-link:focus {
   color: white;
 }
@@ -271,4 +271,8 @@ select option{color: #555;}
 .index_count {
   background: #337AB7 !important;
   color: white;
+  display:block;
+  width: 20px;
+  margin-left: 41px;
+  margin-bottom: 10px;
 }
