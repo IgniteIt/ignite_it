@@ -16,7 +16,6 @@ $(document).ready(function(){
   
   $('#main_link').click(function(){
     $("#tab").val('1')
-    $('#main').load('/projects #main')
     loadProjectsTab();
   });
 
@@ -28,13 +27,11 @@ $(document).ready(function(){
 
   $('#donated_link').click(function(){
     $("#tab").val('3')
-    $('#main').load('/projects #main')
     loadDonatedTab();
   });
 
   $('#following_link').click(function(){
     $("#tab").val('4')
-    $('#main').load('/projects #main')
     loadFollowingTab();
   });
 
