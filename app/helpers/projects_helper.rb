@@ -10,13 +10,15 @@ module ProjectsHelper
   end
 
   def get_location
-    @location = request.location.city
-    @location = 'london' if empty?(request.location.city)
+    # @location = request.location.city
+    @location = 'london' 
+    # if empty?(request.location.city)
   end
 
   def get_coords
-    @coord = [request.location.latitude, request.location.longitude]
-    @coord = [51.51, -0.07] if request.location.longitude == 0.0
+    # @coord = [request.location.latitude, request.location.longitude]
+    @coord = [51.51, -0.07] 
+    # if request.location.longitude == 0.0
   end
 
   def main_query
