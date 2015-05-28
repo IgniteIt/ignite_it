@@ -7,19 +7,19 @@ class ProjectsController < ApplicationController
     get_coords
     set_search_variable(params[:search], params[:sector])
 
-    @not_closed_project = Project.all.where("expiration_date >= ?", Time.now)
+    @not_closed_project = Project.all.where("expiration_date >= ?", Time.now).order(expiration_date: :asc)
     # Tabs
     @projects = @not_closed_project.where(main_query, { search: "%#{@location}%" }).page params[:p_page]
     @near_me = @not_closed_project.near(@coord, 20).page params[:n_page]
     if current_user
-      @donated = Project.joins(:donations).where("donations.user_id = ?",  current_user.id).uniq.page params[:d_page]
-      @following = Project.joins(:followers).where("followers.user_id = ?", current_user.id).uniq.page params[:f_page]
+      @donated = Project.joins(:donations).where("donations.user_id = ?",  current_user.id).order(expiration_date: :asc).uniq.page params[:d_page]
+      @following = Project.joins(:followers).where("followers.user_id = ?", current_user.id).order(expiration_date: :asc).uniq.page params[:f_page]
     else
       @donated = @projects
       @following = @projects
     end
     # Search
-    @search = Project.where(search_query, { search: "%#{@search}%", sector: "%#{@sector}%" }).page params[:s_page]
+    @search = Project.where(search_query, { search: "%#{@search}%", sector: "%#{@sector}%" }).order(expiration_date: :asc).page params[:s_page]
   end
 
   def new
@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
     if @project.is_not_owner?(current_user)
-      flash[:notice] = 'Error, you did not create this project'
+      flash[:alert] = 'Error, you did not create this project'
       redirect_to '/'
     end
   end
@@ -69,7 +69,7 @@ class ProjectsController < ApplicationController
       @project.destroy
       flash[:notice] = 'Project has been deleted'
     else
-      flash[:notice] = 'Error, you did not create this project'
+      flash[:alert] = 'Error, you did not create this project'
     end
     redirect_to '/'
   end

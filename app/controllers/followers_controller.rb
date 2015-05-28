@@ -10,7 +10,7 @@ class FollowersController < ApplicationController
     if @follower.save
       render json: {new_follower_count: @project.followers.count, new_follower_id: @follower.id, project_id: @project.id}
     else
-      flash[:notice] = 'You are already following the project'
+      flash[:alert] = 'You are already following the project'
       redirect_to projects_path
     end
   end
@@ -22,7 +22,7 @@ class FollowersController < ApplicationController
       @follower.destroy
       render json: {new_follower_count: @project.followers.count, project_id: @project.id}
     else
-      flash[:notice] = 'Cannot unfollow the project'
+      flash[:alert] = 'Cannot unfollow the project'
     end
   end
 end
