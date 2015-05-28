@@ -16,17 +16,8 @@
 
 <section class="container">
 
-  <p><span class="notice"><%= notice %></span></p>
-  <p><span class="alert"><%= alert %></span></p>
-
-  <script>
-    $(function() {
-      setTimeout(function(){
-        $('.alert').slideUp(1000);
-        $('.notice').slideUp(1000);
-      }, 2000);
-    });
-  </script>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
   <%= yield %>
 
