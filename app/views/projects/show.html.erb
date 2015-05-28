@@ -1,23 +1,15 @@
 <div class="row">
   <section class="col-md-8">
     <%= render partial: 'projects/partials/show_tabs' %>
-
     <section class='main'>
-      <%= render partial: 'projects/partials/owner_buttons', locals: {project: @project, user: @user} %>
-
-      <%= render partial: 'projects/partials/basic_info', locals: {project: @project} %>
-
-      <%= render partial: 'projects/partials/extra_info', locals: {project: @project, video: @video} %>
+      <%= render partial: 'projects/partials/main_show', locals: {project: @project, video: @video, user: @user} %>
     </section>
-
     <section class="blog">
       <%= render partial: 'projects/partials/blog', locals: {project: @project} %>
     </section> 
-
     <section class="investors">
       <%= render partial: 'projects/partials/investors', locals: {project: @project} %>
     </section>
-    
   </section>
 
   <section class="sidebar well col-md-4">
@@ -37,8 +29,12 @@
       <p>Please sign to donate</p>
     <% end %>
     <%= render partial: 'projects/partials/map' %>
+  <section class="sidebar well panel panel-primary col-md-4">
+    <%= render partial: 'projects/partials/sidebar', locals: {project: @project} %>
   </section>
 </div>
+
+
 <script>
   <%= render partial: 'projects/js/timer', formats: [:js], locals: {project: @project} %>
   <%= render partial: 'projects/js/gmaps', formats: [:js] %>

@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <% if project.has_been_followed?(current_user) %>
+    <%= link_to "<span class='glyphicon glyphicon-star'></span>", project_follower_path(project, project.followed_by(current_user).first), class: "followers-link" %>
+  <% else %>
+    <%= link_to "<span class='glyphicon glyphicon-star-empty'></span>", new_project_follower_path(project), class: "followers-link" %>
+  <% end %>
+<% end %>

@@ -18,7 +18,7 @@ feature 'user follows a project' do
   context 'user not logged in' do
     scenario 'cannot follow projects' do
       visit '/'
-      expect(page).not_to have_link('Follow', exact: true)
+      expect(page).not_to have_css('.glyphicon-star-empty')
     end
   end
 
@@ -31,34 +31,28 @@ feature 'user follows a project' do
     end
 
     scenario 'cannot follow projects twice', js: true, driver: :selenium do
-      click_link 'Follow'
-      expect(page).not_to have_link('Follow', exact: true)
-      expect(page).to have_link 'Unfollow'
+      find('.glyphicon-star-empty').click
+      expect(page).not_to have_css('.glyphicon-star-empty')
+      expect(page).to have_css '.glyphicon-star'
     end
 
     scenario 'can unfollow projects', js: true, driver: :selenium do
-      click_link 'Follow'
-      click_link 'Unfollow'
-      expect(page).to have_link('Follow', exact: true)
-      expect(page).not_to have_link 'Unfollow'
+      find('.glyphicon-star-empty').click
+      find('.glyphicon-star').click
+      expect(page).to have_css('.glyphicon-star-empty')
+      expect(page).not_to have_css '.glyphicon-star'
     end
 
     scenario 'a user can follow a project, which updates the project follow count', js: true, driver: :selenium do
-      click_link 'Follow'
-      expect(page).to have_content('1 follower')
+      find('.glyphicon-star-empty').click
+      expect(page).to have_css('.followers_count', text: "1")
     end
 
-    scenario 'if follow is not saved, then user is redirected to the projects page' do
-      click_link 'Follow'
+    scenario 'if follow is not saved, then user is redirected to the projects page', js: true, driver: :selenium do
+      find('.glyphicon-star-empty').click
       visit "/projects/#{Project.last.id}/followers/new"
       expect(current_path).to eq '/projects'
       expect(page).to have_content ('You are already following the project')
     end
-
-    # scenario 'only users who follow a project can unfollow it' do
-    #   sign_up('g@g.com', 'George')
-    #   page.driver.submit :delete, "/projects/#{Project.last.id}/followers/#{Follower.last.id}", {}
-    #   expect(page).to have_content 'Cannot unfollow the project'
-    # end
   end
 end
