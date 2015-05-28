@@ -13,6 +13,8 @@ class DonationsController < ApplicationController
                                           amount: with_pence(donation_params[:amount]))
     if @project.has_expired?
       flash[:notice] = 'Project has expired'
+    elsif @donation.amount <= 0
+      flash[:notice] = 'Incorrect value, please enter a positive amount'
     else
       @donation.save
     end
