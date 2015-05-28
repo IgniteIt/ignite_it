@@ -1,9 +1,5 @@
 body { padding-top: 65px; }
 
-.donations {
-  
-}
-
 .simple_form label {
   margin-top: 15px;
   display: block;
@@ -173,4 +169,12 @@ select option{color: #555;}
 .modal a.close-modal {
   top: inherit;
   right: inherit;
+}
+
+.investor_image {
+  width: 7%;
+}
+
+.investor_table {
+  vertical-align: inherit !important;
 }
