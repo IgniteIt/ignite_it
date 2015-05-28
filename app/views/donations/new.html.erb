@@ -1,0 +1,12 @@
+<% if @project.has_expired? %>
+  Project has expired
+<% else %>
+  <br>
+  <%= simple_form_for [@project, @donation] do |f| %>
+  <div class="input-group-addon">£</div>
+  <%= f.input :amount, class: "form-control", placeholder: "Please enter donation amount..." %>
+    <p>
+    </p>
+    <%= f.submit 'Donate', class: "btn btn-success" %>
+  <% end %>
+<% end %>

@@ -1,0 +1,14 @@
+<%= render partial: 'projects/partials/index_tabs' %>
+
+<div id="main">
+  <%= render partial: 'project', locals: {projects: @projects} %>
+</div>
+<div id="paginator">
+  <%= paginate(@projects, :remote => true, param_name: 'p_page' ) %>
+</div>
+
+<script>
+  <%= render partial: 'projects/js/index_tabs', formats: [:js], locals: {projects: @projects, near_me: @near_me, donated: @donated, following: @following, search: @search} %>
+  <%= render partial: 'projects/js/index_followers', formats: [:js] %>
+</script>
+

@@ -1,0 +1,14 @@
+offset = $(document).offset()
+
+$('#search_link').click(function(){
+  $('.search-section').css({'top': $(document).scrollTop()})
+  $('.search-section').slideToggle('slow');
+})
+
+$('select').change(function() {
+ if ($(this).children('option:first-child').is(':selected')) {
+   $(this).addClass('placeholder');
+ } else {
+  $(this).removeClass('placeholder');
+ }
+});

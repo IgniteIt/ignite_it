@@ -1,0 +1,17 @@
+<div class='row creator_info'>
+<% if project.is_owner?(current_user) %>
+<div class="col-md-6">
+    <%= link_to_modal "Edit", edit_project_path(project), :class=>"btn btn-warning" %>
+  </div>
+  <div class="col-md-6">
+    <%= link_to 'Delete', project_path(project), method: :delete, class: 'btn btn-danger' %>
+  </div>
+<% else %>
+  <div class="col-md-6 creator_avatar">
+    <%= image_tag project.user.avatar.url(:thumb), :id => "creator_avatar"%>
+  </div>
+  <div class="col-md-6 creator_info_text">
+    <strong>This project was created by <%= project.user.username %></strong>
+  </div>
+<% end %>
+</div>

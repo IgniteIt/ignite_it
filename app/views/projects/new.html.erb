@@ -1,0 +1,82 @@
+<%= render partial: 'layouts/errors', locals: { element: @project } %>
+
+<section>
+
+  <h2>New Project</h2>
+
+  <%= simple_form_for @project, html: {multipart: true}, defaults: {label: false} do |f| %>
+    <p>
+    <%= f.input :name, class: "form-control", :placeholder => "Name" %>
+    <p>
+    <p>
+    <%= f.input :goal, class: "form-control", :placeholder => "Goal" %>
+    <p>
+    <p>
+    <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'}, class: "form-control", :placeholder => "Address"  %>
+    <p>
+    <p>
+    <span class="btn btn-primary btn-file">
+      Add Image<%= f.file_field :image %>
+    </span>
+    <p>
+    <p>
+    <p>
+    <%= f.input :video_url, class: "form-control", :placeholder => "Video url" %>
+    <p>
+    <p>
+    <div>
+    <%= f.label :sector %>
+    <%= f.select :sector, options_for_select([["Select a sector", nil],
+                                              "Community",
+                                              "Children",
+                                              "Education",
+                                              "Elderly",
+                                              "Energy",
+                                              "Entertainment",
+                                              "Environment",
+                                              "Healthcare",
+                                              "Transportation",
+                                              "Other"]),
+                                              selected: "Select a sector",
+                                              disabled: "Select a sector"%>
+    </div>      
+    <p>
+    <p>
+    <div class="form-group">
+    <%= f.label :expiration_date %>
+    <%= f.select :expiration_date, options_for_select([["Select an expiration date", nil],
+                                                      ["30 days from now", 30.days],
+                                                      ["45 days from now", 45.days],
+                                                      ["60 days from now", 60.days],
+                                                      ["75 days from now", 75.days],
+                                                      ["90 days from now", 90.days]]),
+                                                       selected: "Select an expiration date",
+                                                       disabled: "Select an expiration date", class: "form-control" %>
+    </div>
+    <p>
+    <p>
+    <%= f.input :description, class: "form-control", :placeholder => "Description"  %>
+    <p>
+    <p>
+    <%= f.submit "Submit", class: "btn btn-success" %>
+  <% end %>
+
+</section>
+
+<script>
+  jQuery(function() {
+    var completer;
+
+    completer = new GmapsCompleter({
+      inputField: '#gmaps-input-address',
+      errorField: '#gmaps-error'
+    });
+
+    completer.autoCompleteInit({
+      region: "UK",
+      autocomplete: {
+        minLength: 3
+      }
+    });
+  });
+</script>

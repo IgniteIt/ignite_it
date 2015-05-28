@@ -1,0 +1,27 @@
+<br>
+
+<%- if controller_name != 'sessions' %>
+  <%= link_to_modal "Log in", new_session_path(resource_name), class:"btn btn-danger" %><br />
+  <br>
+<% end -%>
+
+<%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+  <%= link_to_modal "Forgot your password?", new_password_path(resource_name), class:"btn btn-primary" %><br />
+  <br>
+<% end -%>
+
+<%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+  <%= link_to_modal "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+  <br>
+<% end -%>
+
+<%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+  <%= link_to_modal "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+  <br>
+<% end -%>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to image_tag("http://www.theonlyquran.com/images/fb_login_button.png", :width => 200), omniauth_authorize_path(resource_name, provider), :id => "facebook_login" %><br />
+  <% end -%>
+<% end -%>

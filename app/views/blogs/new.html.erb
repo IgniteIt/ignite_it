@@ -1,0 +1,9 @@
+<h2>Blog Post</h2>
+
+<%= form_for [@project, @blog] do |f| %>
+  <%= f.text_area :title, class: "form-control", :placeholder => "Title"%>
+  <br>
+  <%= f.text_area :content, class: "form-control", :placeholder => "Content" %>
+  <br>
+  <%= f.submit 'Submit', class: "btn btn-success" %>
+<% end %>

@@ -1,0 +1,278 @@
+body { padding-top: 65px; }
+
+a:hover {
+  text-decoration: none;
+}
+
+a:focus {
+  outline: none;
+}
+
+img{
+  max-width: 100%
+}
+
+.simple_form label {
+  margin-top: 15px;
+  display: block;
+  text-align: center !important;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+input[type='file'] {
+  color: transparent;
+}
+
+#project_image {
+  margin-left: 38%;
+};
+
+input.search-bar {
+  width: 200px;
+}
+
+#avatar_image {
+  width: 35px;
+  border-radius: 20px;
+}
+
+#creator_avatar {
+  width: 90px;
+  border-radius: 45px;
+  float: left;
+  left: 5%;
+  }
+
+.navbar {
+  height: 65px;
+  max-height: 10%;
+}
+
+.navbar-link {
+  padding-top: 22px !important;
+}
+
+.navbar-right {
+  float: right !important;
+}
+
+.navbar-avatar {
+}
+
+.navbar-user {
+  margin: 0 8px;
+}
+
+.dropdown-toggle {
+  text-align: right;
+}
+
+.search-section {
+  text-align: center;
+  background-color: #337AB7;
+  padding: 33px 0 10px;
+  display: none;
+}
+
+.search-section * {
+  margin-bottom: 12px;
+}
+
+.placeholder {
+  color: gray;
+}
+
+select option:first-child{color: grey; display: none;}
+select option{color: #555;}
+
+.search-bar {
+  width: 30%;
+  margin-left: 35%;
+}
+
+.search-select {
+  width: 20%;
+  margin-left: 40%;
+}
+
+.modal {
+  position: fixed;
+  overflow: auto;
+  text-align: center;
+  bottom: initial;
+  z-index: 2;
+  display: block;
+  max-height: 80%;
+}
+
+.over {
+  text-align: center;
+  font-weight: 800;
+  padding-top: 13px;
+}
+
+.main {
+  z-index: 1;
+}
+
+.investors,
+.blog {
+  visibility: hidden;
+  position: absolute;
+  z-index: 0;
+}
+
+.main {
+  opacity: 1;
+  position: relative;
+}
+
+.sidebar {
+  text-align: center;
+  border-radius: 4px;
+  padding-top: 0;
+}
+
+.timer {
+  background-color: transparent;
+  width: 144px;
+  display: inline-block;
+  border: 0px;
+  float: left;
+}
+
+.countdown-section {
+  width: 40% !important ;
+}
+
+.donate_btn {
+  width: 90%;
+  margin: 0 0 20px;
+}
+
+.progress-wrap {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 25px;
+}
+
+.side-title {
+    margin: 0 -20px;
+    padding: 20px 0 10px;
+}
+
+.money-info {
+  text-align: right;
+  margin-top: 14px;
+  padding-right: 5%;
+}
+
+.badge-notify{
+   background:white;
+   margin-top: 0px;
+  }
+
+.followers-link{
+  font-size: 24px;
+  color: white;
+}
+
+.followers-link:hover,
+.followers-link:focus {
+  color: white;
+}
+
+.index-tabs {
+  margin-bottom: 30px;
+}
+
+.followers-index a {
+  color: #337AB7 !important;
+}
+
+.creator_info {
+  margin-top: 20px;
+  margin-bottom: 35px;
+}
+
+.creator_info_text {
+  text-align: right;
+  padding-right: 46px;
+  padding-top: 22px;
+}
+
+.creator_avatar {
+  padding-left: 40px;
+}
+
+.project_info {
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+
+.timer_container {
+  text-align: left;
+}
+
+.close-modal {
+  z-index:4;
+  position:absolute;
+  top: 1% !important;
+  right: 2% !important;
+}
+
+.modal a.close-modal {
+  top: inherit;
+  right: inherit;
+}
+
+.investor_image {
+  width: 7%;
+}
+
+.investor_table {
+  vertical-align: inherit !important;
+}
+
+.video {
+  margin-bottom: 40px;
+}
+
+.blog_list {
+  list-style-type: none;
+  margin-top: 25px;
+}
+
+.comment_list {
+  list-style-type: none;
+  display: none;
+}
+
+.index_count {
+  background: #337AB7 !important;
+  color: white;
+  display:block;
+  width: 20px;
+  margin-left: 41px;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,11 @@
+<h2>Edit Project</h2>
+
+<%= form_for @project do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, readonly: true, class: "form-control" %>
+  <p>
+  <%= f.label :description %>
+  <%= f.text_field :description, class: "form-control" %>
+  <p>
+  <%= f.submit "Update Project", class: "btn btn-success" %>
+<% end %>

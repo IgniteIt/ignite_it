@@ -1,0 +1,11 @@
+<h2>Blog Post</h2>
+
+<%= form_for [@project, @blog] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_area :title, readonly: true, class: "form-control"  %>
+  <br>
+  <%= f.label :content %>
+  <%= f.text_area :content, class: "form-control" %>
+  <br>
+  <%= f.submit 'Submit', class: "btn btn-success" %>
+<% end %>

@@ -1,0 +1,39 @@
+$(document).ready(function(){
+
+  var tab = $("#tab").val() || 1
+
+  if (tab == '5') {
+    loadSearchTab()
+  } else if (tab == '4') {
+    loadFollowingTab()
+  } else if (tab == '3') {
+    loadDonatedTab();
+  } else if (tab == '2') {
+    loadNearMeTab()
+  } else {
+    loadProjectsTab()
+  } 
+
+})
+
+function loadProjectsTab() {
+  $("#main").html("<%= escape_javascript render(partial: 'project', locals: {projects: @projects}) %>");
+  $('#paginator').html("<%= j(paginate(@projects, :remote => true, :param_name => 'p_page').to_s) %>");
+}
+function loadNearMeTab() {
+  $("#main").html("<%= escape_javascript render(partial: 'project', locals: {projects: @near_me}) %>");
+  $('#paginator').html("<%= j(paginate(@near_me, :remote => true, :param_name => 'n_page').to_s) %>");
+}
+function loadDonatedTab() {
+  $("#main").html("<%= escape_javascript render(partial: 'project', locals: {projects: @donated}) %>");
+  $('#paginator').html("<%= j(paginate(@donated, :remote => true, :param_name => 'd_page').to_s) %>");
+}
+function loadFollowingTab() {
+  $("#main").html("<%= escape_javascript render(partial: 'project', locals: {projects: @following}) %>");
+  $('#paginator').html("<%= j(paginate(@following, :remote => true, :param_name => 'f_page').to_s) %>");
+}
+
+function loadSearchTab() {
+  $("#main").html("<%= escape_javascript render(partial: 'project', locals: {projects: @search}) %>");
+  $('#paginator').html("<%= j(paginate(@search, :remote => true, :param_name => 's_page').to_s) %>");
+}

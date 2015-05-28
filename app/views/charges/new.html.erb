@@ -1,0 +1,18 @@
+<% if @project.is_payable_by(current_user) %>
+  <%= form_tag project_charges_path(@project) do %>
+    <article>
+      <label class="amount">
+        <span>Amount: £ <%= without_pence(@amount) %></span>
+      </label>
+    </article>
+
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+            data-description="<%= @current_user.username %> payment for <%= @project.name %>"
+            data-amount="<%= @amount %>"
+            data-currency="GBP">
+    </script>
+  <% end %>
+<% else %>
+   No no 
+<% end %>

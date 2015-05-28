@@ -1,0 +1,8 @@
+<h3><%= link_to project.name, project_path(project) %></h3>
+
+<% text = project.description %>
+
+<%= truncate(text, length: 400, separator: ' ') do
+  link_to 'read more...', project_path(project)
+end
+%>

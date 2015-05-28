@@ -1,0 +1,45 @@
+$(document).ready(function(){
+
+  $('#main_link').click(function(e){
+    e.preventDefault()
+    $('.blog').css({'visibility': 'hidden',
+                    'position': 'absolute',
+                    'z-index': '0'});
+    $('.investors').css({'visibility': 'hidden',
+                        'position': 'absolute',
+                        'z-index': '0'})
+    $('.main').css({'visibility': 'visible',
+                    'position': 'relative',
+                    'z-index': '1'});
+  });
+
+  $('#blog_link').click(function(e){
+    e.preventDefault()
+    $('.main').css({'visibility': 'hidden',
+                    'position': 'absolute',
+                    'z-index': '0'});
+    $('.investors').css({'visibility': 'hidden',
+                         'position': 'absolute',
+                         'z-index': '0'})
+    $('.blog').css({'visibility': 'visible',
+                    'position': 'relative',
+                    'z-index': '1'});
+  })
+
+  $('#investors_link').click(function(e){
+    e.preventDefault()
+    $('.main').css({'visibility': 'hidden',
+                    'position': 'absolute'});
+    $('.blog').css({'visibility': 'hidden',
+                    'position': 'absolute'});
+    $('.investors').css({'visibility': 'visible',
+                         'position': 'relative',
+                         'z-index': '1'})
+  })
+
+  $('.nav-pills li').click(function(){
+    $(this).siblings().removeClass("active");
+    $(this).addClass("active");
+  })
+
+});  

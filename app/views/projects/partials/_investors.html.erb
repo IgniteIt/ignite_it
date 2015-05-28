@@ -1,0 +1,12 @@
+<% if project.donations.any? %>
+  <table class="table table-striped">
+  <% project.donations.reverse_each do |donation| %>
+    <tr>
+      <td class="investor_table">
+        <%= image_tag donation.user.avatar.url(:thumb), :class => "investor_image" %>
+        <b><%= donation.user.username %>:</b> £<%= without_pence(donation.amount) %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+<% end %>

@@ -1,0 +1,40 @@
+<% if project.is_owner?(current_user) %>
+  <p style="margin-top: 25px;"><%= link_to_modal 'Write Update', new_project_blog_path(project), class: 'btn btn-primary' %></p>
+<% end %>
+
+<ul class="blog_list">
+<% if project.blogs.any? %>
+  <% project.blogs.reverse_each do |blog| %>
+    <li class="blog_element">
+    <p></p>
+    <p><%= image_tag project.user.avatar.url(:thumb), :id => "avatar_image"%> <%= project.user.username %> <h2 style="display: inline;"><%= blog.title %></p></h2>
+    <% if project.is_owner?(current_user) %>
+      <p style="display:inline-block; margin-right: 5px"><%= link_to_modal 'Edit Update', edit_project_blog_path(project, blog), class: 'btn btn-warning' %></p>
+      <p style="display:inline;"><%= link_to 'Delete Update', project_blog_path(project, blog), method: :delete, class: 'btn btn-danger' %></p>
+    <% end %>
+    <p style="padding-left: 15px;"><%= blog.content %></p>
+      <p style="display:inline-block; margin-right: 5px; padding-left: 15px;"><a href="#" id="comments_link" class="btn btn-primary">Show comments<span class="caret"></span></a></p>
+      <p style="display:inline;"><%= link_to_modal 'Comment', new_project_blog_comment_path(project, blog), class: 'btn btn-primary'%></p>
+    </li>
+    
+    <% if blog.comments.any? %>
+      <ul class="comment_list">
+      <h4>Comments</h4>
+      <% blog.comments.each do |comment| %>
+        <li class="comment_element" style="margin-top: 15px">
+          <p><%= image_tag comment.user.avatar.url(:thumb), :id => "avatar_image"%> <%= project.user.username %></p>
+          <p><%= comment.comment %></p>
+          <% if comment.is_owner?(current_user) %>
+            <%= link_to_modal 'Edit Comment', edit_project_blog_comment_path(project, blog, comment), class: 'btn btn-warning' %>
+            <%= link_to_modal 'Delete Comment', project_blog_comment_path(project, blog, comment), method: :delete, class: 'btn btn-danger' %>
+          <% end %>
+        </li>
+      <% end %>
+    <% end%>
+  <% end %>
+<% end %>
+<ul>
+
+<script>
+  <%= render partial: 'projects/js/comment', formats: [:js]  %>
+</script>
