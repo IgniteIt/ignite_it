@@ -15,10 +15,7 @@
     <%= f.input :address, :input_html =>{:id => 'gmaps-input-address'}, class: "form-control", :placeholder => "Address"  %>
     <p>
     <p>
-    <span class="btn btn-primary btn-file">
-      Add Image<%= f.file_field :image %>
-    </span>
-    <p>
+    <%= f.input :description, class: "form-control", :placeholder => "Description"  %>
     <p>
     <p>
     <%= f.input :video_url, class: "form-control", :placeholder => "Video url" %>
@@ -55,10 +52,12 @@
     </div>
     <p>
     <p>
-    <%= f.input :description, class: "form-control", :placeholder => "Description"  %>
+    <span class="btn btn-primary btn-file">
+      Add Image<%= f.file_field :image %>
+    </span>
     <p>
     <p>
-    <%= f.submit "Submit", class: "btn btn-success" %>
+    <%= f.submit "Submit", class: "btn btn-success", style: "width: 28%" %>
   <% end %>
 
 </section>
