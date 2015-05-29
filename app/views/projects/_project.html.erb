@@ -21,14 +21,18 @@
     </div>
 
     <div class="row">
-      <div class="col-md-4" style="padding-top: 29px;">
+      <div class="col-md-3" style="padding-top: 29px;">
         <strong>Sector: </strong> <br> 
         <%= project.sector %>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-1">
+      </div>
+      <div class="col-md-2 timer_style">
         <%= render partial: 'projects/partials/timer', locals: {project: project} %>
       </div>
-      <div class="col-md-4" style="padding-top: 13px;">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-2 goal_style" style="padding-top: 13px;">
         <h6 style="margin-top:0; margin-bottom: 0;">Goal: </h6><br><h3 style="margin-top:0; margin-bottom: 0; padding-left: 10px;">£<%= project.goal %></h3>
       </div>
     </div>
