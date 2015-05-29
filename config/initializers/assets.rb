@@ -4,6 +4,7 @@
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( close.png )
 Rails.application.config.assets.precompile += %w( spinner.gif )
+Rails.application.config.assets.precompile += %w( home.css )
 
 # Add additional assets to the asset load path
 # Rails.application.config.assets.paths << Emoji.images_path

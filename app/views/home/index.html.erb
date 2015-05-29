@@ -1,1 +1,35 @@
-<h1> hello </h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ignite</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'home', media: 'all', 'data-turbolinks-track' => true %>
+  <%= favicon_link_tag 'favicon.ico' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="landing_page">
+  <div>
+  <div class="home_bar_left">
+    <div class="home_buttons_container">
+      <%= link_to "View Projects", projects_path, class: "btn-lg btn-warning" %>
+    </div>
+  </div>
+  <div class="home_bar_right">
+    <div class="home_buttons_container">
+      <%= link_to_modal "Sign in", new_user_session_path, class: "btn-lg btn-primary" %>
+      <%= link_to_modal "Sign up", new_user_registration_path, class: "btn-lg btn-primary" %>
+    </div>
+  </div>
+</div>
+
+<div class="jumbotron home_box">
+  <div class="container" style="display: inline; padding-right: 50px;">
+      <div class="home_logo" style="display: inline-block;"><%= image_tag ('ignite_logo.png') %></div><br>
+      <h3 style="margin-top:20px; display: inline-block;"> UK's leading crowdfunding platform for community projects. </h3><br>
+  </div>
+</div>
+</div>
+
+</body>

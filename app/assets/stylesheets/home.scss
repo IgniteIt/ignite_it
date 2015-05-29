@@ -1,3 +1,34 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.landing_page {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url('images/home_bg.jpg');
+  background-size: cover;
+  margin-top: -65px;
+  text-align:center;
+}
+
+.home_bar_right {
+  padding-right: 75px;
+  float:right
+}
+
+.home_bar_left {
+  padding-left: 75px;
+  float: left;
+}
+
+.home_box {
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 40px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.home_buttons_container {
+  margin-top: 40px
+}

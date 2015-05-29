@@ -1,0 +1,15 @@
+/* line 5, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+body {
+  background-image: url("images/home_bg.jpg");
+  background-size: cover;
+}
+
+/* line 10, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+main_text {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  width: 65%;
+  bottom: 2px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
