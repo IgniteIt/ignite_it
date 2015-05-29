@@ -5,5 +5,5 @@
 <% elsif project.has_expired? %>
   Project expired!
 <% else %>
-  <%= link_to_modal 'Donate', new_project_donation_path(project), class: 'btn btn-success donate_btn' %>
+  <%= link_to_modal 'Donate', new_project_donation_path(project), class: 'btn btn-success donate_btn', id: 'donate_btn' %>
 <% end %>
