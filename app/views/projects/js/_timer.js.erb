@@ -8,10 +8,10 @@ var year = <%= project.expiration_date.year %>,
 
 var over = '<div class="over">Project Closed!</div>';
 
-if(date <= Date.now())
+if(date <= Date.now()){
   $('#due_date_timer_<%= project.id %>').html(over);
-else
+} else {
     $('#due_date_timer_<%= project.id %>').countdown({until: date, 
                                                     format: 'YOWDHMS', 
                                                     significant: 2, 
-                                                    expiryText: over});
+                                                    expiryText: over})};
