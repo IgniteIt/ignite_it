@@ -28,7 +28,8 @@ body { padding-top: 65px; }
   border-radius: 5px;
 }
 
-a:hover {
+a:hover,
+a:focus {
   text-decoration: none;
 }
 
