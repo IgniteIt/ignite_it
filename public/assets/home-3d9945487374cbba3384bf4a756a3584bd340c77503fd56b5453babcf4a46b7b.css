@@ -1,0 +1,35 @@
+/* line 5, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+.landing_page {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background-image: url("images/home_bg.jpg");
+  background-size: cover;
+  margin-top: -65px;
+  text-align: center;
+}
+
+/* line 15, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+.home_bar_right {
+  padding-right: 75px;
+  float: right;
+}
+
+/* line 20, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+.home_bar_left {
+  padding-left: 75px;
+  float: left;
+}
+
+/* line 25, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+.home_box {
+  background-color: rgba(255, 255, 255, 0.5);
+  top: 40px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/* line 32, /Users/Armi/Projects/ignite_it/app/assets/stylesheets/home.scss */
+.home_buttons_container {
+  margin-top: 40px;
+}
