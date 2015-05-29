@@ -2,7 +2,7 @@ require 'rails_helper'
 
 module UserHelper
   def sign_up(email='test@example.com', username='Paul')
-    visit('/')
+    visit('/projects')
     click_link('Sign up')
     fill_in('Email', with: email)
     fill_in('Password', with: 'testtest')
@@ -12,7 +12,7 @@ module UserHelper
   end
 
   def log_in
-    visit('/')
+    visit('/projects')
     click_link('Sign in')
     fill_in('user_login', with: 'Paul')
     fill_in('user_password', with: 'testtest')
@@ -32,6 +32,6 @@ module UserHelper
         with(:body => {"from"=>"postmaster@sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org", "subject"=>"Thanks!", "text"=>"Thank you for signing up to IgniteIt!", "to"=>"testing@facebook.com"},
           :headers => {'Accept'=>'*/*; q=0.5, application/xml', 'Accept-Encoding'=>'gzip, deflate', 'Content-Length'=>'166', 'Content-Type'=>'application/x-www-form-urlencoded', 'User-Agent'=>'Ruby'}).
         to_return(:status => 200, :body => "", :headers => {})
-    visit('/')
+    visit('/projects')
   end
 end

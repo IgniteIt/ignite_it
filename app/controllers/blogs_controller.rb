@@ -6,7 +6,7 @@ class BlogsController < ApplicationController
     @project = Project.find(params[:project_id])
     if @project.is_not_owner?(current_user)
       flash[:alert] = 'You are not the project owner'
-      redirect_to '/'
+      redirect_to project_path(@project)
     else
       @blog = Blog.new
     end

@@ -15,7 +15,7 @@ feature 'Donations' do
   before do
     sign_up
     create_project('Campaign', regular_description, '100', '30 days from now', 'Environment', 'London')
-    visit '/'
+    visit '/projects'
   end
 
   context 'as a user I want to be able to donate money' do

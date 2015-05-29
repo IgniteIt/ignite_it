@@ -2,6 +2,7 @@ require 'rails_helper'
 
 module BlogsHelper
   def make_blog
+    visit '/projects'
     click_link 'Campaign'
     click_link 'Write Update'
     fill_in 'Title', with: 'Blog 1'

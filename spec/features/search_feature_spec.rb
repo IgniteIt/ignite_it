@@ -10,7 +10,7 @@ feature 'Project search' do
     Project.create!(name: 'Campaign', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Environment', address: 'London')
     Project.create!(name: 'Another', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'Manchester')
     Project.create!(name: 'Third', description: regular_description, goal: '75', expiration_date: Time.now + (120), sector: 'Energy', address: 'London')
-    visit '/'
+    visit '/projects'
     find('#search_link').click
   end
 

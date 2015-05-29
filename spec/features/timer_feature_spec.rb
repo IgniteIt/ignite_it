@@ -16,42 +16,42 @@ feature 'timer' do
     
     scenario 'it calculates 30 days from now in weeks and days', js: true, driver: :selenium do
       @project.save
-      visit "/"
+      visit '/projects'
       expect(page).to have_content('4 Weeks 1 Day')
     end
 
     scenario 'it calculates 60 days from now in months and weeks', js: true, driver: :selenium do
       @project.set_expiration_date(60.days)
       @project.save
-      visit "/"
+      visit '/projects'
       expect(page).to have_content('1 Month 4 Weeks')
     end
 
     scenario 'it calculates 10 days from now in weeks and days', js: true, driver: :selenium do
       @project.set_expiration_date(10.days)
       @project.save
-      visit "/"
+      visit '/projects'
       expect(page).to have_content('1 Week 2 Days')
     end
 
     scenario 'it calculates 6 days from now in days and hours', js: true, driver: :selenium do
       @project.set_expiration_date(6.days)
       @project.save
-      visit "/"
+      visit '/projects'
       expect(page).to have_content('5 Days 23 Hours')
     end
 
     scenario 'it calculates 1 day from now in hours and minutes', js: true, driver: :selenium do
       @project.set_expiration_date(1.day)
       @project.save
-      visit "/"
+      visit '/projects'
       expect(page).to have_content('23 Hours 59 Minutes')
     end
 
     scenario 'it calculates 1 hour from now in minutes and seconds', js: true, driver: :selenium do
       @project.set_expiration_date(1.hour)
       @project.save
-      visit "/"
+      visit '/projects'
       expect(page).to have_content('59 Minutes')
       expect(page).to have_content('Seconds')
     end
@@ -71,7 +71,7 @@ feature 'timer' do
       @project.set_expiration_date(1.second)
       @project.save
       sleep(1)
-      visit "/"
+      visit '/projects'
       find('#search_link').click
       fill_in :search, with: 'Campaign'
       click_button 'Search'

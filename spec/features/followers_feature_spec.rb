@@ -17,7 +17,7 @@ feature 'user follows a project' do
 
   context 'user not logged in' do
     scenario 'cannot follow projects' do
-      visit '/'
+      visit '/projects'
       expect(page).not_to have_css('.glyphicon-star-empty')
     end
   end
@@ -27,7 +27,7 @@ feature 'user follows a project' do
       stub_request(:post, "https://api:key-d862abdfc169a5e8ba9b0a23ba5b9b78@api.mailgun.net/v2/sandboxee3a8623dbd54edbb49b9ee665ebfad2.mailgun.org/messages")
       @user = FactoryGirl.create(:user)
       login_as(@user, :scope => :user)
-      visit '/'
+      visit '/projects'
     end
 
     scenario 'cannot follow projects twice', js: true, driver: :selenium do

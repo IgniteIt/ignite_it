@@ -51,7 +51,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     if @project.is_not_owner?(current_user)
       flash[:alert] = 'Error, you did not create this project'
-      redirect_to '/'
+      redirect_to project_path
     end
   end
 
@@ -71,7 +71,7 @@ class ProjectsController < ApplicationController
     else
       flash[:alert] = 'Error, you did not create this project'
     end
-    redirect_to '/'
+    redirect_to projects_path
   end
 
   def project_params
