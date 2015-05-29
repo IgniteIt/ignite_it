@@ -17,13 +17,14 @@
   <%= render partial: 'projects/partials/owner_buttons', locals: {project: project} %>
 </section>
 
-<section class="side-info">
-  <%= render partial: 'projects/partials/timer', locals: {project: project} %>
-  <div class="money-info">
+<section class="side-info" style="text-align:left">
+  <div style="display:inline-block">
+    <%= render partial: 'projects/partials/timer', locals: {project: project} %>
+  </div>
+  <div class="money-info" style="display:inline-block;float:right;">
     <%= render partial: 'projects/partials/goal_remaining', locals: {project: project} %>
   </div>
 </section>
-
 <div class="progress-wrap">
   <%= render partial: 'projects/partials/progress_bar', locals: {project: project} %>
 </div>
