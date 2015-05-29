@@ -3,7 +3,7 @@
 <div id="main">
   <%= render partial: 'project', locals: {projects: @projects} %>
 </div>
-<div id="paginator">
+<div id="paginator" style="text-align: center;">
   <%= paginate(@projects, :remote => true, param_name: 'p_page') %>
 </div>
 
