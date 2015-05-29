@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
     @not_closed_project = Project.all.where("expiration_date >= ?", Time.now).order(expiration_date: :asc)
     # Tabs
     @projects = @not_closed_project.where(main_query, { search: "%#{@location}%" }).page params[:p_page]
-    @near_me = @not_closed_project.near(@coord, 20).page params[:n_page]
+    @near_me = @not_closed_project.near(@coord, 7).page params[:n_page]
     if current_user
       @donated = Project.joins(:donations).where("donations.user_id = ?",  current_user.id).order(expiration_date: :asc).uniq.page params[:d_page]
       @following = Project.joins(:followers).where("followers.user_id = ?", current_user.id).order(expiration_date: :asc).uniq.page params[:f_page]
